@@ -14,6 +14,7 @@
 #include <map>
 
 #include <openssl/sha.h>
+#include <openssl/md5.h>
 #include <archive.h>
 #include <archive_entry.h>
 #include <zlib.h>
@@ -674,13 +675,30 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
 
     ////
 
+    std::vector<unsigned char> md5;
+    md5.resize(16);
+
+    MD5_CTX md5_c;
+
+    if (!::MD5_Init(&md5_c))
+        throw std::runtime_error("MD5_Init() failed");
+
+    if (!::MD5_Update(&md5_c, (const unsigned char*)index2.data(), index2.size()))
+        throw std::runtime_error("MD5_Update() failed");
+
+    if (!::MD5_Update(&md5_c, (const unsigned char*)ret.addr, ret.size))
+        throw std::runtime_error("MD5_Update() failed");
+
+    if (!::MD5_Final(&(md5[0]), &md5_c))
+        throw std::runtime_error("MD5_Final() failed");
+
+    ////
+
     add_to_store(rpm::TAG_SHA1HEADER, sha1, false, index, store, nentries);
 
     uint32_t size = index2.size() + ret.size;
 
     add_to_store(rpm::TAG_SIZE, size, index, store, nentries);
-
-    std::vector<unsigned char> md5{108, 88, 58, 23, 218, 1, 159, 167, 252, 104, 184, 20, 200, 87, 174, 45};
 
     add_magic(rpm::TAG_MD5, md5, index, store, nentries);
 
@@ -916,6 +934,8 @@ int main(int argc, char** argv) {
         }
 
         ::close(fd);
+
+        ::unlink((input + ".gz").c_str());
 
     } catch (std::exception& e) {
         std::cout << "ERROR: " << e.what() << std::endl;
