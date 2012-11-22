@@ -1,23 +1,24 @@
 
-#include <sys/mman.h>
-#include <unistd.h>
 #include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include <unistd.h>
 #include <arpa/inet.h>
 #include <endian.h>
 #include <string.h>
 #include <stdint.h>
+#include <pwd.h>
+#include <grp.h>
 
 #include <stdexcept>
-
 #include <iostream>
-
 #include <vector>
 #include <map>
 
 #include <openssl/sha.h>
+#include <archive.h>
+#include <archive_entry.h>
+#include <zlib.h>
 
+#include "mfile.h"
 #include "rpmtags.h"
 #include "rpmstruct.h"
 
@@ -549,7 +550,7 @@ std::string make_index2(const rpmprops_t& props) {
 
         if (slash != std::string::npos) {
             base = fname.substr(slash+1);
-            dir += fname.substr(0, slash);
+            dir += fname.substr(0, slash+1);
         }
 
         auto dim = dirindex_map.find(dir);
@@ -617,7 +618,28 @@ std::string make_index2(const rpmprops_t& props) {
     return iheader + index + store;
 }
 
-std::string make_index1(const std::string& index2, const std::string& payload) {
+
+void compress_file(mfile& in, const std::string& out) {
+
+    gzFile gf = ::gzopen(out.c_str(), "wbx");
+
+    if (gf == NULL) {
+        throw std::runtime_error("Could not open for writing: " + out);
+    }
+
+    size_t n = ::gzwrite(gf, in.addr, in.size);
+
+    if (n == 0) {
+        throw std::runtime_error("Could not write to compressed file: " + out);
+    }
+
+    if (::gzclose(gf) != Z_OK) {
+        throw std::runtime_error("Error in closing compressed file.");
+    }
+}
+
+
+mfile make_index1(const std::string& index2, mfile& payload, const std::string& compressed_payload, std::string& header) {
 
     std::string index;
     std::string store;
@@ -625,6 +647,8 @@ std::string make_index1(const std::string& index2, const std::string& payload) {
     // Add signature fields.
 
     size_t nentries = 0;
+
+    ////
 
     unsigned char sha1_raw[20];
     std::string sha1;
@@ -640,17 +664,25 @@ std::string make_index1(const std::string& index2, const std::string& payload) {
         sha1 += print[c & 0xF];
     }
 
+    size_t uncompressedsize = payload.size;
+
+    ////
+
+    compress_file(payload, compressed_payload);
+
+    mfile ret(compressed_payload);
+
+    ////
+
     add_to_store(rpm::TAG_SHA1HEADER, sha1, false, index, store, nentries);
 
-    uint32_t size = index2.size() + payload.size();
+    uint32_t size = index2.size() + ret.size;
 
     add_to_store(rpm::TAG_SIZE, size, index, store, nentries);
 
     std::vector<unsigned char> md5{108, 88, 58, 23, 218, 1, 159, 167, 252, 104, 184, 20, 200, 87, 174, 45};
 
     add_magic(rpm::TAG_MD5, md5, index, store, nentries);
-
-    size_t uncompressedsize = 12345678;
 
     add_to_store(rpm::TAG_PAYLOADSIZE, uncompressedsize, index, store, nentries);
 
@@ -691,27 +723,163 @@ std::string make_index1(const std::string& index2, const std::string& payload) {
         --q;
     }
 
-    return iheader + index + store;
+    header = iheader + index + store;
+    return ret;
 }
 
 
-std::string make_rpm(const rpmprops_t& props, const std::string& payload) {
+mfile make_rpm(const rpmprops_t& props, const std::string& payload_file, std::string& header) {
+
+    mfile payload(payload_file);
 
     std::string index2 = make_index2(props);
-    std::string index1 = make_index1(index2, payload);
+    mfile ret = make_index1(index2, payload, payload_file + ".gz", header);
     std::string lead = make_lead(props.name);
 
-    return lead + index1 + index2 + payload;
+    header = lead + header + index2;
+    return ret;
 }
+
+
+std::string uid_to_uname(uid_t uid) {
+
+    struct passwd unam;
+    char buf[1024];
+
+    struct passwd* res;
+    ::getpwuid_r(uid, &unam, buf, 1024, &res);
+
+    std::string uname;
+
+    if (res == NULL) {
+        return "(unknown)";
+    } else {
+        return res->pw_name;
+    }
+}
+
+std::string gid_to_gname(gid_t gid) {
+
+    struct group gnam;
+    char buf[1024];
+
+    struct group* res;
+    ::getgrgid_r(gid, &gnam, buf, 1024, &res);
+
+    if (res == NULL) {
+        return "(unknown)";
+    } else {
+        return res->gr_name;
+    }
+}
+
+
+void archive_to_rpmprops(const std::string& arfname, rpmprops_t& props) {
+
+    struct archive* a;
+    struct archive_entry* entry;
+
+    a = ::archive_read_new();
+    if (a == NULL) {
+        throw std::runtime_error("Could not allocate archive struct.");
+    }
+
+    ::archive_read_support_filter_all(a);
+    ::archive_read_support_format_all(a);
+
+    if (::archive_read_open_filename(a, arfname.c_str(), 16*1024)) {
+
+        throw std::runtime_error("Could not open: " + arfname + ::archive_error_string(a));
+    }
+
+    bool first = true;
+
+    while (1) {
+        int r;
+
+        r = ::archive_read_next_header(a, &entry);
+
+        if (first) {
+            int f = ::archive_format(a);
+
+            if (f & ARCHIVE_FORMAT_CPIO) {
+                props.payload_format = "cpio";
+
+            } else if (f & ARCHIVE_FORMAT_TAR) {
+                props.payload_format = "tar";
+
+            } else {
+                throw std::runtime_error("Unsupported format: " + std::string(::archive_format_name(a)) + 
+                                         ", only cpio and tar are currently supported.");
+            }
+
+            f = ::archive_filter_code(a, 0);
+
+            if (f != ARCHIVE_FILTER_NONE) {
+                throw std::runtime_error("Please provide an uncompressed archive as input.");
+            }
+        }
+
+        if (r == ARCHIVE_EOF)
+            break;
+
+        if (r != ARCHIVE_OK) {
+            throw std::runtime_error("Could not read archive entry: " + std::string(::archive_error_string(a)));
+        }
+
+        props.files.push_back(rpmprops_t::file_t());
+
+        rpmprops_t::file_t& f = props.files.back();
+
+        uint64_t size = ::archive_entry_size(entry);
+
+        if (size < 0xFFFFFFFF) {
+            f.size = size;
+        } else {
+            f.longsize = size;
+        }
+
+        f.mode = ::archive_entry_mode(entry);
+        f.rdev = ::archive_entry_rdev(entry);
+        f.mtime = ::archive_entry_mtime(entry);
+
+        const char* linkto = ::archive_entry_symlink(entry);
+        if (linkto != NULL) {
+            f.linkto = linkto;
+        }
+
+        f.device = ::archive_entry_dev(entry);
+        f.inode = ::archive_entry_ino(entry);
+
+        f.username = uid_to_uname(::archive_entry_uid(entry));
+        f.groupname = gid_to_gname(::archive_entry_gid(entry));
+
+        f.fname = ::archive_entry_pathname(entry);
+
+        // f.digest ??
+        // f.flags ??
+        // f.verifyflags ??
+    }
+
+    if (::archive_read_close(a)) {
+        throw std::runtime_error("Could not close archive: " + std::string(::archive_error_string(a)));
+    }
+
+    ::archive_read_free(a);
+}
+
 
 int main(int argc, char** argv) {
 
     try {
 
-        if (argc != 2) {
-            std::cout << "Usage: " << argv[0] << " <rpmfile>" << std::endl;
+        if (argc != 3) {
+            std::cout << "Usage: " << argv[0] << " <input archive file> <output rpm file>" << std::endl;
             return 1;
         }
+
+        std::string input = argv[1];
+        std::string output = argv[2];
 
         rpmprops_t props;
 
@@ -728,18 +896,23 @@ int main(int argc, char** argv) {
         props.arch = "x86_64";
         props.platform = "x86_64-redhat-linux";
 
-        std::string data = make_rpm(props, "Hello world!");
+        archive_to_rpmprops(input, props);
 
-        std::string f = argv[1];
+        std::string header;
+        mfile payload = make_rpm(props, input, header);
 
-        int fd = ::open(f.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0666);
+        int fd = ::open(output.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0666);
         
         if (fd < 0) {
-            throw std::runtime_error("Could not open: " + f);
+            throw std::runtime_error("Could not open: " + output);
         }
 
-        if (::write(fd, data.c_str(), data.size()) != data.size()) {
-            throw std::runtime_error("Could not write to : " + f);
+        if (::write(fd, header.c_str(), header.size()) != header.size()) {
+            throw std::runtime_error("Could not write to : " + output);
+        }
+
+        if (::write(fd, payload.addr, payload.size) != payload.size) {
+            throw std::runtime_error("Could not write to : " + output);
         }
 
         ::close(fd);
