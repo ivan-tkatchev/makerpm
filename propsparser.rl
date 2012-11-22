@@ -166,26 +166,27 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
             ;
 
         deps_cond =
-            (deps_type ws string %{ deps.version = state.match; }) :>>
-            ''
+            (deps_type ws string %{ deps.version = state.match; }) |
+            ('any' | [ \t\r\n])
             ;
 
         deps = deps_tag ws deps_cond
             ;
 
-        provides = [Pp] 'rovides' ':'? ws1 %{ deps = rpmprops_t::deps_t(); }
-            deps %{ props.provide.push_back(deps); }
+        provides = [Pp] 'rovides' ':'? ws1 ${ deps = rpmprops_t::deps_t(); }
+            deps :> '' %{ props.provide.push_back(deps); }
             ;
 
-        requires = [Rr] 'equires' ':'? ws1 %{ deps = rpmprops_t::deps_t(); }
-            deps %{ props.require.push_back(deps); }
+        requires = [Rr] 'equires' ':'? ws1 ${ deps = rpmprops_t::deps_t(); }
+            deps :> '' %{ props.require.push_back(deps); }
             ;
 
         entry = 
             name | version | release | summary | description | buildhost | license |
             packager | group | url | os | arch | platform | optflags | rpmversion |
             prein | postin | preun | postun |
-            provides | requires 
+            provides | 
+            requires 
             ;
             
       main := (ws entry)+ ws ;

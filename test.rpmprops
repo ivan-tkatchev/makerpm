@@ -25,9 +25,9 @@ PreUn:
 PostUn: shell "/bin/bash" 
 "echo 'after uninstall"
 
-Requires: "begun-daemontools"
-Requires: config "mytestrpm" = "666-alpha"
-Requires: "bash" <= "123"
+Requires: "begun-daemontools"    
+Requires: config "mytestrpm" = "666-alpha"  
+Requires: "bash" <= "123"  
 
-Provides: "mytestrpm"
+Provides: "mytestrpm"     
 Provides: config "mytestrpm" = "666-alpha"

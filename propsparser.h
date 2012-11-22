@@ -64,7 +64,7 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
     rpmprops_t::deps_t deps;
 
     
-#line 193 "propsparser.rl"
+#line 194 "propsparser.rl"
 
 /*
 
@@ -73,14 +73,14 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
     
 #line 75 "propsparser.h"
 static const int PropsParser_start = 1;
-static const int PropsParser_first_final = 260;
+static const int PropsParser_first_final = 262;
 static const int PropsParser_error = 0;
 
-static const int PropsParser_en_strchar_escape = 259;
+static const int PropsParser_en_strchar_escape = 261;
 static const int PropsParser_en_main = 1;
 
 
-#line 199 "propsparser.rl"
+#line 200 "propsparser.rl"
     
 #line 86 "propsparser.h"
 	{
@@ -88,7 +88,7 @@ static const int PropsParser_en_main = 1;
 	 state.top = 0;
 	}
 
-#line 200 "propsparser.rl"
+#line 201 "propsparser.rl"
 
     bool done = false;
     int have = 0;
@@ -127,8 +127,8 @@ _again:
 		case 5: goto st5;
 		case 6: goto st6;
 		case 7: goto st7;
-		case 260: goto st260;
-		case 261: goto st261;
+		case 262: goto st262;
+		case 263: goto st263;
 		case 8: goto st8;
 		case 9: goto st9;
 		case 10: goto st10;
@@ -140,7 +140,7 @@ _again:
 		case 16: goto st16;
 		case 17: goto st17;
 		case 18: goto st18;
-		case 262: goto st262;
+		case 264: goto st264;
 		case 19: goto st19;
 		case 20: goto st20;
 		case 21: goto st21;
@@ -154,7 +154,7 @@ _again:
 		case 29: goto st29;
 		case 30: goto st30;
 		case 31: goto st31;
-		case 263: goto st263;
+		case 265: goto st265;
 		case 32: goto st32;
 		case 33: goto st33;
 		case 34: goto st34;
@@ -162,7 +162,7 @@ _again:
 		case 36: goto st36;
 		case 37: goto st37;
 		case 38: goto st38;
-		case 264: goto st264;
+		case 266: goto st266;
 		case 39: goto st39;
 		case 40: goto st40;
 		case 41: goto st41;
@@ -172,19 +172,19 @@ _again:
 		case 45: goto st45;
 		case 46: goto st46;
 		case 47: goto st47;
-		case 265: goto st265;
+		case 267: goto st267;
 		case 48: goto st48;
 		case 49: goto st49;
 		case 50: goto st50;
 		case 51: goto st51;
 		case 52: goto st52;
 		case 53: goto st53;
-		case 266: goto st266;
+		case 268: goto st268;
 		case 54: goto st54;
 		case 55: goto st55;
 		case 56: goto st56;
 		case 57: goto st57;
-		case 267: goto st267;
+		case 269: goto st269;
 		case 58: goto st58;
 		case 59: goto st59;
 		case 60: goto st60;
@@ -195,7 +195,7 @@ _again:
 		case 65: goto st65;
 		case 66: goto st66;
 		case 67: goto st67;
-		case 268: goto st268;
+		case 270: goto st270;
 		case 68: goto st68;
 		case 69: goto st69;
 		case 70: goto st70;
@@ -208,7 +208,7 @@ _again:
 		case 77: goto st77;
 		case 78: goto st78;
 		case 79: goto st79;
-		case 269: goto st269;
+		case 271: goto st271;
 		case 80: goto st80;
 		case 81: goto st81;
 		case 82: goto st82;
@@ -218,13 +218,13 @@ _again:
 		case 86: goto st86;
 		case 87: goto st87;
 		case 88: goto st88;
-		case 270: goto st270;
+		case 272: goto st272;
 		case 89: goto st89;
 		case 90: goto st90;
 		case 91: goto st91;
 		case 92: goto st92;
 		case 93: goto st93;
-		case 271: goto st271;
+		case 273: goto st273;
 		case 94: goto st94;
 		case 95: goto st95;
 		case 96: goto st96;
@@ -234,7 +234,7 @@ _again:
 		case 100: goto st100;
 		case 101: goto st101;
 		case 102: goto st102;
-		case 272: goto st272;
+		case 274: goto st274;
 		case 103: goto st103;
 		case 104: goto st104;
 		case 105: goto st105;
@@ -247,7 +247,7 @@ _again:
 		case 112: goto st112;
 		case 113: goto st113;
 		case 114: goto st114;
-		case 273: goto st273;
+		case 275: goto st275;
 		case 115: goto st115;
 		case 116: goto st116;
 		case 117: goto st117;
@@ -258,16 +258,18 @@ _again:
 		case 122: goto st122;
 		case 123: goto st123;
 		case 124: goto st124;
+		case 276: goto st276;
 		case 125: goto st125;
 		case 126: goto st126;
 		case 127: goto st127;
+		case 277: goto st277;
 		case 128: goto st128;
-		case 274: goto st274;
 		case 129: goto st129;
 		case 130: goto st130;
 		case 131: goto st131;
 		case 132: goto st132;
 		case 133: goto st133;
+		case 278: goto st278;
 		case 134: goto st134;
 		case 135: goto st135;
 		case 136: goto st136;
@@ -287,8 +289,8 @@ _again:
 		case 150: goto st150;
 		case 151: goto st151;
 		case 152: goto st152;
-		case 275: goto st275;
 		case 153: goto st153;
+		case 279: goto st279;
 		case 154: goto st154;
 		case 155: goto st155;
 		case 156: goto st156;
@@ -296,8 +298,8 @@ _again:
 		case 158: goto st158;
 		case 159: goto st159;
 		case 160: goto st160;
-		case 276: goto st276;
 		case 161: goto st161;
+		case 280: goto st280;
 		case 162: goto st162;
 		case 163: goto st163;
 		case 164: goto st164;
@@ -311,8 +313,8 @@ _again:
 		case 172: goto st172;
 		case 173: goto st173;
 		case 174: goto st174;
-		case 277: goto st277;
 		case 175: goto st175;
+		case 281: goto st281;
 		case 176: goto st176;
 		case 177: goto st177;
 		case 178: goto st178;
@@ -328,8 +330,8 @@ _again:
 		case 188: goto st188;
 		case 189: goto st189;
 		case 190: goto st190;
-		case 278: goto st278;
 		case 191: goto st191;
+		case 282: goto st282;
 		case 192: goto st192;
 		case 193: goto st193;
 		case 194: goto st194;
@@ -343,8 +345,8 @@ _again:
 		case 202: goto st202;
 		case 203: goto st203;
 		case 204: goto st204;
-		case 279: goto st279;
 		case 205: goto st205;
+		case 283: goto st283;
 		case 206: goto st206;
 		case 207: goto st207;
 		case 208: goto st208;
@@ -364,16 +366,18 @@ _again:
 		case 222: goto st222;
 		case 223: goto st223;
 		case 224: goto st224;
+		case 284: goto st284;
 		case 225: goto st225;
 		case 226: goto st226;
 		case 227: goto st227;
-		case 280: goto st280;
+		case 285: goto st285;
 		case 228: goto st228;
 		case 229: goto st229;
 		case 230: goto st230;
 		case 231: goto st231;
 		case 232: goto st232;
 		case 233: goto st233;
+		case 286: goto st286;
 		case 234: goto st234;
 		case 235: goto st235;
 		case 236: goto st236;
@@ -392,16 +396,18 @@ _again:
 		case 249: goto st249;
 		case 250: goto st250;
 		case 251: goto st251;
-		case 281: goto st281;
 		case 252: goto st252;
 		case 253: goto st253;
+		case 287: goto st287;
 		case 254: goto st254;
 		case 255: goto st255;
 		case 256: goto st256;
 		case 257: goto st257;
 		case 258: goto st258;
 		case 259: goto st259;
-		case 282: goto st282;
+		case 260: goto st260;
+		case 261: goto st261;
+		case 288: goto st288;
 	default: break;
 	}
 
@@ -500,39 +506,47 @@ tr539:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st2;
-tr552:
+tr555:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st2;
+tr568:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st2;
-tr565:
+tr581:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st2;
-tr578:
+tr594:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st2;
-tr591:
+tr607:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st2;
-tr604:
+tr620:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st2;
-tr617:
+tr633:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st2;
-tr630:
+tr649:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st2;
+tr662:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st2;
-tr643:
+tr675:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st2;
@@ -540,7 +554,7 @@ st2:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof2;
 case 2:
-#line 544 "propsparser.h"
+#line 558 "propsparser.h"
 	if ( (*( state.p)) == 114 )
 		goto st3;
 	goto st0;
@@ -565,7 +579,7 @@ case 5:
 	switch( (*( state.p)) ) {
 		case 13: goto st6;
 		case 32: goto st6;
-		case 58: goto st258;
+		case 58: goto st260;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st6;
@@ -596,22 +610,22 @@ tr20:
 	goto st7;
 tr22:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 7; goto st259;}}
+	{{ state.stack[ state.top++] = 7; goto st261;}}
 	goto st7;
 st7:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof7;
 case 7:
-#line 606 "propsparser.h"
+#line 620 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st260;
+		case 34: goto st262;
 		case 92: goto tr22;
 	}
 	goto tr20;
-st260:
+st262:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof260;
-case 260:
+		goto _test_eof262;
+case 262:
 	switch( (*( state.p)) ) {
 		case 13: goto tr381;
 		case 32: goto tr381;
@@ -646,99 +660,107 @@ case 260:
 tr381:
 #line 129 "propsparser.rl"
 	{ props.arch = state.match; }
-	goto st261;
+	goto st263;
 tr395:
 #line 123 "propsparser.rl"
 	{ props.buildhost = state.match; }
-	goto st261;
+	goto st263;
 tr408:
 #line 122 "propsparser.rl"
 	{ props.description = state.match; }
-	goto st261;
+	goto st263;
 tr421:
 #line 126 "propsparser.rl"
 	{ props.group = state.match; }
-	goto st261;
+	goto st263;
 tr434:
 #line 124 "propsparser.rl"
 	{ props.license = state.match; }
-	goto st261;
+	goto st263;
 tr447:
 #line 118 "propsparser.rl"
 	{ props.name = state.match; }
-	goto st261;
+	goto st263;
 tr460:
 #line 128 "propsparser.rl"
 	{ props.os = state.match; }
-	goto st261;
+	goto st263;
 tr473:
 #line 125 "propsparser.rl"
 	{ props.packager = state.match; }
-	goto st261;
+	goto st263;
 tr486:
 #line 133 "propsparser.rl"
 	{ props.rpmversion = state.match; }
-	goto st261;
+	goto st263;
 tr499:
 #line 121 "propsparser.rl"
 	{ props.summary = state.match; }
-	goto st261;
+	goto st263;
 tr512:
 #line 127 "propsparser.rl"
 	{ props.url = state.match; }
-	goto st261;
+	goto st263;
 tr525:
 #line 119 "propsparser.rl"
 	{ props.version = state.match; }
-	goto st261;
+	goto st263;
 tr538:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
-	goto st261;
+	goto st263;
 tr551:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st263;
+tr567:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
-	goto st261;
-tr564:
+	goto st263;
+tr580:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
-	goto st261;
-tr577:
+	goto st263;
+tr593:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
-	goto st261;
-tr590:
+	goto st263;
+tr606:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
-	goto st261;
-tr603:
+	goto st263;
+tr619:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
-	goto st261;
-tr616:
+	goto st263;
+tr632:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
-	goto st261;
-tr629:
+	goto st263;
+tr645:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st263;
+tr661:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
-	goto st261;
-tr642:
+	goto st263;
+tr674:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
-	goto st261;
-st261:
+	goto st263;
+st263:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof261;
-case 261:
-#line 739 "propsparser.h"
+		goto _test_eof263;
+case 263:
+#line 761 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st261;
-		case 32: goto st261;
+		case 13: goto st263;
+		case 32: goto st263;
 		case 65: goto st2;
 		case 66: goto st8;
 		case 68: goto st19;
@@ -765,7 +787,7 @@ case 261:
 		case 118: goto st94;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st261;
+		goto st263;
 	goto st0;
 tr383:
 #line 129 "propsparser.rl"
@@ -819,39 +841,47 @@ tr540:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st8;
-tr553:
+tr556:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st8;
+tr569:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st8;
-tr566:
+tr582:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st8;
-tr579:
+tr595:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st8;
-tr592:
+tr608:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st8;
-tr605:
+tr621:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st8;
-tr618:
+tr634:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st8;
-tr631:
+tr650:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st8;
+tr663:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st8;
-tr644:
+tr676:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st8;
@@ -859,7 +889,7 @@ st8:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof8;
 case 8:
-#line 863 "propsparser.h"
+#line 893 "propsparser.h"
 	if ( (*( state.p)) == 117 )
 		goto st9;
 	goto st0;
@@ -921,7 +951,7 @@ case 16:
 	switch( (*( state.p)) ) {
 		case 13: goto st17;
 		case 32: goto st17;
-		case 58: goto st257;
+		case 58: goto st259;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st17;
@@ -952,22 +982,22 @@ tr34:
 	goto st18;
 tr36:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 18; goto st259;}}
+	{{ state.stack[ state.top++] = 18; goto st261;}}
 	goto st18;
 st18:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof18;
 case 18:
-#line 962 "propsparser.h"
+#line 992 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st262;
+		case 34: goto st264;
 		case 92: goto tr36;
 	}
 	goto tr34;
-st262:
+st264:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof262;
-case 262:
+		goto _test_eof264;
+case 264:
 	switch( (*( state.p)) ) {
 		case 13: goto tr395;
 		case 32: goto tr395;
@@ -1051,39 +1081,47 @@ tr541:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st19;
-tr554:
+tr557:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st19;
+tr570:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st19;
-tr567:
+tr583:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st19;
-tr580:
+tr596:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st19;
-tr593:
+tr609:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st19;
-tr606:
+tr622:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st19;
-tr619:
+tr635:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st19;
-tr632:
+tr651:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st19;
+tr664:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st19;
-tr645:
+tr677:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st19;
@@ -1091,7 +1129,7 @@ st19:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof19;
 case 19:
-#line 1095 "propsparser.h"
+#line 1133 "propsparser.h"
 	if ( (*( state.p)) == 101 )
 		goto st20;
 	goto st0;
@@ -1165,7 +1203,7 @@ case 29:
 	switch( (*( state.p)) ) {
 		case 13: goto st30;
 		case 32: goto st30;
-		case 58: goto st256;
+		case 58: goto st258;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st30;
@@ -1196,22 +1234,22 @@ tr50:
 	goto st31;
 tr52:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 31; goto st259;}}
+	{{ state.stack[ state.top++] = 31; goto st261;}}
 	goto st31;
 st31:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof31;
 case 31:
-#line 1206 "propsparser.h"
+#line 1244 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st263;
+		case 34: goto st265;
 		case 92: goto tr52;
 	}
 	goto tr50;
-st263:
+st265:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof263;
-case 263:
+		goto _test_eof265;
+case 265:
 	switch( (*( state.p)) ) {
 		case 13: goto tr408;
 		case 32: goto tr408;
@@ -1295,39 +1333,47 @@ tr542:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st32;
-tr555:
+tr558:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st32;
+tr571:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st32;
-tr568:
+tr584:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st32;
-tr581:
+tr597:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st32;
-tr594:
+tr610:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st32;
-tr607:
+tr623:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st32;
-tr620:
+tr636:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st32;
-tr633:
+tr652:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st32;
+tr665:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st32;
-tr646:
+tr678:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st32;
@@ -1335,7 +1381,7 @@ st32:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof32;
 case 32:
-#line 1339 "propsparser.h"
+#line 1385 "propsparser.h"
 	if ( (*( state.p)) == 114 )
 		goto st33;
 	goto st0;
@@ -1367,7 +1413,7 @@ case 36:
 	switch( (*( state.p)) ) {
 		case 13: goto st37;
 		case 32: goto st37;
-		case 58: goto st255;
+		case 58: goto st257;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st37;
@@ -1398,22 +1444,22 @@ tr60:
 	goto st38;
 tr62:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 38; goto st259;}}
+	{{ state.stack[ state.top++] = 38; goto st261;}}
 	goto st38;
 st38:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof38;
 case 38:
-#line 1408 "propsparser.h"
+#line 1454 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st264;
+		case 34: goto st266;
 		case 92: goto tr62;
 	}
 	goto tr60;
-st264:
+st266:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof264;
-case 264:
+		goto _test_eof266;
+case 266:
 	switch( (*( state.p)) ) {
 		case 13: goto tr421;
 		case 32: goto tr421;
@@ -1497,39 +1543,47 @@ tr543:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st39;
-tr556:
+tr559:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st39;
+tr572:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st39;
-tr569:
+tr585:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st39;
-tr582:
+tr598:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st39;
-tr595:
+tr611:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st39;
-tr608:
+tr624:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st39;
-tr621:
+tr637:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st39;
-tr634:
+tr653:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st39;
+tr666:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st39;
-tr647:
+tr679:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st39;
@@ -1537,7 +1591,7 @@ st39:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof39;
 case 39:
-#line 1541 "propsparser.h"
+#line 1595 "propsparser.h"
 	if ( (*( state.p)) == 105 )
 		goto st40;
 	goto st0;
@@ -1583,7 +1637,7 @@ case 45:
 	switch( (*( state.p)) ) {
 		case 13: goto st46;
 		case 32: goto st46;
-		case 58: goto st254;
+		case 58: goto st256;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st46;
@@ -1614,22 +1668,22 @@ tr72:
 	goto st47;
 tr74:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 47; goto st259;}}
+	{{ state.stack[ state.top++] = 47; goto st261;}}
 	goto st47;
 st47:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof47;
 case 47:
-#line 1624 "propsparser.h"
+#line 1678 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st265;
+		case 34: goto st267;
 		case 92: goto tr74;
 	}
 	goto tr72;
-st265:
+st267:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof265;
-case 265:
+		goto _test_eof267;
+case 267:
 	switch( (*( state.p)) ) {
 		case 13: goto tr434;
 		case 32: goto tr434;
@@ -1713,39 +1767,47 @@ tr544:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st48;
-tr557:
+tr560:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st48;
+tr573:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st48;
-tr570:
+tr586:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st48;
-tr583:
+tr599:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st48;
-tr596:
+tr612:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st48;
-tr609:
+tr625:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st48;
-tr622:
+tr638:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st48;
-tr635:
+tr654:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st48;
+tr667:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st48;
-tr648:
+tr680:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st48;
@@ -1753,7 +1815,7 @@ st48:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof48;
 case 48:
-#line 1757 "propsparser.h"
+#line 1819 "propsparser.h"
 	if ( (*( state.p)) == 97 )
 		goto st49;
 	goto st0;
@@ -1778,7 +1840,7 @@ case 51:
 	switch( (*( state.p)) ) {
 		case 13: goto st52;
 		case 32: goto st52;
-		case 58: goto st253;
+		case 58: goto st255;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st52;
@@ -1809,22 +1871,22 @@ tr81:
 	goto st53;
 tr83:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 53; goto st259;}}
+	{{ state.stack[ state.top++] = 53; goto st261;}}
 	goto st53;
 st53:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof53;
 case 53:
-#line 1819 "propsparser.h"
+#line 1881 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st266;
+		case 34: goto st268;
 		case 92: goto tr83;
 	}
 	goto tr81;
-st266:
+st268:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof266;
-case 266:
+		goto _test_eof268;
+case 268:
 	switch( (*( state.p)) ) {
 		case 13: goto tr447;
 		case 32: goto tr447;
@@ -1908,39 +1970,47 @@ tr545:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st54;
-tr558:
+tr561:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st54;
+tr574:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st54;
-tr571:
+tr587:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st54;
-tr584:
+tr600:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st54;
-tr597:
+tr613:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st54;
-tr610:
+tr626:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st54;
-tr623:
+tr639:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st54;
-tr636:
+tr655:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st54;
+tr668:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st54;
-tr649:
+tr681:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st54;
@@ -1948,10 +2018,10 @@ st54:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof54;
 case 54:
-#line 1952 "propsparser.h"
+#line 2022 "propsparser.h"
 	switch( (*( state.p)) ) {
 		case 83: goto st55;
-		case 112: goto st243;
+		case 112: goto st245;
 		case 115: goto st55;
 	}
 	goto st0;
@@ -1962,7 +2032,7 @@ case 55:
 	switch( (*( state.p)) ) {
 		case 13: goto st56;
 		case 32: goto st56;
-		case 58: goto st242;
+		case 58: goto st244;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st56;
@@ -1993,22 +2063,22 @@ tr89:
 	goto st57;
 tr91:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 57; goto st259;}}
+	{{ state.stack[ state.top++] = 57; goto st261;}}
 	goto st57;
 st57:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof57;
 case 57:
-#line 2003 "propsparser.h"
+#line 2073 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st267;
+		case 34: goto st269;
 		case 92: goto tr91;
 	}
 	goto tr89;
-st267:
+st269:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof267;
-case 267:
+		goto _test_eof269;
+case 269:
 	switch( (*( state.p)) ) {
 		case 13: goto tr460;
 		case 32: goto tr460;
@@ -2092,39 +2162,47 @@ tr546:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st58;
-tr559:
+tr562:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st58;
+tr575:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st58;
-tr572:
+tr588:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st58;
-tr585:
+tr601:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st58;
-tr598:
+tr614:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st58;
-tr611:
+tr627:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st58;
-tr624:
+tr640:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st58;
-tr637:
+tr656:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st58;
+tr669:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st58;
-tr650:
+tr682:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st58;
@@ -2132,12 +2210,12 @@ st58:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof58;
 case 58:
-#line 2136 "propsparser.h"
+#line 2214 "propsparser.h"
 	switch( (*( state.p)) ) {
 		case 97: goto st59;
-		case 108: goto st144;
-		case 111: goto st154;
-		case 114: goto st185;
+		case 108: goto st145;
+		case 111: goto st155;
+		case 114: goto st186;
 	}
 	goto st0;
 st59:
@@ -2189,7 +2267,7 @@ case 65:
 	switch( (*( state.p)) ) {
 		case 13: goto st66;
 		case 32: goto st66;
-		case 58: goto st143;
+		case 58: goto st144;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st66;
@@ -2220,22 +2298,22 @@ tr105:
 	goto st67;
 tr107:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 67; goto st259;}}
+	{{ state.stack[ state.top++] = 67; goto st261;}}
 	goto st67;
 st67:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof67;
 case 67:
-#line 2230 "propsparser.h"
+#line 2308 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st268;
+		case 34: goto st270;
 		case 92: goto tr107;
 	}
 	goto tr105;
-st268:
+st270:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof268;
-case 268:
+		goto _test_eof270;
+case 270:
 	switch( (*( state.p)) ) {
 		case 13: goto tr473;
 		case 32: goto tr473;
@@ -2319,39 +2397,47 @@ tr547:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st68;
-tr560:
+tr563:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st68;
+tr576:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st68;
-tr573:
+tr589:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st68;
-tr586:
+tr602:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st68;
-tr599:
+tr615:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st68;
-tr612:
+tr628:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st68;
-tr625:
+tr641:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st68;
-tr638:
+tr657:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st68;
+tr670:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st68;
-tr651:
+tr683:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st68;
@@ -2359,7 +2445,7 @@ st68:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof68;
 case 68:
-#line 2363 "propsparser.h"
+#line 2449 "propsparser.h"
 	switch( (*( state.p)) ) {
 		case 80: goto st69;
 		case 101: goto st107;
@@ -2464,22 +2550,22 @@ tr121:
 	goto st79;
 tr123:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 79; goto st259;}}
+	{{ state.stack[ state.top++] = 79; goto st261;}}
 	goto st79;
 st79:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof79;
 case 79:
-#line 2474 "propsparser.h"
+#line 2560 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st269;
+		case 34: goto st271;
 		case 92: goto tr123;
 	}
 	goto tr121;
-st269:
+st271:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof269;
-case 269:
+		goto _test_eof271;
+case 271:
 	switch( (*( state.p)) ) {
 		case 13: goto tr486;
 		case 32: goto tr486;
@@ -2563,39 +2649,47 @@ tr548:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st80;
-tr561:
+tr564:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st80;
+tr577:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st80;
-tr574:
+tr590:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st80;
-tr587:
+tr603:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st80;
-tr600:
+tr616:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st80;
-tr613:
+tr629:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st80;
-tr626:
+tr642:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st80;
-tr639:
+tr658:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st80;
+tr671:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st80;
-tr652:
+tr684:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st80;
@@ -2603,7 +2697,7 @@ st80:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof80;
 case 80:
-#line 2607 "propsparser.h"
+#line 2701 "propsparser.h"
 	if ( (*( state.p)) == 117 )
 		goto st81;
 	goto st0;
@@ -2680,22 +2774,22 @@ tr133:
 	goto st88;
 tr135:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 88; goto st259;}}
+	{{ state.stack[ state.top++] = 88; goto st261;}}
 	goto st88;
 st88:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof88;
 case 88:
-#line 2690 "propsparser.h"
+#line 2784 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st270;
+		case 34: goto st272;
 		case 92: goto tr135;
 	}
 	goto tr133;
-st270:
+st272:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof270;
-case 270:
+		goto _test_eof272;
+case 272:
 	switch( (*( state.p)) ) {
 		case 13: goto tr499;
 		case 32: goto tr499;
@@ -2779,39 +2873,47 @@ tr549:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st89;
-tr562:
+tr565:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st89;
+tr578:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st89;
-tr575:
+tr591:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st89;
-tr588:
+tr604:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st89;
-tr601:
+tr617:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st89;
-tr614:
+tr630:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st89;
-tr627:
+tr643:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st89;
-tr640:
+tr659:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st89;
+tr672:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st89;
-tr653:
+tr685:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st89;
@@ -2819,7 +2921,7 @@ st89:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof89;
 case 89:
-#line 2823 "propsparser.h"
+#line 2925 "propsparser.h"
 	switch( (*( state.p)) ) {
 		case 82: goto st90;
 		case 114: goto st90;
@@ -2872,22 +2974,22 @@ tr141:
 	goto st93;
 tr143:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 93; goto st259;}}
+	{{ state.stack[ state.top++] = 93; goto st261;}}
 	goto st93;
 st93:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof93;
 case 93:
-#line 2882 "propsparser.h"
+#line 2984 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st271;
+		case 34: goto st273;
 		case 92: goto tr143;
 	}
 	goto tr141;
-st271:
+st273:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof271;
-case 271:
+		goto _test_eof273;
+case 273:
 	switch( (*( state.p)) ) {
 		case 13: goto tr512;
 		case 32: goto tr512;
@@ -2971,39 +3073,47 @@ tr550:
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	goto st94;
-tr563:
+tr566:
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	goto st94;
+tr579:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	goto st94;
-tr576:
+tr592:
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	goto st94;
-tr589:
+tr605:
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	goto st94;
-tr602:
+tr618:
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	goto st94;
-tr615:
+tr631:
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	goto st94;
-tr628:
+tr644:
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	goto st94;
-tr641:
+tr660:
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	goto st94;
+tr673:
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	goto st94;
-tr654:
+tr686:
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	goto st94;
@@ -3011,7 +3121,7 @@ st94:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof94;
 case 94:
-#line 3015 "propsparser.h"
+#line 3125 "propsparser.h"
 	if ( (*( state.p)) == 101 )
 		goto st95;
 	goto st0;
@@ -3088,22 +3198,22 @@ tr153:
 	goto st102;
 tr155:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 102; goto st259;}}
+	{{ state.stack[ state.top++] = 102; goto st261;}}
 	goto st102;
 st102:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof102;
 case 102:
-#line 3098 "propsparser.h"
+#line 3208 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st272;
+		case 34: goto st274;
 		case 92: goto tr155;
 	}
 	goto tr153;
-st272:
+st274:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof272;
-case 272:
+		goto _test_eof274;
+case 274:
 	switch( (*( state.p)) ) {
 		case 13: goto tr525;
 		case 32: goto tr525;
@@ -3254,22 +3364,22 @@ tr165:
 	goto st114;
 tr167:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 114; goto st259;}}
+	{{ state.stack[ state.top++] = 114; goto st261;}}
 	goto st114;
 st114:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof114;
 case 114:
-#line 3264 "propsparser.h"
+#line 3374 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st273;
+		case 34: goto st275;
 		case 92: goto tr167;
 	}
 	goto tr165;
-st273:
+st275:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof273;
-case 273:
+		goto _test_eof275;
+case 275:
 	switch( (*( state.p)) ) {
 		case 13: goto tr538;
 		case 32: goto tr538;
@@ -3352,26 +3462,37 @@ st121:
 		goto _test_eof121;
 case 121:
 	switch( (*( state.p)) ) {
-		case 13: goto st122;
-		case 32: goto st122;
-		case 58: goto st142;
+		case 13: goto tr173;
+		case 32: goto tr173;
+		case 58: goto st143;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st122;
+		goto tr173;
 	goto st0;
+tr173:
+#line 180 "propsparser.rl"
+	{ deps = rpmprops_t::deps_t(); }
+	goto st122;
 st122:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof122;
 case 122:
+#line 3481 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st122;
-		case 32: goto st122;
+		case 13: goto tr173;
+		case 32: goto tr173;
 		case 34: goto tr175;
-		case 99: goto tr176;
+		case 99: goto st134;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st122;
+		goto tr173;
 	goto st0;
+tr175:
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
+	goto st123;
 tr177:
 #line 77 "propsparser.rl"
 	{
@@ -3380,21 +3501,13 @@ tr177:
 	goto st123;
 tr179:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 123; goto st259;}}
-	goto st123;
-tr175:
-#line 180 "propsparser.rl"
-	{ deps = rpmprops_t::deps_t(); }
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
+	{{ state.stack[ state.top++] = 123; goto st261;}}
 	goto st123;
 st123:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof123;
 case 123:
-#line 3398 "propsparser.h"
+#line 3511 "propsparser.h"
 	switch( (*( state.p)) ) {
 		case 34: goto st124;
 		case 92: goto tr179;
@@ -3410,11 +3523,60 @@ case 124:
 		case 60: goto tr181;
 		case 61: goto tr182;
 		case 62: goto tr183;
+		case 97: goto tr184;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto tr180;
 	goto st0;
 tr180:
+#line 157 "propsparser.rl"
+	{ deps.name = state.match; }
+	goto st276;
+tr214:
+#line 154 "propsparser.rl"
+	{ deps.name = "config(" + state.match + ")";
+                                    deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
+	goto st276;
+st276:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof276;
+case 276:
+#line 3545 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 13: goto tr551;
+		case 32: goto tr551;
+		case 60: goto st125;
+		case 61: goto st129;
+		case 62: goto st130;
+		case 65: goto tr555;
+		case 66: goto tr556;
+		case 68: goto tr557;
+		case 71: goto tr558;
+		case 76: goto tr559;
+		case 78: goto tr560;
+		case 79: goto tr561;
+		case 80: goto tr562;
+		case 82: goto tr563;
+		case 83: goto tr564;
+		case 85: goto tr565;
+		case 86: goto tr566;
+		case 97: goto tr555;
+		case 98: goto tr556;
+		case 100: goto tr557;
+		case 103: goto tr558;
+		case 108: goto tr559;
+		case 110: goto tr560;
+		case 111: goto tr561;
+		case 112: goto tr562;
+		case 114: goto tr563;
+		case 115: goto tr564;
+		case 117: goto tr565;
+		case 118: goto tr566;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr551;
+	goto st0;
+tr181:
 #line 157 "propsparser.rl"
 	{ deps.name = state.match; }
 	goto st125;
@@ -3427,187 +3589,185 @@ st125:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof125;
 case 125:
-#line 3431 "propsparser.h"
+#line 3593 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st125;
-		case 32: goto st125;
-		case 60: goto st126;
-		case 61: goto st130;
-		case 62: goto st131;
+		case 13: goto tr185;
+		case 32: goto tr185;
+		case 34: goto tr186;
+		case 61: goto st128;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st125;
+		goto tr185;
 	goto st0;
-tr181:
-#line 157 "propsparser.rl"
-	{ deps.name = state.match; }
+tr185:
+#line 162 "propsparser.rl"
+	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_LESS; }
 	goto st126;
-tr216:
-#line 154 "propsparser.rl"
-	{ deps.name = "config(" + state.match + ")";
-                                    deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
+tr193:
+#line 164 "propsparser.rl"
+	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_LESS); }
+	goto st126;
+tr195:
+#line 161 "propsparser.rl"
+	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_EQUAL; }
+	goto st126;
+tr197:
+#line 163 "propsparser.rl"
+	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_GREATER; }
+	goto st126;
+tr200:
+#line 165 "propsparser.rl"
+	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_GREATER); }
 	goto st126;
 st126:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof126;
 case 126:
-#line 3455 "propsparser.h"
+#line 3627 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto tr188;
-		case 32: goto tr188;
+		case 13: goto st126;
+		case 32: goto st126;
 		case 34: goto tr189;
-		case 61: goto st129;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr188;
+		goto st126;
 	goto st0;
-tr188:
+tr189:
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
+	goto st127;
+tr190:
+#line 77 "propsparser.rl"
+	{
+            state.match += (*( state.p));
+        }
+	goto st127;
+tr192:
+#line 108 "propsparser.rl"
+	{{ state.stack[ state.top++] = 127; goto st261;}}
+	goto st127;
+tr186:
 #line 162 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_LESS; }
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
 	goto st127;
-tr196:
+tr194:
 #line 164 "propsparser.rl"
 	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_LESS); }
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
 	goto st127;
-tr198:
+tr196:
 #line 161 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_EQUAL; }
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
 	goto st127;
-tr200:
+tr198:
 #line 163 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_GREATER; }
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
 	goto st127;
-tr203:
+tr201:
 #line 165 "propsparser.rl"
 	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_GREATER); }
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
 	goto st127;
 st127:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof127;
 case 127:
-#line 3489 "propsparser.h"
+#line 3696 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st127;
-		case 32: goto st127;
-		case 34: goto tr192;
+		case 34: goto st277;
+		case 92: goto tr192;
+	}
+	goto tr190;
+st277:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof277;
+case 277:
+	switch( (*( state.p)) ) {
+		case 13: goto tr567;
+		case 32: goto tr567;
+		case 65: goto tr568;
+		case 66: goto tr569;
+		case 68: goto tr570;
+		case 71: goto tr571;
+		case 76: goto tr572;
+		case 78: goto tr573;
+		case 79: goto tr574;
+		case 80: goto tr575;
+		case 82: goto tr576;
+		case 83: goto tr577;
+		case 85: goto tr578;
+		case 86: goto tr579;
+		case 97: goto tr568;
+		case 98: goto tr569;
+		case 100: goto tr570;
+		case 103: goto tr571;
+		case 108: goto tr572;
+		case 110: goto tr573;
+		case 111: goto tr574;
+		case 112: goto tr575;
+		case 114: goto tr576;
+		case 115: goto tr577;
+		case 117: goto tr578;
+		case 118: goto tr579;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st127;
+		goto tr567;
 	goto st0;
-tr192:
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st128;
-tr193:
-#line 77 "propsparser.rl"
-	{
-            state.match += (*( state.p));
-        }
-	goto st128;
-tr195:
-#line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 128; goto st259;}}
-	goto st128;
-tr189:
-#line 162 "propsparser.rl"
-	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_LESS; }
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st128;
-tr197:
-#line 164 "propsparser.rl"
-	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_LESS); }
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st128;
-tr199:
-#line 161 "propsparser.rl"
-	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_EQUAL; }
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st128;
-tr201:
-#line 163 "propsparser.rl"
-	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_GREATER; }
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st128;
-tr204:
-#line 165 "propsparser.rl"
-	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_GREATER); }
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st128;
 st128:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof128;
 case 128:
-#line 3558 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st274;
-		case 92: goto tr195;
-	}
-	goto tr193;
-st274:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof274;
-case 274:
-	switch( (*( state.p)) ) {
-		case 13: goto tr551;
-		case 32: goto tr551;
-		case 65: goto tr552;
-		case 66: goto tr553;
-		case 68: goto tr554;
-		case 71: goto tr555;
-		case 76: goto tr556;
-		case 78: goto tr557;
-		case 79: goto tr558;
-		case 80: goto tr559;
-		case 82: goto tr560;
-		case 83: goto tr561;
-		case 85: goto tr562;
-		case 86: goto tr563;
-		case 97: goto tr552;
-		case 98: goto tr553;
-		case 100: goto tr554;
-		case 103: goto tr555;
-		case 108: goto tr556;
-		case 110: goto tr557;
-		case 111: goto tr558;
-		case 112: goto tr559;
-		case 114: goto tr560;
-		case 115: goto tr561;
-		case 117: goto tr562;
-		case 118: goto tr563;
+		case 13: goto tr193;
+		case 32: goto tr193;
+		case 34: goto tr194;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr551;
+		goto tr193;
 	goto st0;
+tr182:
+#line 157 "propsparser.rl"
+	{ deps.name = state.match; }
+	goto st129;
+tr216:
+#line 154 "propsparser.rl"
+	{ deps.name = "config(" + state.match + ")";
+                                    deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
+	goto st129;
 st129:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof129;
 case 129:
+#line 3762 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto tr196;
-		case 32: goto tr196;
-		case 34: goto tr197;
+		case 13: goto tr195;
+		case 32: goto tr195;
+		case 34: goto tr196;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr196;
+		goto tr195;
 	goto st0;
-tr182:
+tr183:
 #line 157 "propsparser.rl"
 	{ deps.name = state.match; }
 	goto st130;
@@ -3620,99 +3780,120 @@ st130:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof130;
 case 130:
-#line 3624 "propsparser.h"
+#line 3784 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto tr198;
-		case 32: goto tr198;
-		case 34: goto tr199;
+		case 13: goto tr197;
+		case 32: goto tr197;
+		case 34: goto tr198;
+		case 61: goto st131;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr198;
+		goto tr197;
 	goto st0;
-tr183:
-#line 157 "propsparser.rl"
-	{ deps.name = state.match; }
-	goto st131;
-tr218:
-#line 154 "propsparser.rl"
-	{ deps.name = "config(" + state.match + ")";
-                                    deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
-	goto st131;
 st131:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof131;
 case 131:
-#line 3646 "propsparser.h"
 	switch( (*( state.p)) ) {
 		case 13: goto tr200;
 		case 32: goto tr200;
 		case 34: goto tr201;
-		case 61: goto st132;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto tr200;
 	goto st0;
+tr184:
+#line 157 "propsparser.rl"
+	{ deps.name = state.match; }
+	goto st132;
+tr218:
+#line 154 "propsparser.rl"
+	{ deps.name = "config(" + state.match + ")";
+                                    deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
+	goto st132;
 st132:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof132;
 case 132:
-	switch( (*( state.p)) ) {
-		case 13: goto tr203;
-		case 32: goto tr203;
-		case 34: goto tr204;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr203;
+#line 3819 "propsparser.h"
+	if ( (*( state.p)) == 110 )
+		goto st133;
 	goto st0;
-tr176:
-#line 180 "propsparser.rl"
-	{ deps = rpmprops_t::deps_t(); }
-	goto st133;
 st133:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof133;
 case 133:
-#line 3676 "propsparser.h"
-	if ( (*( state.p)) == 111 )
-		goto st134;
+	if ( (*( state.p)) == 121 )
+		goto st278;
+	goto st0;
+st278:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof278;
+case 278:
+	switch( (*( state.p)) ) {
+		case 13: goto tr551;
+		case 32: goto tr551;
+		case 65: goto tr555;
+		case 66: goto tr556;
+		case 68: goto tr557;
+		case 71: goto tr558;
+		case 76: goto tr559;
+		case 78: goto tr560;
+		case 79: goto tr561;
+		case 80: goto tr562;
+		case 82: goto tr563;
+		case 83: goto tr564;
+		case 85: goto tr565;
+		case 86: goto tr566;
+		case 97: goto tr555;
+		case 98: goto tr556;
+		case 100: goto tr557;
+		case 103: goto tr558;
+		case 108: goto tr559;
+		case 110: goto tr560;
+		case 111: goto tr561;
+		case 112: goto tr562;
+		case 114: goto tr563;
+		case 115: goto tr564;
+		case 117: goto tr565;
+		case 118: goto tr566;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr551;
 	goto st0;
 st134:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof134;
 case 134:
-	if ( (*( state.p)) == 110 )
+	if ( (*( state.p)) == 111 )
 		goto st135;
 	goto st0;
 st135:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof135;
 case 135:
-	if ( (*( state.p)) == 102 )
+	if ( (*( state.p)) == 110 )
 		goto st136;
 	goto st0;
 st136:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof136;
 case 136:
-	if ( (*( state.p)) == 105 )
+	if ( (*( state.p)) == 102 )
 		goto st137;
 	goto st0;
 st137:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof137;
 case 137:
-	if ( (*( state.p)) == 103 )
+	if ( (*( state.p)) == 105 )
 		goto st138;
 	goto st0;
 st138:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof138;
 case 138:
-	switch( (*( state.p)) ) {
-		case 13: goto st139;
-		case 32: goto st139;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 103 )
 		goto st139;
 	goto st0;
 st139:
@@ -3720,68 +3901,80 @@ st139:
 		goto _test_eof139;
 case 139:
 	switch( (*( state.p)) ) {
-		case 13: goto st139;
-		case 32: goto st139;
-		case 34: goto tr211;
+		case 13: goto st140;
+		case 32: goto st140;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st139;
+		goto st140;
 	goto st0;
-tr211:
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st140;
-tr212:
-#line 77 "propsparser.rl"
-	{
-            state.match += (*( state.p));
-        }
-	goto st140;
-tr214:
-#line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 140; goto st259;}}
-	goto st140;
 st140:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof140;
 case 140:
-#line 3751 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st141;
-		case 92: goto tr214;
+		case 13: goto st140;
+		case 32: goto st140;
+		case 34: goto tr210;
 	}
-	goto tr212;
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st140;
+	goto st0;
+tr210:
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
+	goto st141;
+tr211:
+#line 77 "propsparser.rl"
+	{
+            state.match += (*( state.p));
+        }
+	goto st141;
+tr213:
+#line 108 "propsparser.rl"
+	{{ state.stack[ state.top++] = 141; goto st261;}}
+	goto st141;
 st141:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof141;
 case 141:
+#line 3943 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto tr215;
-		case 32: goto tr215;
-		case 60: goto tr216;
-		case 61: goto tr217;
-		case 62: goto tr218;
+		case 34: goto st142;
+		case 92: goto tr213;
 	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr215;
-	goto st0;
+	goto tr211;
 st142:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof142;
 case 142:
 	switch( (*( state.p)) ) {
-		case 13: goto st122;
-		case 32: goto st122;
+		case 13: goto tr214;
+		case 32: goto tr214;
+		case 60: goto tr215;
+		case 61: goto tr216;
+		case 62: goto tr217;
+		case 97: goto tr218;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st122;
+		goto tr214;
 	goto st0;
 st143:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof143;
 case 143:
+	switch( (*( state.p)) ) {
+		case 13: goto tr173;
+		case 32: goto tr173;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr173;
+	goto st0;
+st144:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof144;
+case 144:
 	switch( (*( state.p)) ) {
 		case 13: goto st66;
 		case 32: goto st66;
@@ -3789,58 +3982,46 @@ case 143:
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st66;
 	goto st0;
-st144:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof144;
-case 144:
-	if ( (*( state.p)) == 97 )
-		goto st145;
-	goto st0;
 st145:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof145;
 case 145:
-	if ( (*( state.p)) == 116 )
+	if ( (*( state.p)) == 97 )
 		goto st146;
 	goto st0;
 st146:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof146;
 case 146:
-	if ( (*( state.p)) == 102 )
+	if ( (*( state.p)) == 116 )
 		goto st147;
 	goto st0;
 st147:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof147;
 case 147:
-	if ( (*( state.p)) == 111 )
+	if ( (*( state.p)) == 102 )
 		goto st148;
 	goto st0;
 st148:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof148;
 case 148:
-	if ( (*( state.p)) == 114 )
+	if ( (*( state.p)) == 111 )
 		goto st149;
 	goto st0;
 st149:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof149;
 case 149:
-	if ( (*( state.p)) == 109 )
+	if ( (*( state.p)) == 114 )
 		goto st150;
 	goto st0;
 st150:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof150;
 case 150:
-	switch( (*( state.p)) ) {
-		case 13: goto st151;
-		case 32: goto st151;
-		case 58: goto st153;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 109 )
 		goto st151;
 	goto st0;
 st151:
@@ -3848,127 +4029,127 @@ st151:
 		goto _test_eof151;
 case 151:
 	switch( (*( state.p)) ) {
-		case 13: goto st151;
-		case 32: goto st151;
+		case 13: goto st152;
+		case 32: goto st152;
+		case 58: goto st154;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st152;
+	goto st0;
+st152:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof152;
+case 152:
+	switch( (*( state.p)) ) {
+		case 13: goto st152;
+		case 32: goto st152;
 		case 34: goto tr227;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st151;
+		goto st152;
 	goto st0;
 tr227:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st152;
+	goto st153;
 tr228:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st152;
+	goto st153;
 tr230:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 152; goto st259;}}
-	goto st152;
-st152:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof152;
-case 152:
-#line 3879 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st275;
-		case 92: goto tr230;
-	}
-	goto tr228;
-st275:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof275;
-case 275:
-	switch( (*( state.p)) ) {
-		case 13: goto tr564;
-		case 32: goto tr564;
-		case 65: goto tr565;
-		case 66: goto tr566;
-		case 68: goto tr567;
-		case 71: goto tr568;
-		case 76: goto tr569;
-		case 78: goto tr570;
-		case 79: goto tr571;
-		case 80: goto tr572;
-		case 82: goto tr573;
-		case 83: goto tr574;
-		case 85: goto tr575;
-		case 86: goto tr576;
-		case 97: goto tr565;
-		case 98: goto tr566;
-		case 100: goto tr567;
-		case 103: goto tr568;
-		case 108: goto tr569;
-		case 110: goto tr570;
-		case 111: goto tr571;
-		case 112: goto tr572;
-		case 114: goto tr573;
-		case 115: goto tr574;
-		case 117: goto tr575;
-		case 118: goto tr576;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr564;
-	goto st0;
+	{{ state.stack[ state.top++] = 153; goto st261;}}
+	goto st153;
 st153:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof153;
 case 153:
+#line 4072 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st151;
-		case 32: goto st151;
+		case 34: goto st279;
+		case 92: goto tr230;
+	}
+	goto tr228;
+st279:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof279;
+case 279:
+	switch( (*( state.p)) ) {
+		case 13: goto tr580;
+		case 32: goto tr580;
+		case 65: goto tr581;
+		case 66: goto tr582;
+		case 68: goto tr583;
+		case 71: goto tr584;
+		case 76: goto tr585;
+		case 78: goto tr586;
+		case 79: goto tr587;
+		case 80: goto tr588;
+		case 82: goto tr589;
+		case 83: goto tr590;
+		case 85: goto tr591;
+		case 86: goto tr592;
+		case 97: goto tr581;
+		case 98: goto tr582;
+		case 100: goto tr583;
+		case 103: goto tr584;
+		case 108: goto tr585;
+		case 110: goto tr586;
+		case 111: goto tr587;
+		case 112: goto tr588;
+		case 114: goto tr589;
+		case 115: goto tr590;
+		case 117: goto tr591;
+		case 118: goto tr592;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st151;
+		goto tr580;
 	goto st0;
 st154:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof154;
 case 154:
-	if ( (*( state.p)) == 115 )
-		goto st155;
+	switch( (*( state.p)) ) {
+		case 13: goto st152;
+		case 32: goto st152;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st152;
 	goto st0;
 st155:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof155;
 case 155:
-	if ( (*( state.p)) == 116 )
+	if ( (*( state.p)) == 115 )
 		goto st156;
 	goto st0;
 st156:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof156;
 case 156:
-	switch( (*( state.p)) ) {
-		case 73: goto st157;
-		case 85: goto st171;
-		case 105: goto st157;
-		case 117: goto st171;
-	}
+	if ( (*( state.p)) == 116 )
+		goto st157;
 	goto st0;
 st157:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof157;
 case 157:
-	if ( (*( state.p)) == 110 )
-		goto st158;
+	switch( (*( state.p)) ) {
+		case 73: goto st158;
+		case 85: goto st172;
+		case 105: goto st158;
+		case 117: goto st172;
+	}
 	goto st0;
 st158:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof158;
 case 158:
-	switch( (*( state.p)) ) {
-		case 13: goto st159;
-		case 32: goto st159;
-		case 58: goto st170;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 110 )
 		goto st159;
 	goto st0;
 st159:
@@ -3976,94 +4157,99 @@ st159:
 		goto _test_eof159;
 case 159:
 	switch( (*( state.p)) ) {
-		case 13: goto st159;
-		case 32: goto st159;
-		case 34: goto tr238;
-		case 115: goto st161;
+		case 13: goto st160;
+		case 32: goto st160;
+		case 58: goto st171;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st159;
+		goto st160;
+	goto st0;
+st160:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof160;
+case 160:
+	switch( (*( state.p)) ) {
+		case 13: goto st160;
+		case 32: goto st160;
+		case 34: goto tr238;
+		case 115: goto st162;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st160;
 	goto st0;
 tr238:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st160;
+	goto st161;
 tr240:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st160;
+	goto st161;
 tr242:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 160; goto st259;}}
-	goto st160;
-st160:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof160;
-case 160:
-#line 4008 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st276;
-		case 92: goto tr242;
-	}
-	goto tr240;
-st276:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof276;
-case 276:
-	switch( (*( state.p)) ) {
-		case 13: goto tr577;
-		case 32: goto tr577;
-		case 65: goto tr578;
-		case 66: goto tr579;
-		case 68: goto tr580;
-		case 71: goto tr581;
-		case 76: goto tr582;
-		case 78: goto tr583;
-		case 79: goto tr584;
-		case 80: goto tr585;
-		case 82: goto tr586;
-		case 83: goto tr587;
-		case 85: goto tr588;
-		case 86: goto tr589;
-		case 97: goto tr578;
-		case 98: goto tr579;
-		case 100: goto tr580;
-		case 103: goto tr581;
-		case 108: goto tr582;
-		case 110: goto tr583;
-		case 111: goto tr584;
-		case 112: goto tr585;
-		case 114: goto tr586;
-		case 115: goto tr587;
-		case 117: goto tr588;
-		case 118: goto tr589;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr577;
-	goto st0;
+	{{ state.stack[ state.top++] = 161; goto st261;}}
+	goto st161;
 st161:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof161;
 case 161:
-	if ( (*( state.p)) == 104 )
-		goto st162;
+#line 4201 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st280;
+		case 92: goto tr242;
+	}
+	goto tr240;
+st280:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof280;
+case 280:
+	switch( (*( state.p)) ) {
+		case 13: goto tr593;
+		case 32: goto tr593;
+		case 65: goto tr594;
+		case 66: goto tr595;
+		case 68: goto tr596;
+		case 71: goto tr597;
+		case 76: goto tr598;
+		case 78: goto tr599;
+		case 79: goto tr600;
+		case 80: goto tr601;
+		case 82: goto tr602;
+		case 83: goto tr603;
+		case 85: goto tr604;
+		case 86: goto tr605;
+		case 97: goto tr594;
+		case 98: goto tr595;
+		case 100: goto tr596;
+		case 103: goto tr597;
+		case 108: goto tr598;
+		case 110: goto tr599;
+		case 111: goto tr600;
+		case 112: goto tr601;
+		case 114: goto tr602;
+		case 115: goto tr603;
+		case 117: goto tr604;
+		case 118: goto tr605;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr593;
 	goto st0;
 st162:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof162;
 case 162:
-	if ( (*( state.p)) == 101 )
+	if ( (*( state.p)) == 104 )
 		goto st163;
 	goto st0;
 st163:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof163;
 case 163:
-	if ( (*( state.p)) == 108 )
+	if ( (*( state.p)) == 101 )
 		goto st164;
 	goto st0;
 st164:
@@ -4077,11 +4263,7 @@ st165:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof165;
 case 165:
-	switch( (*( state.p)) ) {
-		case 13: goto st166;
-		case 32: goto st166;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 108 )
 		goto st166;
 	goto st0;
 st166:
@@ -4089,43 +4271,54 @@ st166:
 		goto _test_eof166;
 case 166:
 	switch( (*( state.p)) ) {
-		case 13: goto st166;
-		case 32: goto st166;
+		case 13: goto st167;
+		case 32: goto st167;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st167;
+	goto st0;
+st167:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof167;
+case 167:
+	switch( (*( state.p)) ) {
+		case 13: goto st167;
+		case 32: goto st167;
 		case 34: goto tr248;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st166;
+		goto st167;
 	goto st0;
 tr248:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st167;
+	goto st168;
 tr249:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st167;
+	goto st168;
 tr251:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 167; goto st259;}}
-	goto st167;
-st167:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof167;
-case 167:
-#line 4120 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st168;
-		case 92: goto tr251;
-	}
-	goto tr249;
+	{{ state.stack[ state.top++] = 168; goto st261;}}
+	goto st168;
 st168:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof168;
 case 168:
+#line 4313 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st169;
+		case 92: goto tr251;
+	}
+	goto tr249;
+st169:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof169;
+case 169:
 	switch( (*( state.p)) ) {
 		case 13: goto tr252;
 		case 32: goto tr252;
@@ -4136,48 +4329,36 @@ case 168:
 tr252:
 #line 140 "propsparser.rl"
 	{ props.postin.prog = state.match; }
-	goto st169;
-st169:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof169;
-case 169:
-#line 4145 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 13: goto st169;
-		case 32: goto st169;
-		case 34: goto tr238;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st169;
-	goto st0;
+	goto st170;
 st170:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof170;
 case 170:
+#line 4338 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st159;
-		case 32: goto st159;
+		case 13: goto st170;
+		case 32: goto st170;
+		case 34: goto tr238;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st159;
+		goto st170;
 	goto st0;
 st171:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof171;
 case 171:
-	if ( (*( state.p)) == 110 )
-		goto st172;
+	switch( (*( state.p)) ) {
+		case 13: goto st160;
+		case 32: goto st160;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st160;
 	goto st0;
 st172:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof172;
 case 172:
-	switch( (*( state.p)) ) {
-		case 13: goto st173;
-		case 32: goto st173;
-		case 58: goto st184;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 110 )
 		goto st173;
 	goto st0;
 st173:
@@ -4185,94 +4366,99 @@ st173:
 		goto _test_eof173;
 case 173:
 	switch( (*( state.p)) ) {
-		case 13: goto st173;
-		case 32: goto st173;
-		case 34: goto tr257;
-		case 115: goto st175;
+		case 13: goto st174;
+		case 32: goto st174;
+		case 58: goto st185;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st173;
+		goto st174;
+	goto st0;
+st174:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof174;
+case 174:
+	switch( (*( state.p)) ) {
+		case 13: goto st174;
+		case 32: goto st174;
+		case 34: goto tr257;
+		case 115: goto st176;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st174;
 	goto st0;
 tr257:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st174;
+	goto st175;
 tr259:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st174;
+	goto st175;
 tr261:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 174; goto st259;}}
-	goto st174;
-st174:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof174;
-case 174:
-#line 4217 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st277;
-		case 92: goto tr261;
-	}
-	goto tr259;
-st277:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof277;
-case 277:
-	switch( (*( state.p)) ) {
-		case 13: goto tr590;
-		case 32: goto tr590;
-		case 65: goto tr591;
-		case 66: goto tr592;
-		case 68: goto tr593;
-		case 71: goto tr594;
-		case 76: goto tr595;
-		case 78: goto tr596;
-		case 79: goto tr597;
-		case 80: goto tr598;
-		case 82: goto tr599;
-		case 83: goto tr600;
-		case 85: goto tr601;
-		case 86: goto tr602;
-		case 97: goto tr591;
-		case 98: goto tr592;
-		case 100: goto tr593;
-		case 103: goto tr594;
-		case 108: goto tr595;
-		case 110: goto tr596;
-		case 111: goto tr597;
-		case 112: goto tr598;
-		case 114: goto tr599;
-		case 115: goto tr600;
-		case 117: goto tr601;
-		case 118: goto tr602;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr590;
-	goto st0;
+	{{ state.stack[ state.top++] = 175; goto st261;}}
+	goto st175;
 st175:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof175;
 case 175:
-	if ( (*( state.p)) == 104 )
-		goto st176;
+#line 4410 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st281;
+		case 92: goto tr261;
+	}
+	goto tr259;
+st281:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof281;
+case 281:
+	switch( (*( state.p)) ) {
+		case 13: goto tr606;
+		case 32: goto tr606;
+		case 65: goto tr607;
+		case 66: goto tr608;
+		case 68: goto tr609;
+		case 71: goto tr610;
+		case 76: goto tr611;
+		case 78: goto tr612;
+		case 79: goto tr613;
+		case 80: goto tr614;
+		case 82: goto tr615;
+		case 83: goto tr616;
+		case 85: goto tr617;
+		case 86: goto tr618;
+		case 97: goto tr607;
+		case 98: goto tr608;
+		case 100: goto tr609;
+		case 103: goto tr610;
+		case 108: goto tr611;
+		case 110: goto tr612;
+		case 111: goto tr613;
+		case 112: goto tr614;
+		case 114: goto tr615;
+		case 115: goto tr616;
+		case 117: goto tr617;
+		case 118: goto tr618;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr606;
 	goto st0;
 st176:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof176;
 case 176:
-	if ( (*( state.p)) == 101 )
+	if ( (*( state.p)) == 104 )
 		goto st177;
 	goto st0;
 st177:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof177;
 case 177:
-	if ( (*( state.p)) == 108 )
+	if ( (*( state.p)) == 101 )
 		goto st178;
 	goto st0;
 st178:
@@ -4286,11 +4472,7 @@ st179:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof179;
 case 179:
-	switch( (*( state.p)) ) {
-		case 13: goto st180;
-		case 32: goto st180;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 108 )
 		goto st180;
 	goto st0;
 st180:
@@ -4298,43 +4480,54 @@ st180:
 		goto _test_eof180;
 case 180:
 	switch( (*( state.p)) ) {
-		case 13: goto st180;
-		case 32: goto st180;
+		case 13: goto st181;
+		case 32: goto st181;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st181;
+	goto st0;
+st181:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof181;
+case 181:
+	switch( (*( state.p)) ) {
+		case 13: goto st181;
+		case 32: goto st181;
 		case 34: goto tr267;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st180;
+		goto st181;
 	goto st0;
 tr267:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st181;
+	goto st182;
 tr268:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st181;
+	goto st182;
 tr270:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 181; goto st259;}}
-	goto st181;
-st181:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof181;
-case 181:
-#line 4329 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st182;
-		case 92: goto tr270;
-	}
-	goto tr268;
+	{{ state.stack[ state.top++] = 182; goto st261;}}
+	goto st182;
 st182:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof182;
 case 182:
+#line 4522 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st183;
+		case 92: goto tr270;
+	}
+	goto tr268;
+st183:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof183;
+case 183:
 	switch( (*( state.p)) ) {
 		case 13: goto tr271;
 		case 32: goto tr271;
@@ -4345,68 +4538,56 @@ case 182:
 tr271:
 #line 148 "propsparser.rl"
 	{ props.postun.prog = state.match; }
-	goto st183;
-st183:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof183;
-case 183:
-#line 4354 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 13: goto st183;
-		case 32: goto st183;
-		case 34: goto tr257;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st183;
-	goto st0;
+	goto st184;
 st184:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof184;
 case 184:
+#line 4547 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st173;
-		case 32: goto st173;
+		case 13: goto st184;
+		case 32: goto st184;
+		case 34: goto tr257;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st173;
+		goto st184;
 	goto st0;
 st185:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof185;
 case 185:
 	switch( (*( state.p)) ) {
-		case 101: goto st186;
-		case 111: goto st215;
+		case 13: goto st174;
+		case 32: goto st174;
 	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st174;
 	goto st0;
 st186:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof186;
 case 186:
 	switch( (*( state.p)) ) {
-		case 73: goto st187;
-		case 85: goto st201;
-		case 105: goto st187;
-		case 117: goto st201;
+		case 101: goto st187;
+		case 111: goto st216;
 	}
 	goto st0;
 st187:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof187;
 case 187:
-	if ( (*( state.p)) == 110 )
-		goto st188;
+	switch( (*( state.p)) ) {
+		case 73: goto st188;
+		case 85: goto st202;
+		case 105: goto st188;
+		case 117: goto st202;
+	}
 	goto st0;
 st188:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof188;
 case 188:
-	switch( (*( state.p)) ) {
-		case 13: goto st189;
-		case 32: goto st189;
-		case 58: goto st200;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 110 )
 		goto st189;
 	goto st0;
 st189:
@@ -4414,94 +4595,99 @@ st189:
 		goto _test_eof189;
 case 189:
 	switch( (*( state.p)) ) {
-		case 13: goto st189;
-		case 32: goto st189;
-		case 34: goto tr280;
-		case 115: goto st191;
+		case 13: goto st190;
+		case 32: goto st190;
+		case 58: goto st201;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st189;
+		goto st190;
+	goto st0;
+st190:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof190;
+case 190:
+	switch( (*( state.p)) ) {
+		case 13: goto st190;
+		case 32: goto st190;
+		case 34: goto tr280;
+		case 115: goto st192;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st190;
 	goto st0;
 tr280:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st190;
+	goto st191;
 tr282:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st190;
+	goto st191;
 tr284:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 190; goto st259;}}
-	goto st190;
-st190:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof190;
-case 190:
-#line 4446 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st278;
-		case 92: goto tr284;
-	}
-	goto tr282;
-st278:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof278;
-case 278:
-	switch( (*( state.p)) ) {
-		case 13: goto tr603;
-		case 32: goto tr603;
-		case 65: goto tr604;
-		case 66: goto tr605;
-		case 68: goto tr606;
-		case 71: goto tr607;
-		case 76: goto tr608;
-		case 78: goto tr609;
-		case 79: goto tr610;
-		case 80: goto tr611;
-		case 82: goto tr612;
-		case 83: goto tr613;
-		case 85: goto tr614;
-		case 86: goto tr615;
-		case 97: goto tr604;
-		case 98: goto tr605;
-		case 100: goto tr606;
-		case 103: goto tr607;
-		case 108: goto tr608;
-		case 110: goto tr609;
-		case 111: goto tr610;
-		case 112: goto tr611;
-		case 114: goto tr612;
-		case 115: goto tr613;
-		case 117: goto tr614;
-		case 118: goto tr615;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr603;
-	goto st0;
+	{{ state.stack[ state.top++] = 191; goto st261;}}
+	goto st191;
 st191:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof191;
 case 191:
-	if ( (*( state.p)) == 104 )
-		goto st192;
+#line 4639 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st282;
+		case 92: goto tr284;
+	}
+	goto tr282;
+st282:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof282;
+case 282:
+	switch( (*( state.p)) ) {
+		case 13: goto tr619;
+		case 32: goto tr619;
+		case 65: goto tr620;
+		case 66: goto tr621;
+		case 68: goto tr622;
+		case 71: goto tr623;
+		case 76: goto tr624;
+		case 78: goto tr625;
+		case 79: goto tr626;
+		case 80: goto tr627;
+		case 82: goto tr628;
+		case 83: goto tr629;
+		case 85: goto tr630;
+		case 86: goto tr631;
+		case 97: goto tr620;
+		case 98: goto tr621;
+		case 100: goto tr622;
+		case 103: goto tr623;
+		case 108: goto tr624;
+		case 110: goto tr625;
+		case 111: goto tr626;
+		case 112: goto tr627;
+		case 114: goto tr628;
+		case 115: goto tr629;
+		case 117: goto tr630;
+		case 118: goto tr631;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr619;
 	goto st0;
 st192:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof192;
 case 192:
-	if ( (*( state.p)) == 101 )
+	if ( (*( state.p)) == 104 )
 		goto st193;
 	goto st0;
 st193:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof193;
 case 193:
-	if ( (*( state.p)) == 108 )
+	if ( (*( state.p)) == 101 )
 		goto st194;
 	goto st0;
 st194:
@@ -4515,11 +4701,7 @@ st195:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof195;
 case 195:
-	switch( (*( state.p)) ) {
-		case 13: goto st196;
-		case 32: goto st196;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 108 )
 		goto st196;
 	goto st0;
 st196:
@@ -4527,43 +4709,54 @@ st196:
 		goto _test_eof196;
 case 196:
 	switch( (*( state.p)) ) {
-		case 13: goto st196;
-		case 32: goto st196;
+		case 13: goto st197;
+		case 32: goto st197;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st197;
+	goto st0;
+st197:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof197;
+case 197:
+	switch( (*( state.p)) ) {
+		case 13: goto st197;
+		case 32: goto st197;
 		case 34: goto tr290;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st196;
+		goto st197;
 	goto st0;
 tr290:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st197;
+	goto st198;
 tr291:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st197;
+	goto st198;
 tr293:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 197; goto st259;}}
-	goto st197;
-st197:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof197;
-case 197:
-#line 4558 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st198;
-		case 92: goto tr293;
-	}
-	goto tr291;
+	{{ state.stack[ state.top++] = 198; goto st261;}}
+	goto st198;
 st198:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof198;
 case 198:
+#line 4751 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st199;
+		case 92: goto tr293;
+	}
+	goto tr291;
+st199:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof199;
+case 199:
 	switch( (*( state.p)) ) {
 		case 13: goto tr294;
 		case 32: goto tr294;
@@ -4574,48 +4767,36 @@ case 198:
 tr294:
 #line 136 "propsparser.rl"
 	{ props.prein.prog = state.match; }
-	goto st199;
-st199:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof199;
-case 199:
-#line 4583 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 13: goto st199;
-		case 32: goto st199;
-		case 34: goto tr280;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st199;
-	goto st0;
+	goto st200;
 st200:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof200;
 case 200:
+#line 4776 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st189;
-		case 32: goto st189;
+		case 13: goto st200;
+		case 32: goto st200;
+		case 34: goto tr280;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st189;
+		goto st200;
 	goto st0;
 st201:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof201;
 case 201:
-	if ( (*( state.p)) == 110 )
-		goto st202;
+	switch( (*( state.p)) ) {
+		case 13: goto st190;
+		case 32: goto st190;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st190;
 	goto st0;
 st202:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof202;
 case 202:
-	switch( (*( state.p)) ) {
-		case 13: goto st203;
-		case 32: goto st203;
-		case 58: goto st214;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 110 )
 		goto st203;
 	goto st0;
 st203:
@@ -4623,94 +4804,99 @@ st203:
 		goto _test_eof203;
 case 203:
 	switch( (*( state.p)) ) {
-		case 13: goto st203;
-		case 32: goto st203;
-		case 34: goto tr299;
-		case 115: goto st205;
+		case 13: goto st204;
+		case 32: goto st204;
+		case 58: goto st215;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st203;
+		goto st204;
+	goto st0;
+st204:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof204;
+case 204:
+	switch( (*( state.p)) ) {
+		case 13: goto st204;
+		case 32: goto st204;
+		case 34: goto tr299;
+		case 115: goto st206;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st204;
 	goto st0;
 tr299:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st204;
+	goto st205;
 tr301:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st204;
+	goto st205;
 tr303:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 204; goto st259;}}
-	goto st204;
-st204:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof204;
-case 204:
-#line 4655 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st279;
-		case 92: goto tr303;
-	}
-	goto tr301;
-st279:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof279;
-case 279:
-	switch( (*( state.p)) ) {
-		case 13: goto tr616;
-		case 32: goto tr616;
-		case 65: goto tr617;
-		case 66: goto tr618;
-		case 68: goto tr619;
-		case 71: goto tr620;
-		case 76: goto tr621;
-		case 78: goto tr622;
-		case 79: goto tr623;
-		case 80: goto tr624;
-		case 82: goto tr625;
-		case 83: goto tr626;
-		case 85: goto tr627;
-		case 86: goto tr628;
-		case 97: goto tr617;
-		case 98: goto tr618;
-		case 100: goto tr619;
-		case 103: goto tr620;
-		case 108: goto tr621;
-		case 110: goto tr622;
-		case 111: goto tr623;
-		case 112: goto tr624;
-		case 114: goto tr625;
-		case 115: goto tr626;
-		case 117: goto tr627;
-		case 118: goto tr628;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr616;
-	goto st0;
+	{{ state.stack[ state.top++] = 205; goto st261;}}
+	goto st205;
 st205:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof205;
 case 205:
-	if ( (*( state.p)) == 104 )
-		goto st206;
+#line 4848 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st283;
+		case 92: goto tr303;
+	}
+	goto tr301;
+st283:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof283;
+case 283:
+	switch( (*( state.p)) ) {
+		case 13: goto tr632;
+		case 32: goto tr632;
+		case 65: goto tr633;
+		case 66: goto tr634;
+		case 68: goto tr635;
+		case 71: goto tr636;
+		case 76: goto tr637;
+		case 78: goto tr638;
+		case 79: goto tr639;
+		case 80: goto tr640;
+		case 82: goto tr641;
+		case 83: goto tr642;
+		case 85: goto tr643;
+		case 86: goto tr644;
+		case 97: goto tr633;
+		case 98: goto tr634;
+		case 100: goto tr635;
+		case 103: goto tr636;
+		case 108: goto tr637;
+		case 110: goto tr638;
+		case 111: goto tr639;
+		case 112: goto tr640;
+		case 114: goto tr641;
+		case 115: goto tr642;
+		case 117: goto tr643;
+		case 118: goto tr644;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr632;
 	goto st0;
 st206:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof206;
 case 206:
-	if ( (*( state.p)) == 101 )
+	if ( (*( state.p)) == 104 )
 		goto st207;
 	goto st0;
 st207:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof207;
 case 207:
-	if ( (*( state.p)) == 108 )
+	if ( (*( state.p)) == 101 )
 		goto st208;
 	goto st0;
 st208:
@@ -4724,11 +4910,7 @@ st209:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof209;
 case 209:
-	switch( (*( state.p)) ) {
-		case 13: goto st210;
-		case 32: goto st210;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 108 )
 		goto st210;
 	goto st0;
 st210:
@@ -4736,43 +4918,54 @@ st210:
 		goto _test_eof210;
 case 210:
 	switch( (*( state.p)) ) {
-		case 13: goto st210;
-		case 32: goto st210;
+		case 13: goto st211;
+		case 32: goto st211;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st211;
+	goto st0;
+st211:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof211;
+case 211:
+	switch( (*( state.p)) ) {
+		case 13: goto st211;
+		case 32: goto st211;
 		case 34: goto tr309;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st210;
+		goto st211;
 	goto st0;
 tr309:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
-	goto st211;
+	goto st212;
 tr310:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
-	goto st211;
+	goto st212;
 tr312:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 211; goto st259;}}
-	goto st211;
-st211:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof211;
-case 211:
-#line 4767 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 34: goto st212;
-		case 92: goto tr312;
-	}
-	goto tr310;
+	{{ state.stack[ state.top++] = 212; goto st261;}}
+	goto st212;
 st212:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof212;
 case 212:
+#line 4960 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st213;
+		case 92: goto tr312;
+	}
+	goto tr310;
+st213:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof213;
+case 213:
 	switch( (*( state.p)) ) {
 		case 13: goto tr313;
 		case 32: goto tr313;
@@ -4783,76 +4976,64 @@ case 212:
 tr313:
 #line 144 "propsparser.rl"
 	{ props.preun.prog = state.match; }
-	goto st213;
-st213:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof213;
-case 213:
-#line 4792 "propsparser.h"
-	switch( (*( state.p)) ) {
-		case 13: goto st213;
-		case 32: goto st213;
-		case 34: goto tr299;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st213;
-	goto st0;
+	goto st214;
 st214:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof214;
 case 214:
+#line 4985 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st203;
-		case 32: goto st203;
+		case 13: goto st214;
+		case 32: goto st214;
+		case 34: goto tr299;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st203;
+		goto st214;
 	goto st0;
 st215:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof215;
 case 215:
-	if ( (*( state.p)) == 118 )
-		goto st216;
+	switch( (*( state.p)) ) {
+		case 13: goto st204;
+		case 32: goto st204;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st204;
 	goto st0;
 st216:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof216;
 case 216:
-	if ( (*( state.p)) == 105 )
+	if ( (*( state.p)) == 118 )
 		goto st217;
 	goto st0;
 st217:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof217;
 case 217:
-	if ( (*( state.p)) == 100 )
+	if ( (*( state.p)) == 105 )
 		goto st218;
 	goto st0;
 st218:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof218;
 case 218:
-	if ( (*( state.p)) == 101 )
+	if ( (*( state.p)) == 100 )
 		goto st219;
 	goto st0;
 st219:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof219;
 case 219:
-	if ( (*( state.p)) == 115 )
+	if ( (*( state.p)) == 101 )
 		goto st220;
 	goto st0;
 st220:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof220;
 case 220:
-	switch( (*( state.p)) ) {
-		case 13: goto st221;
-		case 32: goto st221;
-		case 58: goto st241;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 115 )
 		goto st221;
 	goto st0;
 st221:
@@ -4860,52 +5041,68 @@ st221:
 		goto _test_eof221;
 case 221:
 	switch( (*( state.p)) ) {
-		case 13: goto st221;
-		case 32: goto st221;
-		case 34: goto tr322;
-		case 99: goto tr323;
+		case 13: goto tr320;
+		case 32: goto tr320;
+		case 58: goto st243;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st221;
+		goto tr320;
 	goto st0;
-tr324:
-#line 77 "propsparser.rl"
-	{
-            state.match += (*( state.p));
-        }
-	goto st222;
-tr326:
-#line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 222; goto st259;}}
-	goto st222;
-tr322:
+tr320:
 #line 176 "propsparser.rl"
 	{ deps = rpmprops_t::deps_t(); }
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
 	goto st222;
 st222:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof222;
 case 222:
-#line 4894 "propsparser.h"
+#line 5060 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st223;
-		case 92: goto tr326;
+		case 13: goto tr320;
+		case 32: goto tr320;
+		case 34: goto tr322;
+		case 99: goto st234;
 	}
-	goto tr324;
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr320;
+	goto st0;
+tr322:
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
+	goto st223;
+tr324:
+#line 77 "propsparser.rl"
+	{
+            state.match += (*( state.p));
+        }
+	goto st223;
+tr326:
+#line 108 "propsparser.rl"
+	{{ state.stack[ state.top++] = 223; goto st261;}}
+	goto st223;
 st223:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof223;
 case 223:
+#line 5090 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st224;
+		case 92: goto tr326;
+	}
+	goto tr324;
+st224:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof224;
+case 224:
 	switch( (*( state.p)) ) {
 		case 13: goto tr327;
 		case 32: goto tr327;
 		case 60: goto tr328;
 		case 61: goto tr329;
 		case 62: goto tr330;
+		case 97: goto tr331;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto tr327;
@@ -4913,32 +5110,56 @@ case 223:
 tr327:
 #line 157 "propsparser.rl"
 	{ deps.name = state.match; }
-	goto st224;
-tr362:
+	goto st284;
+tr361:
 #line 154 "propsparser.rl"
 	{ deps.name = "config(" + state.match + ")";
                                     deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
-	goto st224;
-st224:
+	goto st284;
+st284:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof224;
-case 224:
-#line 4927 "propsparser.h"
+		goto _test_eof284;
+case 284:
+#line 5124 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st224;
-		case 32: goto st224;
+		case 13: goto tr645;
+		case 32: goto tr645;
 		case 60: goto st225;
 		case 61: goto st229;
 		case 62: goto st230;
+		case 65: goto tr649;
+		case 66: goto tr650;
+		case 68: goto tr651;
+		case 71: goto tr652;
+		case 76: goto tr653;
+		case 78: goto tr654;
+		case 79: goto tr655;
+		case 80: goto tr656;
+		case 82: goto tr657;
+		case 83: goto tr658;
+		case 85: goto tr659;
+		case 86: goto tr660;
+		case 97: goto tr649;
+		case 98: goto tr650;
+		case 100: goto tr651;
+		case 103: goto tr652;
+		case 108: goto tr653;
+		case 110: goto tr654;
+		case 111: goto tr655;
+		case 112: goto tr656;
+		case 114: goto tr657;
+		case 115: goto tr658;
+		case 117: goto tr659;
+		case 118: goto tr660;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st224;
+		goto tr645;
 	goto st0;
 tr328:
 #line 157 "propsparser.rl"
 	{ deps.name = state.match; }
 	goto st225;
-tr363:
+tr362:
 #line 154 "propsparser.rl"
 	{ deps.name = "config(" + state.match + ")";
                                     deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
@@ -4947,33 +5168,33 @@ st225:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof225;
 case 225:
-#line 4951 "propsparser.h"
+#line 5172 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto tr335;
-		case 32: goto tr335;
-		case 34: goto tr336;
+		case 13: goto tr332;
+		case 32: goto tr332;
+		case 34: goto tr333;
 		case 61: goto st228;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr335;
+		goto tr332;
 	goto st0;
-tr335:
+tr332:
 #line 162 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_LESS; }
 	goto st226;
-tr343:
+tr340:
 #line 164 "propsparser.rl"
 	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_LESS); }
 	goto st226;
-tr345:
+tr342:
 #line 161 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_EQUAL; }
 	goto st226;
-tr347:
+tr344:
 #line 163 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_GREATER; }
 	goto st226;
-tr350:
+tr347:
 #line 165 "propsparser.rl"
 	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_GREATER); }
 	goto st226;
@@ -4981,32 +5202,32 @@ st226:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof226;
 case 226:
-#line 4985 "propsparser.h"
+#line 5206 "propsparser.h"
 	switch( (*( state.p)) ) {
 		case 13: goto st226;
 		case 32: goto st226;
-		case 34: goto tr339;
+		case 34: goto tr336;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st226;
 	goto st0;
-tr339:
+tr336:
 #line 73 "propsparser.rl"
 	{
             state.match.clear();
         }
 	goto st227;
-tr340:
+tr337:
 #line 77 "propsparser.rl"
 	{
             state.match += (*( state.p));
         }
 	goto st227;
-tr342:
+tr339:
 #line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 227; goto st259;}}
+	{{ state.stack[ state.top++] = 227; goto st261;}}
 	goto st227;
-tr336:
+tr333:
 #line 162 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_LESS; }
 #line 73 "propsparser.rl"
@@ -5014,7 +5235,7 @@ tr336:
             state.match.clear();
         }
 	goto st227;
-tr344:
+tr341:
 #line 164 "propsparser.rl"
 	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_LESS); }
 #line 73 "propsparser.rl"
@@ -5022,7 +5243,7 @@ tr344:
             state.match.clear();
         }
 	goto st227;
-tr346:
+tr343:
 #line 161 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_EQUAL; }
 #line 73 "propsparser.rl"
@@ -5030,7 +5251,7 @@ tr346:
             state.match.clear();
         }
 	goto st227;
-tr348:
+tr345:
 #line 163 "propsparser.rl"
 	{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_GREATER; }
 #line 73 "propsparser.rl"
@@ -5038,7 +5259,7 @@ tr348:
             state.match.clear();
         }
 	goto st227;
-tr351:
+tr348:
 #line 165 "propsparser.rl"
 	{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_GREATER); }
 #line 73 "propsparser.rl"
@@ -5050,64 +5271,64 @@ st227:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof227;
 case 227:
-#line 5054 "propsparser.h"
+#line 5275 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st280;
-		case 92: goto tr342;
+		case 34: goto st285;
+		case 92: goto tr339;
 	}
-	goto tr340;
-st280:
+	goto tr337;
+st285:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof280;
-case 280:
+		goto _test_eof285;
+case 285:
 	switch( (*( state.p)) ) {
-		case 13: goto tr629;
-		case 32: goto tr629;
-		case 65: goto tr630;
-		case 66: goto tr631;
-		case 68: goto tr632;
-		case 71: goto tr633;
-		case 76: goto tr634;
-		case 78: goto tr635;
-		case 79: goto tr636;
-		case 80: goto tr637;
-		case 82: goto tr638;
-		case 83: goto tr639;
-		case 85: goto tr640;
-		case 86: goto tr641;
-		case 97: goto tr630;
-		case 98: goto tr631;
-		case 100: goto tr632;
-		case 103: goto tr633;
-		case 108: goto tr634;
-		case 110: goto tr635;
-		case 111: goto tr636;
-		case 112: goto tr637;
-		case 114: goto tr638;
-		case 115: goto tr639;
-		case 117: goto tr640;
-		case 118: goto tr641;
+		case 13: goto tr661;
+		case 32: goto tr661;
+		case 65: goto tr662;
+		case 66: goto tr663;
+		case 68: goto tr664;
+		case 71: goto tr665;
+		case 76: goto tr666;
+		case 78: goto tr667;
+		case 79: goto tr668;
+		case 80: goto tr669;
+		case 82: goto tr670;
+		case 83: goto tr671;
+		case 85: goto tr672;
+		case 86: goto tr673;
+		case 97: goto tr662;
+		case 98: goto tr663;
+		case 100: goto tr664;
+		case 103: goto tr665;
+		case 108: goto tr666;
+		case 110: goto tr667;
+		case 111: goto tr668;
+		case 112: goto tr669;
+		case 114: goto tr670;
+		case 115: goto tr671;
+		case 117: goto tr672;
+		case 118: goto tr673;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr629;
+		goto tr661;
 	goto st0;
 st228:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof228;
 case 228:
 	switch( (*( state.p)) ) {
-		case 13: goto tr343;
-		case 32: goto tr343;
-		case 34: goto tr344;
+		case 13: goto tr340;
+		case 32: goto tr340;
+		case 34: goto tr341;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr343;
+		goto tr340;
 	goto st0;
 tr329:
 #line 157 "propsparser.rl"
 	{ deps.name = state.match; }
 	goto st229;
-tr364:
+tr363:
 #line 154 "propsparser.rl"
 	{ deps.name = "config(" + state.match + ")";
                                     deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
@@ -5116,20 +5337,20 @@ st229:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof229;
 case 229:
-#line 5120 "propsparser.h"
+#line 5341 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto tr345;
-		case 32: goto tr345;
-		case 34: goto tr346;
+		case 13: goto tr342;
+		case 32: goto tr342;
+		case 34: goto tr343;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr345;
+		goto tr342;
 	goto st0;
 tr330:
 #line 157 "propsparser.rl"
 	{ deps.name = state.match; }
 	goto st230;
-tr365:
+tr364:
 #line 154 "propsparser.rl"
 	{ deps.name = "config(" + state.match + ")";
                                     deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
@@ -5138,146 +5359,201 @@ st230:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof230;
 case 230:
-#line 5142 "propsparser.h"
+#line 5363 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto tr347;
-		case 32: goto tr347;
-		case 34: goto tr348;
+		case 13: goto tr344;
+		case 32: goto tr344;
+		case 34: goto tr345;
 		case 61: goto st231;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr347;
+		goto tr344;
 	goto st0;
 st231:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof231;
 case 231:
 	switch( (*( state.p)) ) {
-		case 13: goto tr350;
-		case 32: goto tr350;
-		case 34: goto tr351;
+		case 13: goto tr347;
+		case 32: goto tr347;
+		case 34: goto tr348;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr350;
+		goto tr347;
 	goto st0;
-tr323:
-#line 176 "propsparser.rl"
-	{ deps = rpmprops_t::deps_t(); }
+tr331:
+#line 157 "propsparser.rl"
+	{ deps.name = state.match; }
+	goto st232;
+tr365:
+#line 154 "propsparser.rl"
+	{ deps.name = "config(" + state.match + ")";
+                                    deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }
 	goto st232;
 st232:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof232;
 case 232:
-#line 5172 "propsparser.h"
-	if ( (*( state.p)) == 111 )
+#line 5398 "propsparser.h"
+	if ( (*( state.p)) == 110 )
 		goto st233;
 	goto st0;
 st233:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof233;
 case 233:
-	if ( (*( state.p)) == 110 )
-		goto st234;
+	if ( (*( state.p)) == 121 )
+		goto st286;
+	goto st0;
+st286:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof286;
+case 286:
+	switch( (*( state.p)) ) {
+		case 13: goto tr645;
+		case 32: goto tr645;
+		case 65: goto tr649;
+		case 66: goto tr650;
+		case 68: goto tr651;
+		case 71: goto tr652;
+		case 76: goto tr653;
+		case 78: goto tr654;
+		case 79: goto tr655;
+		case 80: goto tr656;
+		case 82: goto tr657;
+		case 83: goto tr658;
+		case 85: goto tr659;
+		case 86: goto tr660;
+		case 97: goto tr649;
+		case 98: goto tr650;
+		case 100: goto tr651;
+		case 103: goto tr652;
+		case 108: goto tr653;
+		case 110: goto tr654;
+		case 111: goto tr655;
+		case 112: goto tr656;
+		case 114: goto tr657;
+		case 115: goto tr658;
+		case 117: goto tr659;
+		case 118: goto tr660;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr645;
 	goto st0;
 st234:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof234;
 case 234:
-	if ( (*( state.p)) == 102 )
+	if ( (*( state.p)) == 111 )
 		goto st235;
 	goto st0;
 st235:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof235;
 case 235:
-	if ( (*( state.p)) == 105 )
+	if ( (*( state.p)) == 110 )
 		goto st236;
 	goto st0;
 st236:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof236;
 case 236:
-	if ( (*( state.p)) == 103 )
+	if ( (*( state.p)) == 102 )
 		goto st237;
 	goto st0;
 st237:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof237;
 case 237:
-	switch( (*( state.p)) ) {
-		case 13: goto st238;
-		case 32: goto st238;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 105 )
 		goto st238;
 	goto st0;
 st238:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof238;
 case 238:
-	switch( (*( state.p)) ) {
-		case 13: goto st238;
-		case 32: goto st238;
-		case 34: goto tr358;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st238;
+	if ( (*( state.p)) == 103 )
+		goto st239;
 	goto st0;
-tr358:
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st239;
-tr359:
-#line 77 "propsparser.rl"
-	{
-            state.match += (*( state.p));
-        }
-	goto st239;
-tr361:
-#line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 239; goto st259;}}
-	goto st239;
 st239:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof239;
 case 239:
-#line 5247 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st240;
-		case 92: goto tr361;
+		case 13: goto st240;
+		case 32: goto st240;
 	}
-	goto tr359;
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st240;
+	goto st0;
 st240:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof240;
 case 240:
 	switch( (*( state.p)) ) {
-		case 13: goto tr362;
-		case 32: goto tr362;
-		case 60: goto tr363;
-		case 61: goto tr364;
-		case 62: goto tr365;
+		case 13: goto st240;
+		case 32: goto st240;
+		case 34: goto tr357;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr362;
+		goto st240;
 	goto st0;
+tr357:
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
+	goto st241;
+tr358:
+#line 77 "propsparser.rl"
+	{
+            state.match += (*( state.p));
+        }
+	goto st241;
+tr360:
+#line 108 "propsparser.rl"
+	{{ state.stack[ state.top++] = 241; goto st261;}}
+	goto st241;
 st241:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof241;
 case 241:
+#line 5522 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 13: goto st221;
-		case 32: goto st221;
+		case 34: goto st242;
+		case 92: goto tr360;
 	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st221;
-	goto st0;
+	goto tr358;
 st242:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof242;
 case 242:
+	switch( (*( state.p)) ) {
+		case 13: goto tr361;
+		case 32: goto tr361;
+		case 60: goto tr362;
+		case 61: goto tr363;
+		case 62: goto tr364;
+		case 97: goto tr365;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr361;
+	goto st0;
+st243:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof243;
+case 243:
+	switch( (*( state.p)) ) {
+		case 13: goto tr320;
+		case 32: goto tr320;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr320;
+	goto st0;
+st244:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof244;
+case 244:
 	switch( (*( state.p)) ) {
 		case 13: goto st56;
 		case 32: goto st56;
@@ -5285,150 +5561,150 @@ case 242:
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st56;
 	goto st0;
-st243:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof243;
-case 243:
-	if ( (*( state.p)) == 116 )
-		goto st244;
-	goto st0;
-st244:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof244;
-case 244:
-	switch( (*( state.p)) ) {
-		case 70: goto st245;
-		case 102: goto st245;
-	}
-	goto st0;
 st245:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof245;
 case 245:
-	if ( (*( state.p)) == 108 )
+	if ( (*( state.p)) == 116 )
 		goto st246;
 	goto st0;
 st246:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof246;
 case 246:
-	if ( (*( state.p)) == 97 )
-		goto st247;
+	switch( (*( state.p)) ) {
+		case 70: goto st247;
+		case 102: goto st247;
+	}
 	goto st0;
 st247:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof247;
 case 247:
-	if ( (*( state.p)) == 103 )
+	if ( (*( state.p)) == 108 )
 		goto st248;
 	goto st0;
 st248:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof248;
 case 248:
-	if ( (*( state.p)) == 115 )
+	if ( (*( state.p)) == 97 )
 		goto st249;
 	goto st0;
 st249:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof249;
 case 249:
-	switch( (*( state.p)) ) {
-		case 13: goto st250;
-		case 32: goto st250;
-		case 58: goto st252;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+	if ( (*( state.p)) == 103 )
 		goto st250;
 	goto st0;
 st250:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof250;
 case 250:
-	switch( (*( state.p)) ) {
-		case 13: goto st250;
-		case 32: goto st250;
-		case 34: goto tr374;
-	}
-	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st250;
+	if ( (*( state.p)) == 115 )
+		goto st251;
 	goto st0;
-tr374:
-#line 73 "propsparser.rl"
-	{
-            state.match.clear();
-        }
-	goto st251;
-tr375:
-#line 77 "propsparser.rl"
-	{
-            state.match += (*( state.p));
-        }
-	goto st251;
-tr377:
-#line 108 "propsparser.rl"
-	{{ state.stack[ state.top++] = 251; goto st259;}}
-	goto st251;
 st251:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof251;
 case 251:
-#line 5377 "propsparser.h"
 	switch( (*( state.p)) ) {
-		case 34: goto st281;
-		case 92: goto tr377;
-	}
-	goto tr375;
-st281:
-	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof281;
-case 281:
-	switch( (*( state.p)) ) {
-		case 13: goto tr642;
-		case 32: goto tr642;
-		case 65: goto tr643;
-		case 66: goto tr644;
-		case 68: goto tr645;
-		case 71: goto tr646;
-		case 76: goto tr647;
-		case 78: goto tr648;
-		case 79: goto tr649;
-		case 80: goto tr650;
-		case 82: goto tr651;
-		case 83: goto tr652;
-		case 85: goto tr653;
-		case 86: goto tr654;
-		case 97: goto tr643;
-		case 98: goto tr644;
-		case 100: goto tr645;
-		case 103: goto tr646;
-		case 108: goto tr647;
-		case 110: goto tr648;
-		case 111: goto tr649;
-		case 112: goto tr650;
-		case 114: goto tr651;
-		case 115: goto tr652;
-		case 117: goto tr653;
-		case 118: goto tr654;
+		case 13: goto st252;
+		case 32: goto st252;
+		case 58: goto st254;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto tr642;
+		goto st252;
 	goto st0;
 st252:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof252;
 case 252:
 	switch( (*( state.p)) ) {
-		case 13: goto st250;
-		case 32: goto st250;
+		case 13: goto st252;
+		case 32: goto st252;
+		case 34: goto tr374;
 	}
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
-		goto st250;
+		goto st252;
 	goto st0;
+tr374:
+#line 73 "propsparser.rl"
+	{
+            state.match.clear();
+        }
+	goto st253;
+tr375:
+#line 77 "propsparser.rl"
+	{
+            state.match += (*( state.p));
+        }
+	goto st253;
+tr377:
+#line 108 "propsparser.rl"
+	{{ state.stack[ state.top++] = 253; goto st261;}}
+	goto st253;
 st253:
 	if ( ++( state.p) == ( state.pe) )
 		goto _test_eof253;
 case 253:
+#line 5653 "propsparser.h"
+	switch( (*( state.p)) ) {
+		case 34: goto st287;
+		case 92: goto tr377;
+	}
+	goto tr375;
+st287:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof287;
+case 287:
+	switch( (*( state.p)) ) {
+		case 13: goto tr674;
+		case 32: goto tr674;
+		case 65: goto tr675;
+		case 66: goto tr676;
+		case 68: goto tr677;
+		case 71: goto tr678;
+		case 76: goto tr679;
+		case 78: goto tr680;
+		case 79: goto tr681;
+		case 80: goto tr682;
+		case 82: goto tr683;
+		case 83: goto tr684;
+		case 85: goto tr685;
+		case 86: goto tr686;
+		case 97: goto tr675;
+		case 98: goto tr676;
+		case 100: goto tr677;
+		case 103: goto tr678;
+		case 108: goto tr679;
+		case 110: goto tr680;
+		case 111: goto tr681;
+		case 112: goto tr682;
+		case 114: goto tr683;
+		case 115: goto tr684;
+		case 117: goto tr685;
+		case 118: goto tr686;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto tr674;
+	goto st0;
+st254:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof254;
+case 254:
+	switch( (*( state.p)) ) {
+		case 13: goto st252;
+		case 32: goto st252;
+	}
+	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
+		goto st252;
+	goto st0;
+st255:
+	if ( ++( state.p) == ( state.pe) )
+		goto _test_eof255;
+case 255:
 	switch( (*( state.p)) ) {
 		case 13: goto st52;
 		case 32: goto st52;
@@ -5436,10 +5712,10 @@ case 253:
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st52;
 	goto st0;
-st254:
+st256:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof254;
-case 254:
+		goto _test_eof256;
+case 256:
 	switch( (*( state.p)) ) {
 		case 13: goto st46;
 		case 32: goto st46;
@@ -5447,10 +5723,10 @@ case 254:
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st46;
 	goto st0;
-st255:
+st257:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof255;
-case 255:
+		goto _test_eof257;
+case 257:
 	switch( (*( state.p)) ) {
 		case 13: goto st37;
 		case 32: goto st37;
@@ -5458,10 +5734,10 @@ case 255:
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st37;
 	goto st0;
-st256:
+st258:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof256;
-case 256:
+		goto _test_eof258;
+case 258:
 	switch( (*( state.p)) ) {
 		case 13: goto st30;
 		case 32: goto st30;
@@ -5469,10 +5745,10 @@ case 256:
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st30;
 	goto st0;
-st257:
+st259:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof257;
-case 257:
+		goto _test_eof259;
+case 259:
 	switch( (*( state.p)) ) {
 		case 13: goto st17;
 		case 32: goto st17;
@@ -5480,10 +5756,10 @@ case 257:
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st17;
 	goto st0;
-st258:
+st260:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof258;
-case 258:
+		goto _test_eof260;
+case 260:
 	switch( (*( state.p)) ) {
 		case 13: goto st6;
 		case 32: goto st6;
@@ -5491,10 +5767,10 @@ case 258:
 	if ( 9 <= (*( state.p)) && (*( state.p)) <= 10 )
 		goto st6;
 	goto st0;
-st259:
+st261:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof259;
-case 259:
+		goto _test_eof261;
+case 261:
 	switch( (*( state.p)) ) {
 		case 34: goto tr378;
 		case 92: goto tr379;
@@ -5504,20 +5780,20 @@ case 259:
 tr378:
 #line 102 "propsparser.rl"
 	{ state.match += '"';  { state.cs =  state.stack[-- state.top];goto _again;} }
-	goto st282;
+	goto st288;
 tr379:
 #line 104 "propsparser.rl"
 	{ state.match += '\\'; { state.cs =  state.stack[-- state.top];goto _again;} }
-	goto st282;
+	goto st288;
 tr380:
 #line 103 "propsparser.rl"
 	{ state.match += '\n'; { state.cs =  state.stack[-- state.top];goto _again;} }
-	goto st282;
-st282:
+	goto st288;
+st288:
 	if ( ++( state.p) == ( state.pe) )
-		goto _test_eof282;
-case 282:
-#line 5521 "propsparser.h"
+		goto _test_eof288;
+case 288:
+#line 5797 "propsparser.h"
 	goto st0;
 	}
 	_test_eof1:  state.cs = 1; goto _test_eof; 
@@ -5527,8 +5803,8 @@ case 282:
 	_test_eof5:  state.cs = 5; goto _test_eof; 
 	_test_eof6:  state.cs = 6; goto _test_eof; 
 	_test_eof7:  state.cs = 7; goto _test_eof; 
-	_test_eof260:  state.cs = 260; goto _test_eof; 
-	_test_eof261:  state.cs = 261; goto _test_eof; 
+	_test_eof262:  state.cs = 262; goto _test_eof; 
+	_test_eof263:  state.cs = 263; goto _test_eof; 
 	_test_eof8:  state.cs = 8; goto _test_eof; 
 	_test_eof9:  state.cs = 9; goto _test_eof; 
 	_test_eof10:  state.cs = 10; goto _test_eof; 
@@ -5540,7 +5816,7 @@ case 282:
 	_test_eof16:  state.cs = 16; goto _test_eof; 
 	_test_eof17:  state.cs = 17; goto _test_eof; 
 	_test_eof18:  state.cs = 18; goto _test_eof; 
-	_test_eof262:  state.cs = 262; goto _test_eof; 
+	_test_eof264:  state.cs = 264; goto _test_eof; 
 	_test_eof19:  state.cs = 19; goto _test_eof; 
 	_test_eof20:  state.cs = 20; goto _test_eof; 
 	_test_eof21:  state.cs = 21; goto _test_eof; 
@@ -5554,7 +5830,7 @@ case 282:
 	_test_eof29:  state.cs = 29; goto _test_eof; 
 	_test_eof30:  state.cs = 30; goto _test_eof; 
 	_test_eof31:  state.cs = 31; goto _test_eof; 
-	_test_eof263:  state.cs = 263; goto _test_eof; 
+	_test_eof265:  state.cs = 265; goto _test_eof; 
 	_test_eof32:  state.cs = 32; goto _test_eof; 
 	_test_eof33:  state.cs = 33; goto _test_eof; 
 	_test_eof34:  state.cs = 34; goto _test_eof; 
@@ -5562,7 +5838,7 @@ case 282:
 	_test_eof36:  state.cs = 36; goto _test_eof; 
 	_test_eof37:  state.cs = 37; goto _test_eof; 
 	_test_eof38:  state.cs = 38; goto _test_eof; 
-	_test_eof264:  state.cs = 264; goto _test_eof; 
+	_test_eof266:  state.cs = 266; goto _test_eof; 
 	_test_eof39:  state.cs = 39; goto _test_eof; 
 	_test_eof40:  state.cs = 40; goto _test_eof; 
 	_test_eof41:  state.cs = 41; goto _test_eof; 
@@ -5572,19 +5848,19 @@ case 282:
 	_test_eof45:  state.cs = 45; goto _test_eof; 
 	_test_eof46:  state.cs = 46; goto _test_eof; 
 	_test_eof47:  state.cs = 47; goto _test_eof; 
-	_test_eof265:  state.cs = 265; goto _test_eof; 
+	_test_eof267:  state.cs = 267; goto _test_eof; 
 	_test_eof48:  state.cs = 48; goto _test_eof; 
 	_test_eof49:  state.cs = 49; goto _test_eof; 
 	_test_eof50:  state.cs = 50; goto _test_eof; 
 	_test_eof51:  state.cs = 51; goto _test_eof; 
 	_test_eof52:  state.cs = 52; goto _test_eof; 
 	_test_eof53:  state.cs = 53; goto _test_eof; 
-	_test_eof266:  state.cs = 266; goto _test_eof; 
+	_test_eof268:  state.cs = 268; goto _test_eof; 
 	_test_eof54:  state.cs = 54; goto _test_eof; 
 	_test_eof55:  state.cs = 55; goto _test_eof; 
 	_test_eof56:  state.cs = 56; goto _test_eof; 
 	_test_eof57:  state.cs = 57; goto _test_eof; 
-	_test_eof267:  state.cs = 267; goto _test_eof; 
+	_test_eof269:  state.cs = 269; goto _test_eof; 
 	_test_eof58:  state.cs = 58; goto _test_eof; 
 	_test_eof59:  state.cs = 59; goto _test_eof; 
 	_test_eof60:  state.cs = 60; goto _test_eof; 
@@ -5595,7 +5871,7 @@ case 282:
 	_test_eof65:  state.cs = 65; goto _test_eof; 
 	_test_eof66:  state.cs = 66; goto _test_eof; 
 	_test_eof67:  state.cs = 67; goto _test_eof; 
-	_test_eof268:  state.cs = 268; goto _test_eof; 
+	_test_eof270:  state.cs = 270; goto _test_eof; 
 	_test_eof68:  state.cs = 68; goto _test_eof; 
 	_test_eof69:  state.cs = 69; goto _test_eof; 
 	_test_eof70:  state.cs = 70; goto _test_eof; 
@@ -5608,7 +5884,7 @@ case 282:
 	_test_eof77:  state.cs = 77; goto _test_eof; 
 	_test_eof78:  state.cs = 78; goto _test_eof; 
 	_test_eof79:  state.cs = 79; goto _test_eof; 
-	_test_eof269:  state.cs = 269; goto _test_eof; 
+	_test_eof271:  state.cs = 271; goto _test_eof; 
 	_test_eof80:  state.cs = 80; goto _test_eof; 
 	_test_eof81:  state.cs = 81; goto _test_eof; 
 	_test_eof82:  state.cs = 82; goto _test_eof; 
@@ -5618,13 +5894,13 @@ case 282:
 	_test_eof86:  state.cs = 86; goto _test_eof; 
 	_test_eof87:  state.cs = 87; goto _test_eof; 
 	_test_eof88:  state.cs = 88; goto _test_eof; 
-	_test_eof270:  state.cs = 270; goto _test_eof; 
+	_test_eof272:  state.cs = 272; goto _test_eof; 
 	_test_eof89:  state.cs = 89; goto _test_eof; 
 	_test_eof90:  state.cs = 90; goto _test_eof; 
 	_test_eof91:  state.cs = 91; goto _test_eof; 
 	_test_eof92:  state.cs = 92; goto _test_eof; 
 	_test_eof93:  state.cs = 93; goto _test_eof; 
-	_test_eof271:  state.cs = 271; goto _test_eof; 
+	_test_eof273:  state.cs = 273; goto _test_eof; 
 	_test_eof94:  state.cs = 94; goto _test_eof; 
 	_test_eof95:  state.cs = 95; goto _test_eof; 
 	_test_eof96:  state.cs = 96; goto _test_eof; 
@@ -5634,7 +5910,7 @@ case 282:
 	_test_eof100:  state.cs = 100; goto _test_eof; 
 	_test_eof101:  state.cs = 101; goto _test_eof; 
 	_test_eof102:  state.cs = 102; goto _test_eof; 
-	_test_eof272:  state.cs = 272; goto _test_eof; 
+	_test_eof274:  state.cs = 274; goto _test_eof; 
 	_test_eof103:  state.cs = 103; goto _test_eof; 
 	_test_eof104:  state.cs = 104; goto _test_eof; 
 	_test_eof105:  state.cs = 105; goto _test_eof; 
@@ -5647,7 +5923,7 @@ case 282:
 	_test_eof112:  state.cs = 112; goto _test_eof; 
 	_test_eof113:  state.cs = 113; goto _test_eof; 
 	_test_eof114:  state.cs = 114; goto _test_eof; 
-	_test_eof273:  state.cs = 273; goto _test_eof; 
+	_test_eof275:  state.cs = 275; goto _test_eof; 
 	_test_eof115:  state.cs = 115; goto _test_eof; 
 	_test_eof116:  state.cs = 116; goto _test_eof; 
 	_test_eof117:  state.cs = 117; goto _test_eof; 
@@ -5658,16 +5934,18 @@ case 282:
 	_test_eof122:  state.cs = 122; goto _test_eof; 
 	_test_eof123:  state.cs = 123; goto _test_eof; 
 	_test_eof124:  state.cs = 124; goto _test_eof; 
+	_test_eof276:  state.cs = 276; goto _test_eof; 
 	_test_eof125:  state.cs = 125; goto _test_eof; 
 	_test_eof126:  state.cs = 126; goto _test_eof; 
 	_test_eof127:  state.cs = 127; goto _test_eof; 
+	_test_eof277:  state.cs = 277; goto _test_eof; 
 	_test_eof128:  state.cs = 128; goto _test_eof; 
-	_test_eof274:  state.cs = 274; goto _test_eof; 
 	_test_eof129:  state.cs = 129; goto _test_eof; 
 	_test_eof130:  state.cs = 130; goto _test_eof; 
 	_test_eof131:  state.cs = 131; goto _test_eof; 
 	_test_eof132:  state.cs = 132; goto _test_eof; 
 	_test_eof133:  state.cs = 133; goto _test_eof; 
+	_test_eof278:  state.cs = 278; goto _test_eof; 
 	_test_eof134:  state.cs = 134; goto _test_eof; 
 	_test_eof135:  state.cs = 135; goto _test_eof; 
 	_test_eof136:  state.cs = 136; goto _test_eof; 
@@ -5687,8 +5965,8 @@ case 282:
 	_test_eof150:  state.cs = 150; goto _test_eof; 
 	_test_eof151:  state.cs = 151; goto _test_eof; 
 	_test_eof152:  state.cs = 152; goto _test_eof; 
-	_test_eof275:  state.cs = 275; goto _test_eof; 
 	_test_eof153:  state.cs = 153; goto _test_eof; 
+	_test_eof279:  state.cs = 279; goto _test_eof; 
 	_test_eof154:  state.cs = 154; goto _test_eof; 
 	_test_eof155:  state.cs = 155; goto _test_eof; 
 	_test_eof156:  state.cs = 156; goto _test_eof; 
@@ -5696,8 +5974,8 @@ case 282:
 	_test_eof158:  state.cs = 158; goto _test_eof; 
 	_test_eof159:  state.cs = 159; goto _test_eof; 
 	_test_eof160:  state.cs = 160; goto _test_eof; 
-	_test_eof276:  state.cs = 276; goto _test_eof; 
 	_test_eof161:  state.cs = 161; goto _test_eof; 
+	_test_eof280:  state.cs = 280; goto _test_eof; 
 	_test_eof162:  state.cs = 162; goto _test_eof; 
 	_test_eof163:  state.cs = 163; goto _test_eof; 
 	_test_eof164:  state.cs = 164; goto _test_eof; 
@@ -5711,8 +5989,8 @@ case 282:
 	_test_eof172:  state.cs = 172; goto _test_eof; 
 	_test_eof173:  state.cs = 173; goto _test_eof; 
 	_test_eof174:  state.cs = 174; goto _test_eof; 
-	_test_eof277:  state.cs = 277; goto _test_eof; 
 	_test_eof175:  state.cs = 175; goto _test_eof; 
+	_test_eof281:  state.cs = 281; goto _test_eof; 
 	_test_eof176:  state.cs = 176; goto _test_eof; 
 	_test_eof177:  state.cs = 177; goto _test_eof; 
 	_test_eof178:  state.cs = 178; goto _test_eof; 
@@ -5728,8 +6006,8 @@ case 282:
 	_test_eof188:  state.cs = 188; goto _test_eof; 
 	_test_eof189:  state.cs = 189; goto _test_eof; 
 	_test_eof190:  state.cs = 190; goto _test_eof; 
-	_test_eof278:  state.cs = 278; goto _test_eof; 
 	_test_eof191:  state.cs = 191; goto _test_eof; 
+	_test_eof282:  state.cs = 282; goto _test_eof; 
 	_test_eof192:  state.cs = 192; goto _test_eof; 
 	_test_eof193:  state.cs = 193; goto _test_eof; 
 	_test_eof194:  state.cs = 194; goto _test_eof; 
@@ -5743,8 +6021,8 @@ case 282:
 	_test_eof202:  state.cs = 202; goto _test_eof; 
 	_test_eof203:  state.cs = 203; goto _test_eof; 
 	_test_eof204:  state.cs = 204; goto _test_eof; 
-	_test_eof279:  state.cs = 279; goto _test_eof; 
 	_test_eof205:  state.cs = 205; goto _test_eof; 
+	_test_eof283:  state.cs = 283; goto _test_eof; 
 	_test_eof206:  state.cs = 206; goto _test_eof; 
 	_test_eof207:  state.cs = 207; goto _test_eof; 
 	_test_eof208:  state.cs = 208; goto _test_eof; 
@@ -5764,16 +6042,18 @@ case 282:
 	_test_eof222:  state.cs = 222; goto _test_eof; 
 	_test_eof223:  state.cs = 223; goto _test_eof; 
 	_test_eof224:  state.cs = 224; goto _test_eof; 
+	_test_eof284:  state.cs = 284; goto _test_eof; 
 	_test_eof225:  state.cs = 225; goto _test_eof; 
 	_test_eof226:  state.cs = 226; goto _test_eof; 
 	_test_eof227:  state.cs = 227; goto _test_eof; 
-	_test_eof280:  state.cs = 280; goto _test_eof; 
+	_test_eof285:  state.cs = 285; goto _test_eof; 
 	_test_eof228:  state.cs = 228; goto _test_eof; 
 	_test_eof229:  state.cs = 229; goto _test_eof; 
 	_test_eof230:  state.cs = 230; goto _test_eof; 
 	_test_eof231:  state.cs = 231; goto _test_eof; 
 	_test_eof232:  state.cs = 232; goto _test_eof; 
 	_test_eof233:  state.cs = 233; goto _test_eof; 
+	_test_eof286:  state.cs = 286; goto _test_eof; 
 	_test_eof234:  state.cs = 234; goto _test_eof; 
 	_test_eof235:  state.cs = 235; goto _test_eof; 
 	_test_eof236:  state.cs = 236; goto _test_eof; 
@@ -5792,117 +6072,129 @@ case 282:
 	_test_eof249:  state.cs = 249; goto _test_eof; 
 	_test_eof250:  state.cs = 250; goto _test_eof; 
 	_test_eof251:  state.cs = 251; goto _test_eof; 
-	_test_eof281:  state.cs = 281; goto _test_eof; 
 	_test_eof252:  state.cs = 252; goto _test_eof; 
 	_test_eof253:  state.cs = 253; goto _test_eof; 
+	_test_eof287:  state.cs = 287; goto _test_eof; 
 	_test_eof254:  state.cs = 254; goto _test_eof; 
 	_test_eof255:  state.cs = 255; goto _test_eof; 
 	_test_eof256:  state.cs = 256; goto _test_eof; 
 	_test_eof257:  state.cs = 257; goto _test_eof; 
 	_test_eof258:  state.cs = 258; goto _test_eof; 
 	_test_eof259:  state.cs = 259; goto _test_eof; 
-	_test_eof282:  state.cs = 282; goto _test_eof; 
+	_test_eof260:  state.cs = 260; goto _test_eof; 
+	_test_eof261:  state.cs = 261; goto _test_eof; 
+	_test_eof288:  state.cs = 288; goto _test_eof; 
 
 	_test_eof: {}
 	if ( ( state.p) == ( state.eof) )
 	{
 	switch (  state.cs ) {
-	case 266: 
+	case 268: 
 #line 118 "propsparser.rl"
 	{ props.name = state.match; }
 	break;
-	case 272: 
+	case 274: 
 #line 119 "propsparser.rl"
 	{ props.version = state.match; }
 	break;
-	case 273: 
+	case 275: 
 #line 120 "propsparser.rl"
 	{ props.release = state.match; }
 	break;
-	case 270: 
+	case 272: 
 #line 121 "propsparser.rl"
 	{ props.summary = state.match; }
 	break;
-	case 263: 
+	case 265: 
 #line 122 "propsparser.rl"
 	{ props.description = state.match; }
 	break;
-	case 262: 
+	case 264: 
 #line 123 "propsparser.rl"
 	{ props.buildhost = state.match; }
 	break;
-	case 265: 
+	case 267: 
 #line 124 "propsparser.rl"
 	{ props.license = state.match; }
 	break;
-	case 268: 
+	case 270: 
 #line 125 "propsparser.rl"
 	{ props.packager = state.match; }
 	break;
-	case 264: 
+	case 266: 
 #line 126 "propsparser.rl"
 	{ props.group = state.match; }
 	break;
-	case 271: 
+	case 273: 
 #line 127 "propsparser.rl"
 	{ props.url = state.match; }
 	break;
-	case 267: 
+	case 269: 
 #line 128 "propsparser.rl"
 	{ props.os = state.match; }
 	break;
-	case 260: 
+	case 262: 
 #line 129 "propsparser.rl"
 	{ props.arch = state.match; }
 	break;
-	case 275: 
+	case 279: 
 #line 130 "propsparser.rl"
 	{ props.platform = state.match; }
 	break;
-	case 281: 
+	case 287: 
 #line 131 "propsparser.rl"
 	{ props.optflags = state.match; }
 	break;
-	case 269: 
+	case 271: 
 #line 133 "propsparser.rl"
 	{ props.rpmversion = state.match; }
 	break;
-	case 278: 
+	case 282: 
 #line 137 "propsparser.rl"
 	{ props.prein.code = state.match; }
 	break;
-	case 276: 
+	case 280: 
 #line 141 "propsparser.rl"
 	{ props.postin.code = state.match; }
 	break;
-	case 279: 
+	case 283: 
 #line 145 "propsparser.rl"
 	{ props.preun.code = state.match; }
 	break;
-	case 277: 
+	case 281: 
 #line 149 "propsparser.rl"
 	{ props.postun.code = state.match; }
 	break;
-	case 280: 
+	case 284: 
+	case 286: 
+#line 177 "propsparser.rl"
+	{ props.provide.push_back(deps); }
+	break;
+	case 276: 
+	case 278: 
+#line 181 "propsparser.rl"
+	{ props.require.push_back(deps); }
+	break;
+	case 285: 
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 177 "propsparser.rl"
 	{ props.provide.push_back(deps); }
 	break;
-	case 274: 
+	case 277: 
 #line 169 "propsparser.rl"
 	{ deps.version = state.match; }
 #line 181 "propsparser.rl"
 	{ props.require.push_back(deps); }
 	break;
-#line 5899 "propsparser.h"
+#line 6191 "propsparser.h"
 	}
 	}
 
 	_out: {}
 	}
 
-#line 222 "propsparser.rl"
+#line 223 "propsparser.rl"
 
         // Avoid spurious gcc warnings.
 
