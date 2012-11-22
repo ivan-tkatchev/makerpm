@@ -3,7 +3,7 @@
 
 struct rpmprops_t {
 
-    std::vector<std::string> locale;
+    //std::vector<std::string> locale;
     std::string name;
     std::string version;
     std::string release;

@@ -59,6 +59,8 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
 
     ragel_state state;
 
+    rpmprops_t::deps_t deps;
+
     %%{
 
         machine PropsParser;
@@ -111,7 +113,7 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
 
         ###
 
-        locale = [Ll] 'ocale' ':'? (ws1 string %{ props.locale.push_back(state.match); })+;
+        # locale = [Ll] 'ocale' ':'? (ws1 string %{ props.locale.push_back(state.match); })+;
 
         name        = [Nn] 'ame' ':'?             ws1 string %{ props.name = state.match; };
         version     = [Vv] 'ersion' ':'?          ws1 string %{ props.version = state.match; };
@@ -146,10 +148,44 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
             ('shell' ws1 string %{ props.postun.prog = state.match; } ws1)?
             string %{ props.postun.code = state.match; };
 
+        ##
+
+        deps_tag = 
+            ('config' ws1 string %{ deps.name = "config(" + state.match + ")";
+                                    deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }) 
+            |
+            (string %{ deps.name = state.match; })
+            ;
+        
+        deps_type = 
+            ('='  %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_EQUAL; }) |
+            ('<'  %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_LESS; }) |
+            ('>'  %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_GREATER; }) |
+            ('<=' %{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_LESS); }) |
+            ('>=' %{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_EQUAL | rpmprops_t::deps_t::DEPFLAG_GREATER); })
+            ;
+
+        deps_cond =
+            (deps_type ws string %{ deps.version = state.match; }) :>>
+            ''
+            ;
+
+        deps = deps_tag ws deps_cond
+            ;
+
+        provides = [Pp] 'rovides' ':'? ws1 %{ deps = rpmprops_t::deps_t(); }
+            deps %{ props.provide.push_back(deps); }
+            ;
+
+        requires = [Rr] 'equires' ':'? ws1 %{ deps = rpmprops_t::deps_t(); }
+            deps %{ props.require.push_back(deps); }
+            ;
+
         entry = 
-            locale | name | version | release | summary | description | buildhost | license |
+            name | version | release | summary | description | buildhost | license |
             packager | group | url | os | arch | platform | optflags | rpmversion |
-            prein | postin | preun | postun 
+            prein | postin | preun | postun |
+            provides | requires 
             ;
             
       main := (ws entry)+ ws ;

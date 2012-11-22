@@ -257,7 +257,8 @@ std::string make_index2(const rpmprops_t& props) {
 
     size_t nentries = 0;
 
-    add_to_store(rpm::TAG_HEADERI18NTABLE, props.locale, index, store, nentries);
+    //add_to_store(rpm::TAG_HEADERI18NTABLE, props.locale, index, store, nentries);
+
     add_to_store(rpm::TAG_NAME, props.name, false, index, store, nentries);
     add_to_store(rpm::TAG_VERSION, props.version, false, index, store, nentries);
     add_to_store(rpm::TAG_RELEASE, props.release, false, index, store, nentries);
