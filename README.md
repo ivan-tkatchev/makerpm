@@ -40,13 +40,13 @@ Prerequisites:
 
 ### Usage
 
-  makerpm <rpm spec file> <input archive file> <output RPM file>
+    makerpm <rpm spec file> <input archive file> <output RPM file>
 
 where
 
 `rpm spec file` is a file listing `RPM` metadata properties. (See `test.rpmprops` for an example.)
 
 `input archive file` is an archive with the files you want to package. 
-*NOTE*: Only _uncompressed_ `cpio` and `tar` archives are supported for now!
+**NOTE**: Only _uncompressed_ `cpio` and `tar` archives are supported for now!
 
 `output RPM file` is a filename for writing the resulting `RPM` package.
