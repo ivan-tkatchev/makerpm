@@ -90,7 +90,10 @@ enum TAGS {
     TAG_FILEDEPENDSX = 1143,
     TAG_FILEDEPENDSN = 1144,
     
-    TAG_FILECONTEXTS = 1147
+    TAG_FILECONTEXTS = 1147,
+
+    TAG_LONGFILESIZES = 5008,
+    TAG_LONGSIZE = 5009
 
 };
 
@@ -162,6 +165,8 @@ std::string tag_printable(unsigned int tag) {
     case TAG_FILEDEPENDSX: return "FILEDEPENDSX";
     case TAG_FILEDEPENDSN: return "FILEDEPENDSN";
     case TAG_FILECONTEXTS: return "FILECONTEXTS";
+    case TAG_LONGFILESIZES: return "LONGFILESIZES";
+    case TAG_LONGSIZE: return "LONGSIZE";
     }
 
     return "";
