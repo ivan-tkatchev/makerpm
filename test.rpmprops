@@ -1,0 +1,27 @@
+
+Name: "mytestrpm"
+Version: "666"
+Release: "alpha"
+Summary: "A test of RPM creation."
+Description: "A test of rpm creation.\nSecond line of description."
+Buildhost: "localhost"
+License: "LGPL"
+Packager: "John Q. Haxor"
+Group: "System"
+URL: "http://www.ya.ru"
+Arch: "x86_64"
+Platform: "x86_64-redhat-linux"
+Optflags: "-O2 -g"
+
+PreIn: 
+"echo \"before install\""
+
+PostIn: shell "/bin/bash" 
+"echo 'after install'"
+
+PreUn: 
+"echo \"before uninstall\""
+
+PostUn: shell "/bin/bash" 
+"echo 'after uninstall"
+

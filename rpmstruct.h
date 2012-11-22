@@ -1,3 +1,5 @@
+#ifndef __MAKERPM_RPMSTRUCT_H
+#define __MAKERPM_RPMSTRUCT_H
 
 namespace rpm {
 
@@ -90,3 +92,4 @@ struct index_t {
 
 }
 
+#endif

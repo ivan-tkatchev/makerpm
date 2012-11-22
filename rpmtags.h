@@ -1,3 +1,5 @@
+#ifndef __MAKERPM_RPMTAGS_H
+#define __MAKERPM_RPMTAGS_H
 
 namespace rpm {
 
@@ -174,3 +176,4 @@ std::string tag_printable(unsigned int tag) {
 
 }
 
+#endif
