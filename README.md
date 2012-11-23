@@ -11,18 +11,18 @@ It converts `cpio` or `tar` archives into installable binary `RPM` packages.
 
 `RPM` is a hoary beast with several problems:
 
-  * `buildrpm` is a very complex and poorly documented program; learning to use it properly is time-consuming and expensive.
-  * `buildrpm` imposes a certain development and build process, which might clash with your own in-house build process.
-  * `buildrpm` is not stand-alone; it only comes as a part of the complete `RPM` package manager system.
-  * Installing and using `buildrpm` on an OS that doesn't use `RPM` for package management is crufty and complicated.
+  * `rpmbuild` is a very complex and poorly documented program; learning to use it properly is time-consuming and expensive.
+  * `rpmbuild` imposes a certain development and build process, which might clash with your own in-house build process.
+  * `rpmbuild` is not stand-alone; it only comes as a part of the complete `RPM` package manager system.
+  * Installing and using `rpmbuild` on an OS that doesn't use `RPM` for package management is crufty and complicated.
   * There is _no_ independent implementation of the `RPM` package format, and coming to grips with the `rpm` source code is a monumental, impossible task.
 
 Use cases for `makerpm`:
 
   * For when you are compiling something on a system that doesn't use `RPM` but want to distribute the result in a convient `RPM` format.
-  * For the case when your build/continuous integration system doesn't work well with `buildrpm`, but you still want the results as `RPM` packages.
+  * For the case when your build/continuous integration system doesn't work well with `rpmbuild`, but you still want the results as `RPM` packages.
   * For quickly converting a package in some other format to an `RPM` package.
-  * For when you want to put together an `RPM` package without learning the intricacies of the whole `buildrpm` process.
+  * For when you want to put together an `RPM` package without learning the intricacies of the whole `rpmbuild` process.
   * For learning how the `RPM` format works.
 
 ### Compiling
