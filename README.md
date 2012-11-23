@@ -55,6 +55,7 @@ where
 
 `makerpm` is not stable or well-tested software. It also has lots of limitations:
 
+  * `makerpm` is not a smart tool. It will not attempt to fix incorrectly-specified metadata, nor will it attempt to add dependencies automatically.
   * MD5 digests for individual files are not packaged. (SHA1 and MD5 signatures for the package as a whole are still generated, however, like for any well-behaved `RPM` package.)
   * 'Documentation' and 'config' flags for individual files are not supported.
   * Lots and lots of other `RPM` features are not supported either. In general, only what can be gleaned from a `cpio` archive is packaged, along with a several metadata fields if they have been explicitly provided by the user in the properties input file.
