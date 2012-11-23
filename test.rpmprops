@@ -1,4 +1,8 @@
 
+#
+# This is a test file that aims to demonstrate all of the features possible in an RPM properties file.
+#
+
 Name: "mytestrpm"
 Version: "666"
 Release: "alpha"
@@ -13,10 +17,14 @@ Arch: "x86_64"
 Platform: "x86_64-redhat-linux"
 Optflags: "-O2 -g"
 
-PreIn: 
-"echo \"before install\""
+RpmVersion: "11"
 
-PostIn: shell "/bin/bash" 
+PreIn: 
+"
+echo \"before install\"
+"
+
+PostIn: shell "/bin/bash"
 "echo 'after install'"
 
 PreUn: 
@@ -25,9 +33,17 @@ PreUn:
 PostUn: shell "/bin/bash" 
 "echo 'after uninstall"
 
-Requires: "begun-daemontools"    
-Requires: config "mytestrpm" = "666-alpha"  
-Requires: "bash" <= "123"  
+Requires: "daemontools"    
+Requires: config "config(mytestrpm)" = "666-alpha"  
+Requires: pre,   interp,   prereq  "bash" <= "123"  
+Requires: post,interp,verify "bash" = "123"
+Requires: rpmlib "rpmlib(Foo)" >= "1"
 
 Provides: "mytestrpm"     
-Provides: config "mytestrpm" = "666-alpha"
+Provides: config "config(mytestrpm)" = "666-alpha"
+Provides: auto "mylib" = "123"
+
+Conflicts: "myothertestrpm"
+
+Obsoletes: "rpmtester" > "alpha"
+

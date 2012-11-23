@@ -37,8 +37,6 @@ struct rpmprops_t {
     script_t preun;
     script_t postun;
 
-    // prein, preinprog
-
     struct deps_t {
 
         enum {
@@ -76,8 +74,8 @@ struct rpmprops_t {
 
     std::vector<deps_t> provide;
     std::vector<deps_t> require;
-
-    // providename, provideflags, provideversion
+    std::vector<deps_t> conflict;
+    std::vector<deps_t> obsolete;
 
     struct file_t {
 

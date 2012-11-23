@@ -4,7 +4,7 @@
 // This file needs to be preprocessed with the 'ragel' tool.
 // Run it like this:
 //
-//   ragel -G2 configparser.rl -o configparser.h
+//   ragel -G2 propsparser.rl -o propsparser.h
 //
 
 #include <string>
@@ -45,17 +45,7 @@ struct ragel_state {
 };
 
 
-void parse_props(const std::string& filename, rpmprops_t& props) {
-
-    /** File reading cruft. **/
-
-    char buf[4096];
-
-    FILE* fn = ::fopen(filename.c_str(), "r");
-
-    if (fn == NULL) {
-        throw std::runtime_error("Could not open: \"" + filename + "\"");
-    }
+void parse_props(mfile& input, rpmprops_t& props) {
 
     ragel_state state;
 
@@ -111,6 +101,14 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
 
         string = '"' >start strdata '"';
 
+        consume_line_char = 
+            ( '\n' ${ fret; } ) |
+            ( ^'\n' ) ;
+
+        consume_line := consume_line_char*;
+
+        comment = '#' ${fcall consume_line;};
+
         ###
 
         # locale = [Ll] 'ocale' ':'? (ws1 string %{ props.locale.push_back(state.match); })+;
@@ -150,9 +148,26 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
 
         ##
 
+        deps_tag_flag = 
+            ('pre'       %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_SCRIPT_PRE; })       |
+            ('post'      %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_SCRIPT_POST; })      |
+            ('preun'     %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_SCRIPT_PREUN; })     | 
+            ('postun'    %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_SCRIPT_POSTUN; })    |
+            ('verify'    %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_SCRIPT_VERIFY; })    |
+            ('interp'    %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_INTERP; })           |
+            ('rpmlib'    %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_RPMLIB; })           |
+            ('prereq'    %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_PREREQ; })           |
+            ('pretrans'  %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_PRETRANS; })         |
+            ('posttrans' %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_POSTTRANS; })        |
+            ('config'    %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; })           |
+            ('auto'      %{ deps.flags |= (rpmprops_t::deps_t::DEPFLAG_FIND_PROVIDES |
+                                           rpmprops_t::deps_t::DEPFLAG_FIND_REQUIRES); }) 
+            ;
+
+        deps_tag_flags = deps_tag_flag (ws ',' ws deps_tag_flag)*;
+
         deps_tag = 
-            ('config' ws1 string %{ deps.name = "config(" + state.match + ")";
-                                    deps.flags |= rpmprops_t::deps_t::DEPFLAG_CONFIG; }) 
+            (deps_tag_flags ws1 string %{ deps.name = state.match; })
             |
             (string %{ deps.name = state.match; })
             ;
@@ -174,19 +189,30 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
             ;
 
         provides = [Pp] 'rovides' ':'? ws1 ${ deps = rpmprops_t::deps_t(); }
-            deps :> '' %{ props.provide.push_back(deps); }
+            deps :> '' 
+            %{ deps.flags &= ~(rpmprops_t::deps_t::DEPFLAG_FIND_REQUIRES); props.provide.push_back(deps); }
             ;
 
         requires = [Rr] 'equires' ':'? ws1 ${ deps = rpmprops_t::deps_t(); }
-            deps :> '' %{ props.require.push_back(deps); }
+            deps :> '' 
+            %{ deps.flags &= ~(rpmprops_t::deps_t::DEPFLAG_FIND_PROVIDES); props.require.push_back(deps); }
             ;
 
-        entry = 
+        conflicts = [Cc] 'onflicts' ':'? ws1 ${ deps = rpmprops_t::deps_t(); }
+            deps :> '' 
+            %{ props.conflict.push_back(deps); }
+            ;
+
+        obsoletes = [Oo] 'bsoletes' ':'? ws1 ${ deps = rpmprops_t::deps_t(); }
+            deps :> '' 
+            %{ props.obsolete.push_back(deps); }
+            ;
+
+        entry = comment |
             name | version | release | summary | description | buildhost | license |
             packager | group | url | os | arch | platform | optflags | rpmversion |
             prein | postin | preun | postun |
-            provides | 
-            requires 
+            provides | requires | conflicts | obsoletes 
             ;
             
       main := (ws entry)+ ws ;
@@ -199,43 +225,14 @@ void parse_props(const std::string& filename, rpmprops_t& props) {
     %% write data;
     %% write init;
 
-    bool done = false;
-    int have = 0;
+    state.p = (char*)input.addr;
+    state.pe = (char*)input.addr + input.size;
+    state.eof = state.pe;
 
-    while (!done) {
-        int space = sizeof(buf) - have;
-        if (space == 0) {
-            throw std::runtime_error("Token too big!");
-        }
+    %% write exec;
 
-        state.p = buf + have;
-        int len = ::fread(state.p, 1, space, fn);
-        
-        state.pe = state.p + len;
-        state.eof = 0;
-        
-        if (len == 0) {
-            state.eof = state.pe;
-            done = true;
-        }
-
-        %% write exec;
-
-        // Avoid spurious gcc warnings.
-
-        if (state.cs == PropsParser_error) {
-            throw std::runtime_error("Parse error. Unconsumed input: " + std::string(state.p, state.pe));
-        }
-
-        if (state.ts == 0) {
-            have = 0;
-
-        } else {
-            have = state.pe - state.ts;
-            ::memmove(buf, state.ts, have);
-            state.te = buf + (state.te - state.ts);
-            state.ts = buf;
-        }
+    if (state.cs == PropsParser_error) {
+        throw std::runtime_error("Parse error. Unconsumed input: " + std::string(state.p, state.pe));
     }
 }
 

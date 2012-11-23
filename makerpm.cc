@@ -317,6 +317,35 @@ std::string make_index2(const rpmprops_t& props) {
     add_to_store(rpm::TAG_REQUIREVERSION, requireversion, index, store, nentries);
     add_to_store(rpm::TAG_REQUIREFLAGS, requireflags, index, store, nentries);
 
+    std::vector<std::string> conflictname;
+    std::vector<uint32_t> conflictflags;
+    std::vector<std::string> conflictversion;
+
+    for (const auto& v : props.conflict) {
+        conflictname.push_back(v.name);
+        conflictflags.push_back(v.flags);
+        conflictversion.push_back(v.version);
+    }
+
+    add_to_store(rpm::TAG_CONFLICTNAME, conflictname, index, store, nentries);
+    add_to_store(rpm::TAG_CONFLICTVERSION, conflictversion, index, store, nentries);
+    add_to_store(rpm::TAG_CONFLICTFLAGS, conflictflags, index, store, nentries);
+
+    std::vector<std::string> obsoletename;
+    std::vector<uint32_t> obsoleteflags;
+    std::vector<std::string> obsoleteversion;
+
+    for (const auto& v : props.obsolete) {
+        obsoletename.push_back(v.name);
+        obsoleteflags.push_back(v.flags);
+        obsoleteversion.push_back(v.version);
+    }
+
+    add_to_store(rpm::TAG_OBSOLETENAME, obsoletename, index, store, nentries);
+    add_to_store(rpm::TAG_OBSOLETEVERSION, obsoleteversion, index, store, nentries);
+    add_to_store(rpm::TAG_OBSOLETEFLAGS, obsoleteflags, index, store, nentries);
+
+
     bool files_longsize = false;
     bool has_digest = false;
 
@@ -739,22 +768,8 @@ int main(int argc, char** argv) {
 
         rpmprops_t props;
 
-        /*
-        props.name = "mytestrpm";
-        props.version = "666";
-        props.release = "alpha";
-        props.summary = "A test of RPM creation.";
-        props.description = "A description of makerpm test package.";
-        props.buildhost = "localhost";
-        props.license = "BSD";
-        props.packager = "hacker";
-        props.group = "Testing";
-        props.url = "http://www.ya.ru";
-        props.arch = "x86_64";
-        props.platform = "x86_64-redhat-linux";
-        */
-
-        propsparser::parse_props(propsfile, props);
+        mfile propsconfig(propsfile);
+        propsparser::parse_props(propsconfig, props);
 
         archive_to_rpmprops(input, props);
 
