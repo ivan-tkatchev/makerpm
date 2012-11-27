@@ -693,10 +693,10 @@ void archive_to_rpmprops(const std::string& arfname, rpmprops_t& props) {
         if (first) {
             int f = ::archive_format(a);
 
-            if (f & ARCHIVE_FORMAT_CPIO) {
+            if ((f & ARCHIVE_FORMAT_BASE_MASK) == ARCHIVE_FORMAT_CPIO) {
                 props.payload_format = "cpio";
 
-            } else if (f & ARCHIVE_FORMAT_TAR) {
+            } else if ((f & ARCHIVE_FORMAT_BASE_MASK) == ARCHIVE_FORMAT_TAR) {
                 props.payload_format = "tar";
 
             } else {
