@@ -530,7 +530,7 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
         sha1 += print[c & 0xF];
     }
 
-    size_t uncompressedsize = payload.size;
+    uint64_t uncompressedsize = payload.size;
 
     ////
 
@@ -561,13 +561,21 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
 
     add_to_store(rpm::TAG_SHA1HEADER, sha1, false, index, store, nentries);
 
-    uint32_t size = index2.size() + ret.size;
+    uint64_t size = index2.size() + ret.size;
 
-    add_to_store(rpm::TAG_SIZE, size, index, store, nentries);
+    if (size < 0xFFFFFFFF) {
+        add_to_store(rpm::TAG_SIGSIZE, (uint32_t)size, index, store, nentries);
+    } else {
+        add_to_store(rpm::TAG_SIGLONGSIZE, size, index, store, nentries);
+    }
 
     add_magic(rpm::TAG_MD5, md5, index, store, nentries);
 
-    add_to_store(rpm::TAG_PAYLOADSIZE, uncompressedsize, index, store, nentries);
+    if (uncompressedsize < 0xFFFFFFFF) {
+        add_to_store(rpm::TAG_PAYLOADSIZE, (uint32_t)uncompressedsize, index, store, nentries);
+    } else {
+        add_to_store(rpm::TAG_PAYLOADLONGSIZE, uncompressedsize, index, store, nentries);
+    }
 
     // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
 

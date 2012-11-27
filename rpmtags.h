@@ -9,8 +9,10 @@ enum TAGS {
     TAG_HEADERSIGNATURES = 62,
     TAG_SHA1HEADER = 269,
     TAG_SIGSIZE = 1000,
+    TAG_SIGLONGSIZE = 270,
     TAG_MD5 = 1004,
     TAG_PAYLOADSIZE = 1007,
+    TAG_PAYLOADLONGSIZE = 271,
 
     TAG_HEADERIMMUTABLE = 63,
     TAG_HEADERI18NTABLE = 100,
@@ -113,9 +115,11 @@ std::string tag_printable(unsigned int tag) {
     switch (tag) {
     case TAG_HEADERSIGNATURES: return "HEADERSIGNATURES";
     case TAG_SHA1HEADER: return "SHA1HEADER";
-    case TAG_SIGSIZE: return "SIZE or NAME";
+    case TAG_SIGSIZE: return "SIGSIZE or NAME";
+    case TAG_SIGLONGSIZE: return "SIGLONGSIZE";
     case TAG_MD5: return "MD5 or SUMMARY";
     case TAG_PAYLOADSIZE: return "PAYLOADSIZE or BUILDHOST";
+    case TAG_PAYLOADLONGSIZE: return "PAYLOADLONGSIZE";
     case TAG_HEADERIMMUTABLE: return "HEADERIMMUTABLE";
     case TAG_HEADERI18NTABLE: return "HEADERI18NTABLE";
     case TAG_VERSION: return "VERSION";
