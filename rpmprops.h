@@ -126,8 +126,9 @@ struct rpmprops_t {
 
         std::string fname;
 
-        file_t() : size(0), longsize(0), mode(0), rdev(0), mtime(0), flags(0), verifyflags(0xFFFFFFFF), 
-                   device(0), inode(0)
+        file_t() : size(0), longsize(0), mode(0), rdev(0), mtime(0), 
+                   digest("00000000000000000000000000000000"),
+                   flags(0), verifyflags(0xFFFFFFFF), device(0), inode(0)
             {}
     };
 
