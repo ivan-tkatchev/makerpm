@@ -54,7 +54,7 @@ void add_uint32(uint32_t v, std::string& s) {
  * This is to support compilation on ridiculous, broken OSs (like CentOS) which 
  * ship with development tools from the stoneage.
  */
-
+/*
 #if __GLIBC_MINOR__ < 9 
 
 uint64_t be64toh(uint64_t input) {
@@ -75,7 +75,7 @@ uint64_t be64toh(uint64_t input) {
 }
 
 #endif
-
+*/
 
 void add_uint64(uint32_t v, std::string& s) {
     v = be64toh(v);
@@ -1031,11 +1031,15 @@ void create_cpio(const std::string& archive_name, const std::string& prefix,
         throw std::runtime_error("Could not close archive: " + std::string(::archive_error_string(a)));
     }
 
+    ::archive_write_free(a);
+
+/*
 #if ARCHIVE_VERSION_NUMBER >= 3000000
     ::archive_write_free(a);
 #else
     ::archive_write_finish(a);
 #endif
+*/
 
 }
 
