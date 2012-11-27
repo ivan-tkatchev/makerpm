@@ -48,6 +48,35 @@ void add_uint32(uint32_t v, std::string& s) {
     s += std::string((char*)(&v), 4);
 }
 
+
+
+/*
+ * This is to support compilation on ridiculous, broken OSs (like CentOS) which 
+ * ship with development tools from the stoneage.
+ */
+
+#if __GLIBC_MINOR__ < 9 
+
+uint64_t be64toh(uint64_t input) {
+
+    uint64_t rval;
+    uint8_t *data = (uint8_t *)&rval;
+
+    data[0] = input >> 56;
+    data[1] = input >> 48;
+    data[2] = input >> 40;
+    data[3] = input >> 32;
+    data[4] = input >> 24;
+    data[5] = input >> 16;
+    data[6] = input >> 8;
+    data[7] = input >> 0;
+
+    return rval;
+}
+
+#endif
+
+
 void add_uint64(uint32_t v, std::string& s) {
     v = be64toh(v);
     s += std::string((char*)(&v), 8);
@@ -1002,7 +1031,12 @@ void create_cpio(const std::string& archive_name, const std::string& prefix,
         throw std::runtime_error("Could not close archive: " + std::string(::archive_error_string(a)));
     }
 
+#if ARCHIVE_VERSION_NUMBER >= 3000000
     ::archive_write_free(a);
+#else
+    ::archive_write_finish(a);
+#endif
+
 }
 
 
