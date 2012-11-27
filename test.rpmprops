@@ -31,7 +31,7 @@ PreUn:
 "echo \"before uninstall\""
 
 PostUn: shell "/bin/bash" 
-"echo 'after uninstall"
+"echo 'after uninstall'"
 
 Requires: "daemontools"    
 Requires: config "config(mytestrpm)" = "666-alpha"  

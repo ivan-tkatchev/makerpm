@@ -9,6 +9,7 @@
 #include <grp.h>
 
 #include <stdexcept>
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <map>
@@ -37,7 +38,7 @@ std::string make_lead(const std::string& name) {
 /*** ***/
 
 void add_uint16(uint16_t v, std::string& s) {
-    v = htonl(v);
+    v = htons(v);
     s += std::string((char*)(&v), 2);
 }
 
@@ -347,16 +348,11 @@ std::string make_index2(const rpmprops_t& props) {
 
 
     bool files_longsize = false;
-    bool has_digest = false;
 
     for (const auto& f : props.files) {
 
         if (f.longsize > 0) {
             files_longsize = true;
-        }
-
-        if (f.digest.size() > 0) {
-            has_digest = true;
         }
     }
 
@@ -396,9 +392,7 @@ std::string make_index2(const rpmprops_t& props) {
         rdev.push_back(f.rdev);
         mtime.push_back(f.mtime);
         
-        if (has_digest) {
-            digest.push_back(f.digest);
-        }
+        digest.push_back(f.digest);
 
         linkto.push_back(f.linkto);
         flags.push_back(f.flags);
@@ -412,11 +406,11 @@ std::string make_index2(const rpmprops_t& props) {
         size_t slash = fname.find_last_of('/');
 
         std::string base = fname;
-        std::string dir = "/";
+        std::string dir;
 
         if (slash != std::string::npos) {
             base = fname.substr(slash+1);
-            dir += fname.substr(0, slash+1);
+            dir = fname.substr(1, slash);
         }
 
         auto dim = dirindex_map.find(dir);
@@ -505,6 +499,23 @@ void compress_file(mfile& in, const std::string& out) {
 }
 
 
+std::string print_digest(const unsigned char* digest, size_t len) {
+
+    std::string ret;
+
+    for (size_t i = 0; i < len; ++i) {
+        static unsigned char print[16] = {'0', '1', '2', '3', '4', '5', '6', '7', 
+                                          '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+        unsigned char c = digest[i];
+        ret += print[(c >> 4) & 0xF];
+        ret += print[c & 0xF];
+    }
+
+    return ret;
+}
+
+
 mfile make_index1(const std::string& index2, mfile& payload, const std::string& compressed_payload, std::string& header) {
 
     std::string index;
@@ -517,18 +528,10 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
     ////
 
     unsigned char sha1_raw[20];
-    std::string sha1;
 
     ::SHA1((const unsigned char*)index2.data(), index2.size(), sha1_raw);
 
-    for (size_t i = 0; i < 20; ++i) {
-        static unsigned char print[16] = {'0', '1', '2', '3', '4', '5', '6', '7', 
-                                          '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-        unsigned char c = sha1_raw[i];
-        sha1 += print[(c >> 4) & 0xF];
-        sha1 += print[c & 0xF];
-    }
+    std::string sha1 = print_digest(sha1_raw, 20);
 
     uint64_t uncompressedsize = payload.size;
 
@@ -665,6 +668,7 @@ std::string gid_to_gname(gid_t gid) {
 }
 
 
+/*
 void archive_to_rpmprops(const std::string& arfname, rpmprops_t& props) {
 
     struct archive* a;
@@ -760,7 +764,52 @@ void archive_to_rpmprops(const std::string& arfname, rpmprops_t& props) {
 
         f.fname = ::archive_entry_pathname(entry);
 
-        // f.digest ??
+        if (f.fname.size() < 2 ||
+            f.fname[0] != '.' ||
+            f.fname[1] != '/') {
+
+            throw std::runtime_error("RPM requires a CPIO archive with relative paths that start with \"./\"!\n"
+                                     "Malformed pathname in archive: " + f.fname);
+        }
+
+        if (size > 0) {
+
+            int rr;
+            size_t rsize;
+            const void* rblock;
+            int64_t oldoffset = 0;
+            int64_t roffset;
+
+            MD5_CTX md5;
+            unsigned char digest[16];
+
+            if (!::MD5_Init(&md5))
+                throw std::runtime_error("Could not MD5_Init()");
+
+            while (1) {
+
+                rr = ::archive_read_data_block(a, &rblock, &rsize, &roffset);
+
+                if (rr == ARCHIVE_EOF) {
+                    break;
+                }
+
+                if (rr != ARCHIVE_OK) {
+                    throw std::runtime_error("Could not read file from archive: " + std::string(::archive_error_string(a)));
+                }
+
+                if (!::MD5_Update(&md5, rblock, rsize)) 
+                    throw std::runtime_error("Could not MD5_Update()");
+                
+            }
+
+            if (!::MD5_Final(digest, &md5))
+                throw std::runtime_error("Could not MD5_Final()");
+
+            f.digest = print_digest(digest, 16);
+        }
+
+
         // f.flags ??
         // f.verifyflags ??
     }
@@ -771,31 +820,232 @@ void archive_to_rpmprops(const std::string& arfname, rpmprops_t& props) {
 
     ::archive_read_free(a);
 }
+*/
+
+
+void add_to_rpmprops(struct archive_entry* entry, mfile* data, rpmprops_t& props) {
+
+    props.files.push_back(rpmprops_t::file_t());
+
+    rpmprops_t::file_t& f = props.files.back();
+
+    uint64_t size = ::archive_entry_size(entry);
+
+    if (size < 0xFFFFFFFF) {
+        f.size = size;
+    } else {
+        f.longsize = size;
+    }
+
+    f.mode = ::archive_entry_mode(entry);
+    f.rdev = ::archive_entry_rdev(entry);
+    f.mtime = ::archive_entry_mtime(entry);
+
+    const char* linkto = ::archive_entry_symlink(entry);
+    if (linkto != NULL) {
+        f.linkto = linkto;
+    }
+
+    f.device = ::archive_entry_dev(entry);
+    f.inode = ::archive_entry_ino(entry);
+
+    const char* uname = ::archive_entry_uname(entry);
+
+    if (uname == NULL) {
+        f.username = uid_to_uname(::archive_entry_uid(entry));
+    } else {
+        f.username = uname;
+    }
+
+    const char* gname = ::archive_entry_gname(entry);
+
+    if (gname == NULL) {
+        f.groupname = gid_to_gname(::archive_entry_gid(entry));
+    } else {
+        f.groupname = gname;
+    }
+
+    f.fname = ::archive_entry_pathname(entry);
+
+    if (f.fname.size() < 2 ||
+        f.fname[0] != '.' ||
+        f.fname[1] != '/') {
+
+        throw std::runtime_error("RPM requires a CPIO archive with relative paths that start with \"./\"!\n"
+                                 "Malformed pathname in archive: " + f.fname);
+    }
+
+    if (data != nullptr) {
+
+        unsigned char digest[16];
+
+        ::MD5((const unsigned char*)data->addr, data->size, digest);
+        f.digest = print_digest(digest, 16);
+    }
+}
+
+
+
+void create_cpio(const std::string& archive_name, const std::string& prefix,
+                 std::vector<std::string>& files, rpmprops_t& props) {
+
+    // RPM wants files to be in sorted order.
+    std::sort(files.begin(), files.end());
+
+
+    struct archive* a;
+    struct archive* adisk;
+    int r;
+
+    a = ::archive_write_new();
+    if (a == NULL) {
+        throw std::runtime_error("Could not allocate archive struct.");
+    }
+    
+    adisk = ::archive_read_disk_new();
+    if (adisk == NULL ) {
+        throw std::runtime_error("Could not allocate archive struct.");
+    }
+
+    ::archive_read_disk_set_symlink_physical(adisk);
+    ::archive_read_disk_set_standard_lookup(adisk);
+
+    r = ::archive_write_set_format_cpio_newc(a);
+    if (r != ARCHIVE_OK) {
+        throw std::runtime_error("Could not set archive format: " + std::string(::archive_error_string(a)));
+    }
+
+    r = ::archive_write_open_filename(a, archive_name.c_str());
+    if (r != ARCHIVE_OK) {
+        throw std::runtime_error("Could not open archive for writing: " + archive_name + ::archive_error_string(a));
+    }
+
+    for (const std::string& f : files) {
+
+        struct archive_entry* entry;
+
+        entry = ::archive_entry_new();
+
+        if (entry == NULL) {
+            throw std::runtime_error("Could not allocate archive entry struct.");
+        }
+
+        ::archive_entry_copy_sourcepath(entry, f.c_str());
+
+        r = ::archive_read_disk_entry_from_file(adisk, entry, -1, NULL);        
+
+        if (r != ARCHIVE_OK) {
+            throw std::runtime_error("Could not read file: " + f + ::archive_error_string(a));
+        }
+
+        std::string pathname = f;
+
+        if (pathname == prefix) {
+            pathname == "/";
+
+        } else if (pathname.size() > prefix.size() && 
+                   pathname.compare(0, prefix.size(), prefix) == 0) {
+
+            pathname = pathname.substr(prefix.size());
+        }
+
+        if (pathname.size() == 0) {
+            throw std::runtime_error("Invalid empty pathname.");
+        }
+
+        if (pathname[0] == '/') {
+            pathname = "." + pathname;
+
+        } else if (pathname.size() < 2 ||
+                   pathname[0] != '.' || pathname[1] != '/') {
+
+            pathname = "./" + pathname;
+        }
+
+        ::archive_entry_copy_pathname(entry, pathname.c_str());
+
+        if (::archive_entry_filetype(entry) != AE_IFREG) {
+            ::archive_entry_set_size(entry, 0);
+        }
+
+        r = ::archive_write_header(a, entry);
+
+        if (r != ARCHIVE_OK) {
+            throw std::runtime_error("Could not write file to archive: " + f + ::archive_error_string(a));
+        }
+
+        if (::archive_entry_size(entry) != 0) {
+
+            mfile mf(f);
+
+            ssize_t res = ::archive_write_data(a, mf.addr, mf.size);
+
+            if (res != mf.size) {
+                throw std::runtime_error("Could not write file to archive: " + f);
+            }
+
+            add_to_rpmprops(entry, &mf, props);
+
+        } else {
+
+            add_to_rpmprops(entry, nullptr, props);
+        }
+
+        ::archive_entry_free(entry);
+    }
+
+    if (::archive_write_close(a)) {
+        throw std::runtime_error("Could not close archive: " + std::string(::archive_error_string(a)));
+    }
+
+    if (::archive_read_finish(adisk)) {
+        throw std::runtime_error("Could not close archive: " + std::string(::archive_error_string(a)));
+    }
+
+    ::archive_write_free(a);
+}
+
 
 
 int main(int argc, char** argv) {
 
     try {
 
-        if (argc != 4) {
+        if (argc < 5) {
             std::cout << "Usage: " << argv[0] 
-                      << " <rpm props config> <input archive file> <output rpm file>" << std::endl;
+                      << " <rpm props config> <output rpm file> <path prefix> <files to package>*" << std::endl;
             return 1;
         }
 
+        //
+
         std::string propsfile = argv[1];
-        std::string input = argv[2];
-        std::string output = argv[3];
+        std::string output = argv[2];
+        std::string prefix = argv[3];
+
+        std::vector<std::string> files;
+
+        for (int i = 4; i < argc; ++i) {
+            files.push_back(argv[i]);
+        }
+
+        //
 
         rpmprops_t props;
 
         mfile propsconfig(propsfile);
         propsparser::parse_props(propsconfig, props);
 
-        archive_to_rpmprops(input, props);
+        //
+
+        std::string cpiofile = output + ".cpio";
+
+        create_cpio(cpiofile, prefix, files, props);
+
+        //
 
         std::string header;
-        mfile payload = make_rpm(props, input, header);
+        mfile payload = make_rpm(props, cpiofile, header);
 
         int fd = ::open(output.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0666);
         
@@ -813,7 +1063,8 @@ int main(int argc, char** argv) {
 
         ::close(fd);
 
-        ::unlink((input + ".gz").c_str());
+        ::unlink((cpiofile + ".gz").c_str());
+        ::unlink(cpiofile.c_str());
 
     } catch (std::exception& e) {
         std::cout << "ERROR: " << e.what() << std::endl;

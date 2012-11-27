@@ -93,7 +93,7 @@ void print_index_entry_data(mfile& f, size_t off, uint32_t type, uint32_t count)
 
         case rpm::index_t::entry_t::TYPE_INT16: {
             uint16_t c;
-            ::memcpy(&c, (char*)f.addr+off, 4);
+            ::memcpy(&c, (char*)f.addr+off, 2);
             std::cout << " " << ntohs(c);
             off += 2;
             break;
