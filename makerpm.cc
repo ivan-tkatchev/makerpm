@@ -734,8 +734,21 @@ void archive_to_rpmprops(const std::string& arfname, rpmprops_t& props) {
         f.device = ::archive_entry_dev(entry);
         f.inode = ::archive_entry_ino(entry);
 
-        f.username = uid_to_uname(::archive_entry_uid(entry));
-        f.groupname = gid_to_gname(::archive_entry_gid(entry));
+        const char* uname = ::archive_entry_uname(entry);
+
+        if (uname == NULL) {
+            f.username = uid_to_uname(::archive_entry_uid(entry));
+        } else {
+            f.username = uname;
+        }
+
+        const char* gname = ::archive_entry_gname(entry);
+
+        if (gname == NULL) {
+            f.groupname = gid_to_gname(::archive_entry_gid(entry));
+        } else {
+            f.groupname = gname;
+        }
 
         f.fname = ::archive_entry_pathname(entry);
 

@@ -49,6 +49,12 @@ where
 `input archive file` is an archive with the files you want to package. 
 **NOTE**: Only _uncompressed_ `cpio` and `tar` archives are supported for now!
 
+**NOTE!** Paths in the archive should NOT have a leading slash. The file list of the package should look something like this:
+
+    usr/bin/mycommand
+    usr/lib/libdep.so.1
+    etc/mycommand.conf
+
 `output RPM file` is a filename for writing the resulting `RPM` package.
 
 ### Caveat emptor
@@ -59,3 +65,5 @@ where
   * MD5 digests for individual files are not packaged. (SHA1 and MD5 signatures for the package as a whole are still generated, however, like for any well-behaved `RPM` package.)
   * 'Documentation' and 'config' flags for individual files are not supported.
   * Lots and lots of other `RPM` features are not supported either. In general, only what can be gleaned from a `cpio` archive is packaged, along with a several metadata fields if they have been explicitly provided by the user in the properties input file.
+
+
