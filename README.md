@@ -56,23 +56,23 @@ where
 
 Assume you have a directory tree that looks like this:
 
-  /home/user/package/usr/bin/myapp
-  /home/user/package/usr/bin/myapp.o
-  /home/user/package/usr/lib/libmyapp.so
-  /home/user/package/usr/local/share/docs/myapp-help.html
-
-Running
-
-  makerpm myapp.props myapp.rpm /home/user/package 
     /home/user/package/usr/bin/myapp
+    /home/user/package/usr/bin/myapp.o
     /home/user/package/usr/lib/libmyapp.so
     /home/user/package/usr/local/share/docs/myapp-help.html
 
+Running
+
+    makerpm myapp.props myapp.rpm /home/user/package 
+      /home/user/package/usr/bin/myapp
+      /home/user/package/usr/lib/libmyapp.so
+      /home/user/package/usr/local/share/docs/myapp-help.html
+
 will create an RPM package with the following files:
 
-  /usr/bin/myapp
-  /usr/lib/libmyapp.so
-  /usr/local/share/docs/myapp-help.html
+    /usr/bin/myapp
+    /usr/lib/libmyapp.so
+    /usr/local/share/docs/myapp-help.html
 
 *NOTE*: Only the files you pass directly to `makerpm` are packaged. `/home/user/package/` is **not** scanned for files, and any extra files in that tree will be ignored. The 'path prefix' (`/home/user/package` is *only* used for mangling the pathnames listed in the RPM package. It is not validated or used in any way for reading the data of the list of local files.)
 
