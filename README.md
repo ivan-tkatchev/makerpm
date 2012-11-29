@@ -5,7 +5,7 @@ makerpm
 
 A clean, simple RPM packager reimplemented completely from scratch.
 
-It converts `cpio` or `tar` archives into installable binary `RPM` packages.
+It converts a directory on disk into an installable binary `RPM` package.
 
 ### Why?
 
@@ -40,30 +40,49 @@ Prerequisites:
 
 ### Usage
 
-    makerpm <rpm spec file> <input archive file> <output RPM file>
+    makerpm <rpm properties file> <output RPM file> <path prefix> <list of files to package...>
 
 where
 
-`rpm spec file` is a file listing `RPM` metadata properties. (See `test.rpmprops` for an example.)
-
-`input archive file` is an archive with the files you want to package. 
-**NOTE**: Only _uncompressed_ `cpio` and `tar` archives are supported for now!
-
-**NOTE!** Paths in the archive should NOT have a leading slash. The file list of the package should look something like this:
-
-    usr/bin/mycommand
-    usr/lib/libdep.so.1
-    etc/mycommand.conf
+`rpm properties file` is a file listing `RPM` metadata properties. (See `test.rpmprops` for an example.)
 
 `output RPM file` is a filename for writing the resulting `RPM` package.
+
+`path prefix` is the prefix to strip from the paths of input files before packaging.
+
+`list of files` is the list of files on the local filesystem for packaging.
+
+### Example
+
+Assume you have a directory tree that looks like this:
+
+  /home/user/package/usr/bin/myapp
+  /home/user/package/usr/bin/myapp.o
+  /home/user/package/usr/lib/libmyapp.so
+  /home/user/package/usr/local/share/docs/myapp-help.html
+
+Running
+
+  makerpm myapp.props myapp.rpm /home/user/package 
+    /home/user/package/usr/bin/myapp
+    /home/user/package/usr/lib/libmyapp.so
+    /home/user/package/usr/local/share/docs/myapp-help.html
+
+will create an RPM package with the following files:
+
+  /usr/bin/myapp
+  /usr/lib/libmyapp.so
+  /usr/local/share/docs/myapp-help.html
+
+*NOTE*: Only the files you pass directly to `makerpm` are packaged. `/home/user/package/` is **not** scanned for files, and any extra files in that tree will be ignored. The 'path prefix' (`/home/user/package` is *only* used for mangling the pathnames listed in the RPM package. It is not validated or used in any way for reading the data of the list of local files.)
 
 ### Caveat emptor
 
 `makerpm` is not stable or well-tested software. It also has lots of limitations:
 
   * `makerpm` is not a smart tool. It will not attempt to fix incorrectly-specified metadata, nor will it attempt to add dependencies automatically.
-  * MD5 digests for individual files are not packaged. (SHA1 and MD5 signatures for the package as a whole are still generated, however, like for any well-behaved `RPM` package.)
   * 'Documentation' and 'config' flags for individual files are not supported.
-  * Lots and lots of other `RPM` features are not supported either. In general, only what can be gleaned from a `cpio` archive is packaged, along with a several metadata fields if they have been explicitly provided by the user in the properties input file.
+  * Lots and lots of other `RPM` features are not supported either. 
+
 
 
