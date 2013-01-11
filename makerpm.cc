@@ -878,20 +878,32 @@ void add_to_rpmprops(struct archive_entry* entry, mfile* data, rpmprops_t& props
     f.device = ::archive_entry_dev(entry);
     f.inode = ::archive_entry_ino(entry);
 
-    const char* uname = ::archive_entry_uname(entry);
+    if (props.forceusername.size() > 0) {
+        f.username = props.forceusername;
 
-    if (uname == NULL) {
-        f.username = uid_to_uname(::archive_entry_uid(entry));
     } else {
-        f.username = uname;
+
+        const char* uname = ::archive_entry_uname(entry);
+
+        if (uname == NULL) {
+            f.username = uid_to_uname(::archive_entry_uid(entry));
+        } else {
+            f.username = uname;
+        }
     }
 
-    const char* gname = ::archive_entry_gname(entry);
+    if (props.forcegroupname.size() > 0) {
+        f.groupname = props.forcegroupname;
 
-    if (gname == NULL) {
-        f.groupname = gid_to_gname(::archive_entry_gid(entry));
     } else {
-        f.groupname = gname;
+
+        const char* gname = ::archive_entry_gname(entry);
+
+        if (gname == NULL) {
+            f.groupname = gid_to_gname(::archive_entry_gid(entry));
+        } else {
+            f.groupname = gname;
+        }
     }
 
     f.fname = ::archive_entry_pathname(entry);

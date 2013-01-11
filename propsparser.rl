@@ -148,6 +148,11 @@ void parse_props(mfile& input, rpmprops_t& props) {
 
         ##
 
+        forceusername  = [Ff] 'orce' [Uu] 'ser'  [Nn] 'ame' ':'? ws1 string %{ props.forceusername  = state.match; };
+        forcegroupname = [Ff] 'orce' [Gg] 'roup' [Nn] 'ame' ':'? ws1 string %{ props.forcegroupname = state.match; };
+
+        ##
+
         deps_tag_flag = 
             ('pre'       %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_SCRIPT_PRE; })       |
             ('post'      %{ deps.flags |= rpmprops_t::deps_t::DEPFLAG_SCRIPT_POST; })      |
@@ -211,6 +216,7 @@ void parse_props(mfile& input, rpmprops_t& props) {
         entry = comment |
             name | version | release | summary | description | buildhost | license |
             packager | group | url | os | arch | platform | optflags | rpmversion |
+            forceusername | forcegroupname |
             prein | postin | preun | postun |
             provides | requires | conflicts | obsoletes 
             ;

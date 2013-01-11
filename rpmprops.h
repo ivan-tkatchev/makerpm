@@ -25,6 +25,9 @@ struct rpmprops_t {
 
     std::string rpmversion; //x
 
+    std::string forceusername;
+    std::string forcegroupname;
+
     struct script_t {
         std::string prog;
         std::string code;

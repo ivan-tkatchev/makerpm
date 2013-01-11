@@ -47,3 +47,5 @@ Conflicts: "myothertestrpm"
 
 Obsoletes: "rpmtester" > "alpha"
 
+ForceUsername: "joeqpublic"
+
