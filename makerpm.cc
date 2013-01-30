@@ -982,7 +982,7 @@ void create_cpio(const std::string& archive_name, const std::string& prefix,
         std::string pathname = f;
 
         if (pathname == prefix) {
-            pathname == "/";
+            pathname = "/";
 
         } else if (pathname.size() > prefix.size() && 
                    pathname.compare(0, prefix.size(), prefix) == 0) {
@@ -1021,7 +1021,7 @@ void create_cpio(const std::string& archive_name, const std::string& prefix,
 
             ssize_t res = ::archive_write_data(a, mf.addr, mf.size);
 
-            if (res != mf.size) {
+            if (res != (ssize_t)mf.size) {
                 throw std::runtime_error("Could not write file to archive: " + f);
             }
 
@@ -1103,11 +1103,11 @@ int main(int argc, char** argv) {
             throw std::runtime_error("Could not open: " + output);
         }
 
-        if (::write(fd, header.c_str(), header.size()) != header.size()) {
+        if (::write(fd, header.c_str(), header.size()) != (ssize_t)header.size()) {
             throw std::runtime_error("Could not write to : " + output);
         }
 
-        if (::write(fd, payload.addr, payload.size) != payload.size) {
+        if (::write(fd, payload.addr, payload.size) != (ssize_t)payload.size) {
             throw std::runtime_error("Could not write to : " + output);
         }
 

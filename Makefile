@@ -5,11 +5,13 @@ propsparser.h: propsparser.rl
 	-ragel -G2 -o propsparser.h propsparser.rl
 
 makerpm: propsparser.h rpmtags.h rpmstruct.h mfile.h rpmprops.h makerpm.cc
-	g++ -std=c++11 makerpm.cc -o makerpm -lcrypto -larchive -lz
+	g++ -Wall -std=c++11 makerpm.cc -o makerpm -lcrypto -larchive -lz
 
 printrpm: rpmtags.h rpmstruct.h mfile.h printrpm.cc
-	g++ -std=c++11 printrpm.cc -o printrpm
+	g++ -Wall -std=c++11 printrpm.cc -o printrpm
 
+clean:
+	-rm makerpm printrpm
 ##
 
 #makerpm_static: propsparser.h rpmtags.h rpmstruct.h makerpm.cc
