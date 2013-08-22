@@ -44,13 +44,10 @@ Prerequisites:
 
 where
 
-`rpm properties file` is a file listing `RPM` metadata properties. (See `test.rpmprops` for an example.)
-
-`output RPM file` is a filename for writing the resulting `RPM` package.
-
-`path prefix` is the prefix to strip from the paths of input files before packaging.
-
-`list of files` is the list of files on the local filesystem for packaging.
+  * `rpm properties file` is a file listing `RPM` metadata properties. (See `test.rpmprops` for an example.)
+  * `output RPM file` is a filename for writing the resulting `RPM` package.
+  * `path prefix` is the prefix to strip from the paths of input files before packaging.
+  * `list of files` is the list of files on the local filesystem for packaging.
 
 Alternatively, if file list is way too huge, you can use `-i <files listing file>` instead of explicit files list.
 
