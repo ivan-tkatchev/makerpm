@@ -52,6 +52,8 @@ where
 
 `list of files` is the list of files on the local filesystem for packaging.
 
+Alternatively, if file list is way too huge, you can use `-i <files listing file>` instead of explicit files list.
+
 ### Example
 
 Assume you have a directory tree that looks like this:

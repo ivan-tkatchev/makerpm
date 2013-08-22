@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <fstream>
 
 #include <openssl/sha.h>
 #include <openssl/md5.h>
@@ -1061,9 +1062,11 @@ int main(int argc, char** argv) {
 
     try {
 
-        if (argc < 5) {
-            std::cout << "Usage: " << argv[0] 
-                      << " <rpm props config> <output rpm file> <path prefix> <files to package>*" << std::endl;
+        if (argc < 5 || (strcmp(argv[4], "-i") == 0 && argc != 6)) {
+            std::cout << "Usage:\n"
+                      << argv[0] << " <rpm props config> <output rpm file> <path prefix> <files to package>*" << std::endl
+                      << "or" << std::endl
+                      << argv[0] << " <rpm props config> <output rpm file> <path prefix> -i <input file>" << std::endl;
             return 1;
         }
 
@@ -1075,8 +1078,20 @@ int main(int argc, char** argv) {
 
         std::vector<std::string> files;
 
-        for (int i = 4; i < argc; ++i) {
-            files.push_back(argv[i]);
+        if (strcmp(argv[4], "-i") == 0) {
+            std::ifstream infile(argv[5]);
+            infile.exceptions(std::ifstream::badbit);
+            std::string line;
+            while (std::getline(infile, line)) {
+                files.push_back(line);
+            }
+            if (files.empty()) {
+                throw std::runtime_error("Empty input file");
+            }
+        } else {
+            for (int i = 4; i < argc; ++i) {
+                files.push_back(argv[i]);
+            }
         }
 
         //
