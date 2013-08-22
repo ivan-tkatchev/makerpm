@@ -1,3 +1,7 @@
+CXX ?= g++
+CXXFLAGS ?=
+
+.PHONY: all clean
 
 all: makerpm printrpm
 
@@ -5,13 +9,13 @@ propsparser.h: propsparser.rl
 	-ragel -G2 -o propsparser.h propsparser.rl
 
 makerpm: propsparser.h rpmtags.h rpmstruct.h mfile.h rpmprops.h makerpm.cc
-	g++ -Wall -std=c++11 makerpm.cc -o makerpm -lcrypto -larchive -lz
+	$(CXX) -Wall -std=c++11 $(CXXFLAGS) makerpm.cc -o makerpm -lcrypto -larchive -lz
 
 printrpm: rpmtags.h rpmstruct.h mfile.h printrpm.cc
-	g++ -Wall -std=c++11 printrpm.cc -o printrpm
+	$(CXX) -Wall -std=c++11 $(CXXFLAGS) printrpm.cc -o printrpm
 
 clean:
-	-rm makerpm printrpm
+	-rm -f makerpm printrpm
 ##
 
 #makerpm_static: propsparser.h rpmtags.h rpmstruct.h makerpm.cc
