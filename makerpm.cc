@@ -917,13 +917,13 @@ void add_to_rpmprops(struct archive_entry* entry, mfile* data, rpmprops_t& props
                                  "Malformed pathname in archive: " + f.fname);
     }
 
+    unsigned char digest[16];
     if (data != nullptr) {
-
-        unsigned char digest[16];
-
         ::MD5((const unsigned char*)data->addr, data->size, digest);
-        f.digest = print_digest(digest, 16);
+    } else {
+        ::MD5((const unsigned char*)"", 0, digest);
     }
+    f.digest = print_digest(digest, 16);
 }
 
 
