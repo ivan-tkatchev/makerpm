@@ -127,6 +127,7 @@ void parse_props(mfile& input, rpmprops_t& props) {
         arch        = [Aa] 'rch' ':'?             ws1 string %{ props.arch = state.match; };
         platform    = [Pp] 'latform' ':'?         ws1 string %{ props.platform = state.match; };
         optflags    = [Oo] 'pt' [Ff] 'lags' ':'?  ws1 string %{ props.optflags = state.match; };
+        sourcerpm   = [Ss] 'ource' [Rr] [Pp] [Mm] ':'? ws1 string %{ props.sourcerpm = state.match; };
 
         rpmversion  = [Rr] [Pp] [Mm] [Vv] 'ersion' ':'? ws1 string %{ props.rpmversion = state.match; };
 
@@ -215,7 +216,7 @@ void parse_props(mfile& input, rpmprops_t& props) {
 
         entry = comment |
             name | version | release | summary | description | buildhost | license |
-            packager | group | url | os | arch | platform | optflags | rpmversion |
+            packager | group | url | os | arch | platform | optflags | sourcerpm | rpmversion |
             forceusername | forcegroupname |
             prein | postin | preun | postun |
             provides | requires | conflicts | obsoletes 

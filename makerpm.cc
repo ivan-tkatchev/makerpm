@@ -308,6 +308,13 @@ std::string make_index2(const rpmprops_t& props) {
     add_to_store(rpm::TAG_PAYLOADCOMPRESSOR, props.payload_compressor, false, index, store, nentries);
     add_to_store(rpm::TAG_PLATFORM, props.platform, false, index, store, nentries);
 
+    // for details, see yum's rpmUtils/miscutils.py, function pkgTupleFromHeader(),
+    // or createrepo's createrepo/yumbased.py, method CreateRepoPackage.isSrpm()
+    if (!props.sourcerpm.empty()) {
+        add_to_store(rpm::TAG_SOURCERPM, props.sourcerpm, false, index, store, nentries);
+    }
+    add_to_store(rpm::TAG_SOURCEPACKAGE, (uint32_t)(props.arch == "src"), index, store, nentries);
+
     add_to_store(rpm::TAG_OPTFLAGS, props.optflags, false, index, store, nentries);
     add_to_store(rpm::TAG_RPMVERSION, props.rpmversion, false, index, store, nentries);
 
