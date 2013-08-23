@@ -1062,8 +1062,10 @@ int main(int argc, char** argv) {
 
     try {
 
-        if (argc < 5 || (strcmp(argv[4], "-i") == 0 && argc != 6)) {
-            std::cout << "Usage:\n"
+        bool is_file = (strcmp(argv[4], "-i") == 0);
+
+        if (argc < 5 || (is_file && argc != 6)) {
+            std::cout << "Usage:" << std::endl
                       << argv[0] << " <rpm props config> <output rpm file> <path prefix> <files to package>*" << std::endl
                       << "or" << std::endl
                       << argv[0] << " <rpm props config> <output rpm file> <path prefix> -i <input file>" << std::endl;
@@ -1078,7 +1080,7 @@ int main(int argc, char** argv) {
 
         std::vector<std::string> files;
 
-        if (strcmp(argv[4], "-i") == 0) {
+        if (is_file) {
             std::ifstream infile(argv[5]);
             infile.exceptions(std::ifstream::badbit);
             std::string line;
