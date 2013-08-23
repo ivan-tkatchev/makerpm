@@ -78,6 +78,8 @@ enum TAGS {
     TAG_FILEINODES = 1096,
     TAG_FILELANGS = 1097,
 
+    TAG_SOURCEPACKAGE = 1106,
+
     TAG_PROVIDEFLAGS = 1112,
     TAG_PROVIDEVERSION = 1113,
 
@@ -167,6 +169,7 @@ std::string tag_printable(unsigned int tag) {
     case TAG_FILEDEVICES: return "FILEDEVICES";
     case TAG_FILEINODES: return "FILEINODES";
     case TAG_FILELANGS: return "FILELANGS";
+    case TAG_SOURCEPACKAGE: return "SOURCEPACKAGE";
     case TAG_PROVIDEFLAGS: return "PROVIDEFLAGS";
     case TAG_PROVIDEVERSION: return "PROVIDEVERSION";
     case TAG_OBSOLETEFLAGS: return "OBSOLETEFLAGS";
