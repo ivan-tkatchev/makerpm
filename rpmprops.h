@@ -23,6 +23,8 @@ struct rpmprops_t {
     std::string platform;
     std::string optflags;
 
+    std::string sourcerpm;
+
     std::string rpmversion; //x
 
     std::string forceusername;
