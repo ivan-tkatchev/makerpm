@@ -29,8 +29,9 @@
 #include "propsparser.h"
 
 
-std::string make_lead(const std::string& name) {
+std::string make_lead(const std::string& name, uint16_t type) {
     rpm::lead_t lead(name);
+    lead.type = type;
 
     return std::string((char*)(&lead), rpm::lead_t::SIZE);
 }
@@ -637,7 +638,10 @@ mfile make_rpm(const rpmprops_t& props, const std::string& payload_file, std::st
 
     std::string index2 = make_index2(props);
     mfile ret = make_index1(index2, payload, payload_file + ".gz", header);
-    std::string lead = make_lead(props.name);
+    std::string lead = make_lead(
+        props.name,
+        htons((uint16_t)(props.arch != "src")) /* 0 for source, 1 for binary */
+    );
 
     header = lead + header + index2;
     return ret;
