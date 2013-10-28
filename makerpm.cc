@@ -119,182 +119,182 @@ struct Store {
     std::string store;
     size_t nentries = 0;
 
-void add(uint32_t tag, const std::string& txt, bool i18) {
+    void add(uint32_t tag, const std::string& txt, bool i18) {
 
-    add_uint32(tag, index);
-    add_uint32((i18 ? rpm::index_t::entry_t::TYPE_I18STRING : rpm::index_t::entry_t::TYPE_STRING), index);
-    add_uint32(store.size(), index);
-    add_uint32(1, index);
-    store += txt;
-    store += '\0';
-
-    ++nentries;
-}
-void add(uint32_t tag, const std::vector<std::string>& txt) {
-
-    if (txt.empty())
-        return;
-
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_STRING_ARRAY, index);
-    add_uint32(store.size(), index);
-    add_uint32(txt.size(), index);
-
-    for (const std::string& t : txt) {
-        store += t;
+        add_uint32(tag, index);
+        add_uint32((i18 ? rpm::index_t::entry_t::TYPE_I18STRING : rpm::index_t::entry_t::TYPE_STRING), index);
+        add_uint32(store.size(), index);
+        add_uint32(1, index);
+        store += txt;
         store += '\0';
+
+        ++nentries;
     }
+    void add(uint32_t tag, const std::vector<std::string>& txt) {
 
-    ++nentries;
-}
-void add(uint32_t tag, uint16_t data) {
+        if (txt.empty())
+            return;
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT16, index);
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_STRING_ARRAY, index);
+        add_uint32(store.size(), index);
+        add_uint32(txt.size(), index);
 
-    if (store.size() & 1) {
-        store += '\0';
+        for (const std::string& t : txt) {
+            store += t;
+            store += '\0';
+        }
+
+        ++nentries;
     }
+    void add(uint32_t tag, uint16_t data) {
 
-    add_uint32(store.size(), index);
-    add_uint32(1, index);
-    add_uint16(data, store);
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT16, index);
 
-    ++nentries;
-}
-void add(uint32_t tag, const std::vector<uint16_t>& data) {
+        if (store.size() & 1) {
+            store += '\0';
+        }
 
-    if (data.empty())
-        return;
+        add_uint32(store.size(), index);
+        add_uint32(1, index);
+        add_uint16(data, store);
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT16, index);
-
-    if (store.size() & 1) {
-        store += '\0';
+        ++nentries;
     }
+    void add(uint32_t tag, const std::vector<uint16_t>& data) {
 
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
+        if (data.empty())
+            return;
 
-    for (uint16_t v : data) {
-        add_uint16(v, store);
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT16, index);
+
+        if (store.size() & 1) {
+            store += '\0';
+        }
+
+        add_uint32(store.size(), index);
+        add_uint32(data.size(), index);
+
+        for (uint16_t v : data) {
+            add_uint16(v, store);
+        }
+
+        ++nentries;
     }
+    void add(uint32_t tag, uint32_t data) {
 
-    ++nentries;
-}
-void add(uint32_t tag, uint32_t data) {
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT32, index);
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT32, index);
+        size_t n = (4 - (store.size() % 4)) % 4;
 
-    size_t n = (4 - (store.size() % 4)) % 4;
+        while (n > 0) {
+            store += '\0';
+            --n;
+        }
 
-    while (n > 0) {
-        store += '\0';
-        --n;
+        add_uint32(store.size(), index);
+        add_uint32(1, index);
+        add_uint32(data, store);
+
+        ++nentries;
     }
+    void add(uint32_t tag, const std::vector<uint32_t>& data) {
 
-    add_uint32(store.size(), index);
-    add_uint32(1, index);
-    add_uint32(data, store);
+        if (data.empty())
+            return;
 
-    ++nentries;
-}
-void add(uint32_t tag, const std::vector<uint32_t>& data) {
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT32, index);
 
-    if (data.empty())
-        return;
+        size_t n = (4 - (store.size() % 4)) % 4;
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT32, index);
+        while (n > 0) {
+            store += '\0';
+            --n;
+        }
 
-    size_t n = (4 - (store.size() % 4)) % 4;
+        add_uint32(store.size(), index);
+        add_uint32(data.size(), index);
 
-    while (n > 0) {
-        store += '\0';
-        --n;
+        for (uint32_t v : data) {
+            add_uint32(v, store);
+        }
+
+        ++nentries;
     }
+    void add(uint32_t tag, uint64_t data) {
 
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT64, index);
 
-    for (uint32_t v : data) {
-        add_uint32(v, store);
+        size_t n = (8 - (store.size() % 8)) % 8;
+
+        while (n > 0) {
+            store += '\0';
+            --n;
+        }
+
+        add_uint32(store.size(), index);
+        add_uint32(1, index);
+        add_uint64(data, store);
+
+        ++nentries;
     }
+    void add(uint32_t tag, const std::vector<uint64_t>& data) {
 
-    ++nentries;
-}
-void add(uint32_t tag, uint64_t data) {
+        if (data.empty())
+            return;
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT64, index);
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT64, index);
 
-    size_t n = (8 - (store.size() % 8)) % 8;
+        size_t n = (8 - (store.size() % 8)) % 8;
 
-    while (n > 0) {
-        store += '\0';
-        --n;
+        while (n > 0) {
+            store += '\0';
+            --n;
+        }
+
+        add_uint32(store.size(), index);
+        add_uint32(data.size(), index);
+
+        for (uint64_t v : data) {
+            add_uint64(v, store);
+        }
+
+        ++nentries;
     }
+    std::string str(uint32_t tag) {
+        // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
 
-    add_uint32(store.size(), index);
-    add_uint32(1, index);
-    add_uint64(data, store);
+        std::string magic;
+        std::string magic_payload;
 
-    ++nentries;
-}
-void add(uint32_t tag, const std::vector<uint64_t>& data) {
+        int32_t magic_offset = -((nentries + 1) * rpm::index_t::entry_t::SIZE);
 
-    if (data.empty())
-        return;
+        add_uint32(tag, magic_payload);
+        add_uint32(rpm::index_t::entry_t::TYPE_BIN, magic_payload);
+        add_uint32((uint32_t)magic_offset, magic_payload);
+        add_uint32(rpm::index_t::entry_t::SIZE, magic_payload);
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT64, index);
+        add_magic(tag, magic_payload, magic, store, nentries);
 
-    size_t n = (8 - (store.size() % 8)) % 8;
+        // Add header with the number of fields.
 
-    while (n > 0) {
-        store += '\0';
-        --n;
+        std::string iheader;
+        iheader += '\x8e';
+        iheader += '\xad';
+        iheader += '\xe8';
+        iheader += '\x01';
+        add_uint32(0, iheader);
+        add_uint32(nentries, iheader);
+        add_uint32(store.size(), iheader);
+
+        return iheader + magic + index + store;
     }
-
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
-
-    for (uint64_t v : data) {
-        add_uint64(v, store);
-    }
-
-    ++nentries;
-}
-std::string str(uint32_t tag) {
-    // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
-
-    std::string magic;
-    std::string magic_payload;
-
-    int32_t magic_offset = -((nentries + 1) * rpm::index_t::entry_t::SIZE);
-
-    add_uint32(tag, magic_payload);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, magic_payload);
-    add_uint32((uint32_t)magic_offset, magic_payload);
-    add_uint32(rpm::index_t::entry_t::SIZE, magic_payload);
-
-    add_magic(tag, magic_payload, magic, store, nentries);
-
-    // Add header with the number of fields.
-
-    std::string iheader;
-    iheader += '\x8e';
-    iheader += '\xad';
-    iheader += '\xe8';
-    iheader += '\x01';
-    add_uint32(0, iheader);
-    add_uint32(nentries, iheader);
-    add_uint32(store.size(), iheader);
-
-    return iheader + magic + index + store;
-}
 };
 
 
