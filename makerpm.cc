@@ -309,6 +309,10 @@ std::string make_index2(const rpmprops_t& props) {
     uint32_t totsize = 0;
     uint64_t totlongsize = 0;
 
+    // despite it's name, the index entry does not allow one to store tags in random order;
+    // some misplacements are not fatal, some may lead to various metadata glitches (e.g. appearance of non-stored tags or incorrect file ownership).
+    // current tag order is actually incorrect; for correct ones, see `rpm --querytags`.
+
     //store.add(rpm::TAG_HEADERI18NTABLE, props.locale);
 
     store.add(rpm::TAG_NAME, props.name, false);
@@ -325,9 +329,6 @@ std::string make_index2(const rpmprops_t& props) {
     store.add(rpm::TAG_URL, props.url, false);
     store.add(rpm::TAG_OS, props.os, false);
     store.add(rpm::TAG_ARCH, props.arch, false);
-    store.add(rpm::TAG_PAYLOADFORMAT, props.payload_format, false);
-    store.add(rpm::TAG_PAYLOADCOMPRESSOR, props.payload_compressor, false);
-    store.add(rpm::TAG_PLATFORM, props.platform, false);
 
     // for details, see yum's rpmUtils/miscutils.py, function pkgTupleFromHeader(),
     // or createrepo's createrepo/yumbased.py, method CreateRepoPackage.isSrpm()
@@ -338,6 +339,10 @@ std::string make_index2(const rpmprops_t& props) {
     // [1] rpm's lib/rpminstall.c, function rpmInstall()
     if(props.arch == "src")
         store.add(rpm::TAG_SOURCEPACKAGE, (uint32_t)1);
+
+    store.add(rpm::TAG_PAYLOADFORMAT, props.payload_format, false);
+    store.add(rpm::TAG_PAYLOADCOMPRESSOR, props.payload_compressor, false);
+    store.add(rpm::TAG_PLATFORM, props.platform, false);
 
     store.add(rpm::TAG_OPTFLAGS, props.optflags, false);
     store.add(rpm::TAG_RPMVERSION, props.rpmversion, false);
