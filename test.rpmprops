@@ -17,7 +17,8 @@ Arch: "x86_64"
 Platform: "x86_64-redhat-linux"
 Optflags: "-O2 -g"
 
-RpmVersion: "11"
+# this is used to store the version of RPM that was used to build the package
+RpmVersion: "4.11"
 
 PreIn: 
 "
