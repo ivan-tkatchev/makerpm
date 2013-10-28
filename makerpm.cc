@@ -334,7 +334,10 @@ std::string make_index2(const rpmprops_t& props) {
     if (!props.sourcerpm.empty()) {
         store.add(rpm::TAG_SOURCERPM, props.sourcerpm, false);
     }
-    store.add(rpm::TAG_SOURCEPACKAGE, (uint32_t)(props.arch == "src"));
+    // unlike yum or createrepo, rpm itself relies on the SOURCEPACKAGE tag existence[1]
+    // [1] rpm's lib/rpminstall.c, function rpmInstall()
+    if(props.arch == "src")
+        store.add(rpm::TAG_SOURCEPACKAGE, (uint32_t)1);
 
     store.add(rpm::TAG_OPTFLAGS, props.optflags, false);
     store.add(rpm::TAG_RPMVERSION, props.rpmversion, false);
