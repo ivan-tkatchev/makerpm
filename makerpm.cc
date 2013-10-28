@@ -492,8 +492,6 @@ std::string make_index2(const rpmprops_t& props) {
 
     add_magic(rpm::TAG_HEADERIMMUTABLE, magic_payload, magic, store.store, store.nentries);
 
-    store.index = magic + store.index;
-
     // Add header with the number of fields.
 
     std::string iheader;
@@ -505,7 +503,7 @@ std::string make_index2(const rpmprops_t& props) {
     add_uint32(store.nentries, iheader);
     add_uint32(store.store.size(), iheader);
 
-    return iheader + store.index + store.store;
+    return iheader + magic + store.index + store.store;
 }
 
 
@@ -621,8 +619,6 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
 
     add_magic(rpm::TAG_HEADERSIGNATURES, magic_payload, magic, store.store, store.nentries);
 
-    store.index = magic + store.index;
-
     // Add header with the number of fields.
 
     std::string iheader;
@@ -636,7 +632,7 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
 
     // Align the data to 8 bytes.
 
-    size_t n = iheader.size() + store.index.size() + store.store.size();
+    size_t n = iheader.size() + magic.size() + store.index.size() + store.store.size();
     size_t q = (8 - (n % 8)) % 8;
 
     while (q > 0) {
@@ -644,7 +640,7 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
         --q;
     }
 
-    header = iheader + store.index + store.store;
+    header = iheader + magic + store.index + store.store;
     return ret;
 }
 
