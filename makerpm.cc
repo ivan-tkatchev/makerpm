@@ -97,29 +97,28 @@ void add_magic(uint32_t tag, const std::string& data,
     ++nentries;
 }
 
-void add_magic(uint32_t tag, const std::vector<unsigned char>& data,
-               std::string& index, std::string& store, size_t& nentries) {
-
-    if (data.empty())
-        return;
-
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, index);
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
-
-    for (unsigned char c : data) {
-        store += c;
-    }
-
-    ++nentries;
-}
 
 struct Store {
     std::string index;
     std::string store;
     size_t nentries = 0;
 
+    void add(uint32_t tag, const std::vector<unsigned char>& data) {
+
+        if (data.empty())
+            return;
+
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_BIN, index);
+        add_uint32(store.size(), index);
+        add_uint32(data.size(), index);
+
+        for (unsigned char c : data) {
+            store += c;
+        }
+
+        ++nentries;
+    }
     void add(uint32_t tag, const std::string& txt, bool i18) {
 
         add_uint32(tag, index);
@@ -608,7 +607,7 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
         store.add(rpm::TAG_SIGLONGSIZE, size);
     }
 
-    add_magic(rpm::TAG_MD5, md5, store.index, store.store, store.nentries);
+    store.add(rpm::TAG_MD5, md5);
 
     if (uncompressedsize < 0xFFFFFFFF) {
         store.add(rpm::TAG_PAYLOADSIZE, (uint32_t)uncompressedsize);
