@@ -83,6 +83,37 @@ void add_uint64(uint32_t v, std::string& s) {
     s += std::string((char*)(&v), 8);
 }
 
+void add_magic(uint32_t tag, const std::string& data,
+               std::string& index, std::string& store, size_t& nentries) {
+
+    add_uint32(tag, index);
+    add_uint32(rpm::index_t::entry_t::TYPE_BIN, index);
+    add_uint32(store.size(), index);
+    add_uint32(data.size(), index);
+
+    store += data;
+
+    ++nentries;
+}
+
+void add_magic(uint32_t tag, const std::vector<unsigned char>& data,
+               std::string& index, std::string& store, size_t& nentries) {
+
+    if (data.empty())
+        return;
+
+    add_uint32(tag, index);
+    add_uint32(rpm::index_t::entry_t::TYPE_BIN, index);
+    add_uint32(store.size(), index);
+    add_uint32(data.size(), index);
+
+    for (unsigned char c : data) {
+        store += c;
+    }
+
+    ++nentries;
+}
+
 struct Store {
     std::string index;
     std::string store;
@@ -265,37 +296,6 @@ std::string str(uint32_t tag) {
     return iheader + magic + index + store;
 }
 };
-
-void add_magic(uint32_t tag, const std::string& data,
-               std::string& index, std::string& store, size_t& nentries) {
-
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, index);
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
-
-    store += data;
-
-    ++nentries;
-}
-
-void add_magic(uint32_t tag, const std::vector<unsigned char>& data,
-               std::string& index, std::string& store, size_t& nentries) {
-
-    if (data.empty())
-        return;
-
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, index);
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
-
-    for (unsigned char c : data) {
-        store += c;
-    }
-
-    ++nentries;
-}
 
 
 
