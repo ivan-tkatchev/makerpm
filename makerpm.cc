@@ -236,6 +236,34 @@ void add(uint32_t tag, const std::vector<uint64_t>& data) {
 
     ++nentries;
 }
+std::string str(uint32_t tag) {
+    // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
+
+    std::string magic;
+    std::string magic_payload;
+
+    int32_t magic_offset = -((nentries + 1) * rpm::index_t::entry_t::SIZE);
+
+    add_uint32(tag, magic_payload);
+    add_uint32(rpm::index_t::entry_t::TYPE_BIN, magic_payload);
+    add_uint32((uint32_t)magic_offset, magic_payload);
+    add_uint32(rpm::index_t::entry_t::SIZE, magic_payload);
+
+    add_magic(tag, magic_payload, magic, store, nentries);
+
+    // Add header with the number of fields.
+
+    std::string iheader;
+    iheader += '\x8e';
+    iheader += '\xad';
+    iheader += '\xe8';
+    iheader += '\x01';
+    add_uint32(0, iheader);
+    add_uint32(nentries, iheader);
+    add_uint32(store.size(), iheader);
+
+    return iheader + magic + index + store;
+}
 };
 
 void add_magic(uint32_t tag, const std::string& data,
@@ -477,33 +505,7 @@ std::string make_index2(const rpmprops_t& props) {
         store.add(rpm::TAG_SIZE, totsize);
     }
 
-
-    // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
-
-    std::string magic;
-    std::string magic_payload;
-
-    int32_t magic_offset = -((store.nentries + 1) * rpm::index_t::entry_t::SIZE);
-
-    add_uint32(rpm::TAG_HEADERIMMUTABLE, magic_payload);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, magic_payload);
-    add_uint32((uint32_t)magic_offset, magic_payload);
-    add_uint32(rpm::index_t::entry_t::SIZE, magic_payload);
-
-    add_magic(rpm::TAG_HEADERIMMUTABLE, magic_payload, magic, store.store, store.nentries);
-
-    // Add header with the number of fields.
-
-    std::string iheader;
-    iheader += '\x8e';
-    iheader += '\xad';
-    iheader += '\xe8';
-    iheader += '\x01';
-    add_uint32(0, iheader);
-    add_uint32(store.nentries, iheader);
-    add_uint32(store.store.size(), iheader);
-
-    return iheader + magic + store.index + store.store;
+    return store.str(rpm::TAG_HEADERIMMUTABLE);
 }
 
 
@@ -605,32 +607,7 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
         store.add(rpm::TAG_PAYLOADLONGSIZE, uncompressedsize);
     }
 
-    // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
-
-    std::string magic;
-    std::string magic_payload;
-
-    int32_t magic_offset = -((store.nentries + 1) * rpm::index_t::entry_t::SIZE);
-
-    add_uint32(rpm::TAG_HEADERSIGNATURES, magic_payload);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, magic_payload);
-    add_uint32((uint32_t)magic_offset, magic_payload);
-    add_uint32(rpm::index_t::entry_t::SIZE, magic_payload);
-
-    add_magic(rpm::TAG_HEADERSIGNATURES, magic_payload, magic, store.store, store.nentries);
-
-    // Add header with the number of fields.
-
-    std::string iheader;
-    iheader += '\x8e';
-    iheader += '\xad';
-    iheader += '\xe8';
-    iheader += '\x01';
-    add_uint32(0, iheader);
-    add_uint32(store.nentries, iheader);
-    add_uint32(store.store.size(), iheader);
-
-    header = iheader + magic + store.index + store.store;
+    header = store.str(rpm::TAG_HEADERSIGNATURES);
 
     // Align the data to 8 bytes.
 
