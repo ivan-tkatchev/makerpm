@@ -29,8 +29,9 @@
 #include "propsparser.h"
 
 
-std::string make_lead(const std::string& name) {
+std::string make_lead(const std::string& name, uint16_t type) {
     rpm::lead_t lead(name);
+    lead.type = type;
 
     return std::string((char*)(&lead), rpm::lead_t::SIZE);
 }
@@ -83,38 +84,6 @@ void add_uint64(uint32_t v, std::string& s) {
     s += std::string((char*)(&v), 8);
 }
 
-void add_to_store(uint32_t tag, const std::string& txt, bool i18, 
-                  std::string& index, std::string& store, size_t& nentries) {
-
-    add_uint32(tag, index);
-    add_uint32((i18 ? rpm::index_t::entry_t::TYPE_I18STRING : rpm::index_t::entry_t::TYPE_STRING), index);
-    add_uint32(store.size(), index);
-    add_uint32(1, index);
-    store += txt;
-    store += '\0';
-
-    ++nentries;
-}
-
-void add_to_store(uint32_t tag, const std::vector<std::string>& txt, 
-                  std::string& index, std::string& store, size_t& nentries) {
-
-    if (txt.empty())
-        return;
-
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_STRING_ARRAY, index);
-    add_uint32(store.size(), index);
-    add_uint32(txt.size(), index);
-
-    for (const std::string& t : txt) {
-        store += t;
-        store += '\0';
-    }
-    
-    ++nentries;
-}
-
 void add_magic(uint32_t tag, const std::string& data,
                std::string& index, std::string& store, size_t& nentries) {
 
@@ -124,208 +93,268 @@ void add_magic(uint32_t tag, const std::string& data,
     add_uint32(data.size(), index);
 
     store += data;
-    
+
     ++nentries;
 }
 
-void add_magic(uint32_t tag, const std::vector<unsigned char>& data,
-               std::string& index, std::string& store, size_t& nentries) {
 
-    if (data.empty())
-        return;
+struct Store {
+    std::string index;
+    std::string store;
+    size_t nentries = 0;
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, index);
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
+    void add(uint32_t tag, const std::vector<unsigned char>& data) {
 
-    for (unsigned char c : data) {
-        store += c;
+        if (data.empty())
+            return;
+
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_BIN, index);
+        add_uint32(store.size(), index);
+        add_uint32(data.size(), index);
+
+        for (unsigned char c : data) {
+            store += c;
+        }
+
+        ++nentries;
     }
-    
-    ++nentries;
-}
+    void add(uint32_t tag, const std::string& txt, bool i18) {
 
-void add_to_store(uint32_t tag, uint16_t data, std::string& index, std::string& store, size_t& nentries) {
-
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT16, index);
-
-    if (store.size() & 1) {
+        add_uint32(tag, index);
+        add_uint32((i18 ? rpm::index_t::entry_t::TYPE_I18STRING : rpm::index_t::entry_t::TYPE_STRING), index);
+        add_uint32(store.size(), index);
+        add_uint32(1, index);
+        store += txt;
         store += '\0';
+
+        ++nentries;
     }
+    void add(uint32_t tag, const std::vector<std::string>& txt) {
 
-    add_uint32(store.size(), index);
-    add_uint32(1, index);
-    add_uint16(data, store);
+        if (txt.empty())
+            return;
 
-    ++nentries;
-}
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_STRING_ARRAY, index);
+        add_uint32(store.size(), index);
+        add_uint32(txt.size(), index);
 
-void add_to_store(uint32_t tag, const std::vector<uint16_t>& data, 
-                  std::string& index, std::string& store, size_t& nentries) {
+        for (const std::string& t : txt) {
+            store += t;
+            store += '\0';
+        }
 
-    if (data.empty())
-        return;
-
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT16, index);
-
-    if (store.size() & 1) {
-        store += '\0';
+        ++nentries;
     }
+    void add(uint32_t tag, uint16_t data) {
 
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT16, index);
 
-    for (uint16_t v : data) {
-        add_uint16(v, store);
+        if (store.size() & 1) {
+            store += '\0';
+        }
+
+        add_uint32(store.size(), index);
+        add_uint32(1, index);
+        add_uint16(data, store);
+
+        ++nentries;
     }
+    void add(uint32_t tag, const std::vector<uint16_t>& data) {
 
-    ++nentries;
-}
+        if (data.empty())
+            return;
 
-void add_to_store(uint32_t tag, uint32_t data, std::string& index, std::string& store, size_t& nentries) {
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT16, index);
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT32, index);
+        if (store.size() & 1) {
+            store += '\0';
+        }
 
-    size_t n = (4 - (store.size() % 4)) % 4;
+        add_uint32(store.size(), index);
+        add_uint32(data.size(), index);
 
-    while (n > 0) {
-        store += '\0';
-        --n;
+        for (uint16_t v : data) {
+            add_uint16(v, store);
+        }
+
+        ++nentries;
     }
+    void add(uint32_t tag, uint32_t data) {
 
-    add_uint32(store.size(), index);
-    add_uint32(1, index);
-    add_uint32(data, store);
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT32, index);
 
-    ++nentries;
-}
+        size_t n = (4 - (store.size() % 4)) % 4;
 
-void add_to_store(uint32_t tag, const std::vector<uint32_t>& data, 
-                  std::string& index, std::string& store, size_t& nentries) {
+        while (n > 0) {
+            store += '\0';
+            --n;
+        }
 
-    if (data.empty())
-        return;
+        add_uint32(store.size(), index);
+        add_uint32(1, index);
+        add_uint32(data, store);
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT32, index);
-
-    size_t n = (4 - (store.size() % 4)) % 4;
-
-    while (n > 0) {
-        store += '\0';
-        --n;
+        ++nentries;
     }
+    void add(uint32_t tag, const std::vector<uint32_t>& data) {
 
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
+        if (data.empty())
+            return;
 
-    for (uint32_t v : data) {
-        add_uint32(v, store);
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT32, index);
+
+        size_t n = (4 - (store.size() % 4)) % 4;
+
+        while (n > 0) {
+            store += '\0';
+            --n;
+        }
+
+        add_uint32(store.size(), index);
+        add_uint32(data.size(), index);
+
+        for (uint32_t v : data) {
+            add_uint32(v, store);
+        }
+
+        ++nentries;
     }
+    void add(uint32_t tag, uint64_t data) {
 
-    ++nentries;
-}
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT64, index);
 
-void add_to_store(uint32_t tag, uint64_t data, std::string& index, std::string& store, size_t& nentries) {
+        size_t n = (8 - (store.size() % 8)) % 8;
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT64, index);
+        while (n > 0) {
+            store += '\0';
+            --n;
+        }
 
-    size_t n = (8 - (store.size() % 8)) % 8;
+        add_uint32(store.size(), index);
+        add_uint32(1, index);
+        add_uint64(data, store);
 
-    while (n > 0) {
-        store += '\0';
-        --n;
+        ++nentries;
     }
+    void add(uint32_t tag, const std::vector<uint64_t>& data) {
 
-    add_uint32(store.size(), index);
-    add_uint32(1, index);
-    add_uint64(data, store);
+        if (data.empty())
+            return;
 
-    ++nentries;
-}
+        add_uint32(tag, index);
+        add_uint32(rpm::index_t::entry_t::TYPE_INT64, index);
 
-void add_to_store(uint32_t tag, const std::vector<uint64_t>& data, 
-                  std::string& index, std::string& store, size_t& nentries) {
+        size_t n = (8 - (store.size() % 8)) % 8;
 
-    if (data.empty())
-        return;
+        while (n > 0) {
+            store += '\0';
+            --n;
+        }
 
-    add_uint32(tag, index);
-    add_uint32(rpm::index_t::entry_t::TYPE_INT64, index);
+        add_uint32(store.size(), index);
+        add_uint32(data.size(), index);
 
-    size_t n = (8 - (store.size() % 8)) % 8;
+        for (uint64_t v : data) {
+            add_uint64(v, store);
+        }
 
-    while (n > 0) {
-        store += '\0';
-        --n;
+        ++nentries;
     }
+    std::string str(uint32_t tag) {
+        // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
 
-    add_uint32(store.size(), index);
-    add_uint32(data.size(), index);
+        std::string magic;
+        std::string magic_payload;
 
-    for (uint64_t v : data) {
-        add_uint64(v, store);
+        int32_t magic_offset = -((nentries + 1) * rpm::index_t::entry_t::SIZE);
+
+        add_uint32(tag, magic_payload);
+        add_uint32(rpm::index_t::entry_t::TYPE_BIN, magic_payload);
+        add_uint32((uint32_t)magic_offset, magic_payload);
+        add_uint32(rpm::index_t::entry_t::SIZE, magic_payload);
+
+        add_magic(tag, magic_payload, magic, store, nentries);
+
+        // Add header with the number of fields.
+
+        std::string iheader;
+        iheader += '\x8e';
+        iheader += '\xad';
+        iheader += '\xe8';
+        iheader += '\x01';
+        add_uint32(0, iheader);
+        add_uint32(nentries, iheader);
+        add_uint32(store.size(), iheader);
+
+        return iheader + magic + index + store;
     }
+};
 
-    ++nentries;
-}
+
 
 
 std::string make_index2(const rpmprops_t& props) {
 
-    std::string index;
-    std::string store;
+    Store store;
 
     // Add package fields.
 
     uint32_t totsize = 0;
     uint64_t totlongsize = 0;
 
-    size_t nentries = 0;
+    // despite it's name, the index entry does not allow one to store tags in random order;
+    // some misplacements are not fatal, some may lead to various metadata glitches (e.g. appearance of non-stored tags or incorrect file ownership).
+    // current tag order is actually incorrect; for correct ones, see `rpm --querytags`.
 
-    //add_to_store(rpm::TAG_HEADERI18NTABLE, props.locale, index, store, nentries);
+    //store.add(rpm::TAG_HEADERI18NTABLE, props.locale);
 
-    add_to_store(rpm::TAG_NAME, props.name, false, index, store, nentries);
-    add_to_store(rpm::TAG_VERSION, props.version, false, index, store, nentries);
-    add_to_store(rpm::TAG_RELEASE, props.release, false, index, store, nentries);
+    store.add(rpm::TAG_NAME, props.name, false);
+    store.add(rpm::TAG_VERSION, props.version, false);
+    store.add(rpm::TAG_RELEASE, props.release, false);
 
-    add_to_store(rpm::TAG_SUMMARY, props.summary, true, index, store, nentries);
-    add_to_store(rpm::TAG_DESCRIPTION, props.description, true, index, store, nentries);
-    add_to_store(rpm::TAG_BUILDHOST, props.buildhost, false, index, store, nentries);
-    add_to_store(rpm::TAG_BUILDTIME, props.buildtime, index, store, nentries);
-    add_to_store(rpm::TAG_LICENSE, props.license, false, index, store, nentries);
-    add_to_store(rpm::TAG_PACKAGER, props.packager, false, index, store, nentries);
-    add_to_store(rpm::TAG_GROUP, props.group, true, index, store, nentries);
-    add_to_store(rpm::TAG_URL, props.url, false, index, store, nentries);
-    add_to_store(rpm::TAG_OS, props.os, false, index, store, nentries);
-    add_to_store(rpm::TAG_ARCH, props.arch, false, index, store, nentries);
-    add_to_store(rpm::TAG_PAYLOADFORMAT, props.payload_format, false, index, store, nentries);
-    add_to_store(rpm::TAG_PAYLOADCOMPRESSOR, props.payload_compressor, false, index, store, nentries);
-    add_to_store(rpm::TAG_PLATFORM, props.platform, false, index, store, nentries);
+    store.add(rpm::TAG_SUMMARY, props.summary, true);
+    store.add(rpm::TAG_DESCRIPTION, props.description, true);
+    store.add(rpm::TAG_BUILDHOST, props.buildhost, false);
+    store.add(rpm::TAG_BUILDTIME, props.buildtime);
+    store.add(rpm::TAG_LICENSE, props.license, false);
+    store.add(rpm::TAG_PACKAGER, props.packager, false);
+    store.add(rpm::TAG_GROUP, props.group, true);
+    store.add(rpm::TAG_URL, props.url, false);
+    store.add(rpm::TAG_OS, props.os, false);
+    store.add(rpm::TAG_ARCH, props.arch, false);
 
     // for details, see yum's rpmUtils/miscutils.py, function pkgTupleFromHeader(),
     // or createrepo's createrepo/yumbased.py, method CreateRepoPackage.isSrpm()
     if (!props.sourcerpm.empty()) {
-        add_to_store(rpm::TAG_SOURCERPM, props.sourcerpm, false, index, store, nentries);
+        store.add(rpm::TAG_SOURCERPM, props.sourcerpm, false);
     }
-    add_to_store(rpm::TAG_SOURCEPACKAGE, (uint32_t)(props.arch == "src"), index, store, nentries);
+    // unlike yum or createrepo, rpm itself relies on the SOURCEPACKAGE tag existence[1]
+    // [1] rpm's lib/rpminstall.c, function rpmInstall()
+    if(props.arch == "src")
+        store.add(rpm::TAG_SOURCEPACKAGE, (uint32_t)1);
 
-    add_to_store(rpm::TAG_OPTFLAGS, props.optflags, false, index, store, nentries);
-    add_to_store(rpm::TAG_RPMVERSION, props.rpmversion, false, index, store, nentries);
+    store.add(rpm::TAG_PAYLOADFORMAT, props.payload_format, false);
+    store.add(rpm::TAG_PAYLOADCOMPRESSOR, props.payload_compressor, false);
+    store.add(rpm::TAG_PLATFORM, props.platform, false);
 
-    add_to_store(rpm::TAG_PREIN, props.prein.code, false, index, store, nentries);
-    add_to_store(rpm::TAG_PREINPROG, props.prein.prog, false, index, store, nentries);
-    add_to_store(rpm::TAG_POSTIN, props.postin.code, false, index, store, nentries);
-    add_to_store(rpm::TAG_POSTINPROG, props.postin.prog, false, index, store, nentries);
-    add_to_store(rpm::TAG_PREUN, props.preun.code, false, index, store, nentries);
-    add_to_store(rpm::TAG_PREUNPROG, props.preun.prog, false, index, store, nentries);
-    add_to_store(rpm::TAG_POSTUN, props.postun.code, false, index, store, nentries);
-    add_to_store(rpm::TAG_POSTUNPROG, props.postun.prog, false, index, store, nentries);
+    store.add(rpm::TAG_OPTFLAGS, props.optflags, false);
+    store.add(rpm::TAG_RPMVERSION, props.rpmversion, false);
+
+    store.add(rpm::TAG_PREIN, props.prein.code, false);
+    store.add(rpm::TAG_PREINPROG, props.prein.prog, false);
+    store.add(rpm::TAG_POSTIN, props.postin.code, false);
+    store.add(rpm::TAG_POSTINPROG, props.postin.prog, false);
+    store.add(rpm::TAG_PREUN, props.preun.code, false);
+    store.add(rpm::TAG_PREUNPROG, props.preun.prog, false);
+    store.add(rpm::TAG_POSTUN, props.postun.code, false);
+    store.add(rpm::TAG_POSTUNPROG, props.postun.prog, false);
 
     std::vector<std::string> providename;
     std::vector<uint32_t> provideflags;
@@ -337,9 +366,9 @@ std::string make_index2(const rpmprops_t& props) {
         provideversion.push_back(v.version);
     }
 
-    add_to_store(rpm::TAG_PROVIDENAME, providename, index, store, nentries);
-    add_to_store(rpm::TAG_PROVIDEVERSION, provideversion, index, store, nentries);
-    add_to_store(rpm::TAG_PROVIDEFLAGS, provideflags, index, store, nentries);
+    store.add(rpm::TAG_PROVIDENAME, providename);
+    store.add(rpm::TAG_PROVIDEVERSION, provideversion);
+    store.add(rpm::TAG_PROVIDEFLAGS, provideflags);
 
     std::vector<std::string> requirename;
     std::vector<uint32_t> requireflags;
@@ -351,9 +380,9 @@ std::string make_index2(const rpmprops_t& props) {
         requireversion.push_back(v.version);
     }
 
-    add_to_store(rpm::TAG_REQUIRENAME, requirename, index, store, nentries);
-    add_to_store(rpm::TAG_REQUIREVERSION, requireversion, index, store, nentries);
-    add_to_store(rpm::TAG_REQUIREFLAGS, requireflags, index, store, nentries);
+    store.add(rpm::TAG_REQUIRENAME, requirename);
+    store.add(rpm::TAG_REQUIREVERSION, requireversion);
+    store.add(rpm::TAG_REQUIREFLAGS, requireflags);
 
     std::vector<std::string> conflictname;
     std::vector<uint32_t> conflictflags;
@@ -365,9 +394,9 @@ std::string make_index2(const rpmprops_t& props) {
         conflictversion.push_back(v.version);
     }
 
-    add_to_store(rpm::TAG_CONFLICTNAME, conflictname, index, store, nentries);
-    add_to_store(rpm::TAG_CONFLICTVERSION, conflictversion, index, store, nentries);
-    add_to_store(rpm::TAG_CONFLICTFLAGS, conflictflags, index, store, nentries);
+    store.add(rpm::TAG_CONFLICTNAME, conflictname);
+    store.add(rpm::TAG_CONFLICTVERSION, conflictversion);
+    store.add(rpm::TAG_CONFLICTFLAGS, conflictflags);
 
     std::vector<std::string> obsoletename;
     std::vector<uint32_t> obsoleteflags;
@@ -379,9 +408,9 @@ std::string make_index2(const rpmprops_t& props) {
         obsoleteversion.push_back(v.version);
     }
 
-    add_to_store(rpm::TAG_OBSOLETENAME, obsoletename, index, store, nentries);
-    add_to_store(rpm::TAG_OBSOLETEVERSION, obsoleteversion, index, store, nentries);
-    add_to_store(rpm::TAG_OBSOLETEFLAGS, obsoleteflags, index, store, nentries);
+    store.add(rpm::TAG_OBSOLETENAME, obsoletename);
+    store.add(rpm::TAG_OBSOLETEVERSION, obsoleteversion);
+    store.add(rpm::TAG_OBSOLETEFLAGS, obsoleteflags);
 
 
     bool files_longsize = false;
@@ -461,58 +490,30 @@ std::string make_index2(const rpmprops_t& props) {
         dirindex.push_back(dim->second);
     }
 
-    add_to_store(rpm::TAG_BASENAMES, basename, index, store, nentries);
-    add_to_store(rpm::TAG_DIRINDEXES, dirindex, index, store, nentries);
-    add_to_store(rpm::TAG_DIRNAMES, dirname, index, store, nentries);
-    add_to_store(rpm::TAG_LONGFILESIZES, longsize, index, store, nentries);
-    add_to_store(rpm::TAG_FILESIZES, size, index, store, nentries);
-    add_to_store(rpm::TAG_FILEMODES, mode, index, store, nentries);
-    add_to_store(rpm::TAG_FILERDEVS, rdev, index, store, nentries);
-    add_to_store(rpm::TAG_FILEMTIMES, mtime, index, store, nentries);
-    add_to_store(rpm::TAG_FILEDIGESTS, digest, index, store, nentries);
-    add_to_store(rpm::TAG_FILELINKTOS, linkto, index, store, nentries);
-    add_to_store(rpm::TAG_FILEFLAGS, flags, index, store, nentries);
-    add_to_store(rpm::TAG_FILEUSERNAME, user, index, store, nentries);
-    add_to_store(rpm::TAG_FILEGROUPNAME, group, index, store, nentries);
-    add_to_store(rpm::TAG_FILEVERIFYFLAGS, verifyflags, index, store, nentries);
-    add_to_store(rpm::TAG_FILEDEVICES, device, index, store, nentries);
-    add_to_store(rpm::TAG_FILEINODES, inode, index, store, nentries);
+    store.add(rpm::TAG_BASENAMES, basename);
+    store.add(rpm::TAG_DIRINDEXES, dirindex);
+    store.add(rpm::TAG_DIRNAMES, dirname);
+    store.add(rpm::TAG_LONGFILESIZES, longsize);
+    store.add(rpm::TAG_FILESIZES, size);
+    store.add(rpm::TAG_FILEMODES, mode);
+    store.add(rpm::TAG_FILERDEVS, rdev);
+    store.add(rpm::TAG_FILEMTIMES, mtime);
+    store.add(rpm::TAG_FILEDIGESTS, digest);
+    store.add(rpm::TAG_FILELINKTOS, linkto);
+    store.add(rpm::TAG_FILEFLAGS, flags);
+    store.add(rpm::TAG_FILEUSERNAME, user);
+    store.add(rpm::TAG_FILEGROUPNAME, group);
+    store.add(rpm::TAG_FILEVERIFYFLAGS, verifyflags);
+    store.add(rpm::TAG_FILEDEVICES, device);
+    store.add(rpm::TAG_FILEINODES, inode);
 
     if (totlongsize > 0) {
-        add_to_store(rpm::TAG_LONGSIZE, totlongsize, index, store, nentries);
+        store.add(rpm::TAG_LONGSIZE, totlongsize);
     } else {
-        add_to_store(rpm::TAG_SIZE, totsize, index, store, nentries);
+        store.add(rpm::TAG_SIZE, totsize);
     }
 
-
-    // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
-
-    std::string magic;
-    std::string magic_payload;
-
-    int32_t magic_offset = -((nentries + 1) * rpm::index_t::entry_t::SIZE);
-
-    add_uint32(rpm::TAG_HEADERIMMUTABLE, magic_payload);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, magic_payload);
-    add_uint32((uint32_t)magic_offset, magic_payload);
-    add_uint32(rpm::index_t::entry_t::SIZE, magic_payload);
-
-    add_magic(rpm::TAG_HEADERIMMUTABLE, magic_payload, magic, store, nentries);
-
-    index = magic + index;
-
-    // Add header with the number of fields.
-
-    std::string iheader;
-    iheader += '\x8e';
-    iheader += '\xad';
-    iheader += '\xe8';
-    iheader += '\x01';
-    add_uint32(0, iheader);
-    add_uint32(nentries, iheader);
-    add_uint32(store.size(), iheader);
-
-    return iheader + index + store;
+    return store.str(rpm::TAG_HEADERIMMUTABLE);
 }
 
 
@@ -555,12 +556,9 @@ std::string print_digest(const unsigned char* digest, size_t len) {
 
 mfile make_index1(const std::string& index2, mfile& payload, const std::string& compressed_payload, std::string& header) {
 
-    std::string index;
-    std::string store;
-
     // Add signature fields.
 
-    size_t nentries = 0;
+    Store store;
 
     ////
 
@@ -599,62 +597,36 @@ mfile make_index1(const std::string& index2, mfile& payload, const std::string& 
 
     ////
 
-    add_to_store(rpm::TAG_SHA1HEADER, sha1, false, index, store, nentries);
+    store.add(rpm::TAG_SHA1HEADER, sha1, false);
 
     uint64_t size = index2.size() + ret.size;
 
     if (size < 0xFFFFFFFF) {
-        add_to_store(rpm::TAG_SIGSIZE, (uint32_t)size, index, store, nentries);
+        store.add(rpm::TAG_SIGSIZE, (uint32_t)size);
     } else {
-        add_to_store(rpm::TAG_SIGLONGSIZE, size, index, store, nentries);
+        store.add(rpm::TAG_SIGLONGSIZE, size);
     }
 
-    add_magic(rpm::TAG_MD5, md5, index, store, nentries);
+    store.add(rpm::TAG_MD5, md5);
 
     if (uncompressedsize < 0xFFFFFFFF) {
-        add_to_store(rpm::TAG_PAYLOADSIZE, (uint32_t)uncompressedsize, index, store, nentries);
+        store.add(rpm::TAG_PAYLOADSIZE, (uint32_t)uncompressedsize);
     } else {
-        add_to_store(rpm::TAG_PAYLOADLONGSIZE, uncompressedsize, index, store, nentries);
+        store.add(rpm::TAG_PAYLOADLONGSIZE, uncompressedsize);
     }
 
-    // Add a pointless 'magic' field, which goes into the end of the store but as the first index entry.
-
-    std::string magic;
-    std::string magic_payload;
-
-    int32_t magic_offset = -((nentries + 1) * rpm::index_t::entry_t::SIZE);
-
-    add_uint32(rpm::TAG_HEADERSIGNATURES, magic_payload);
-    add_uint32(rpm::index_t::entry_t::TYPE_BIN, magic_payload);
-    add_uint32((uint32_t)magic_offset, magic_payload);
-    add_uint32(rpm::index_t::entry_t::SIZE, magic_payload);
-
-    add_magic(rpm::TAG_HEADERSIGNATURES, magic_payload, magic, store, nentries);
-
-    index = magic + index;
-
-    // Add header with the number of fields.
-
-    std::string iheader;
-    iheader += '\x8e';
-    iheader += '\xad';
-    iheader += '\xe8';
-    iheader += '\x01';
-    add_uint32(0, iheader);
-    add_uint32(nentries, iheader);
-    add_uint32(store.size(), iheader);
+    header = store.str(rpm::TAG_HEADERSIGNATURES);
 
     // Align the data to 8 bytes.
 
-    size_t n = iheader.size() + index.size() + store.size();
+    size_t n = header.size();
     size_t q = (8 - (n % 8)) % 8;
 
     while (q > 0) {
-        store += '\0';
+        header += '\0';
         --q;
     }
 
-    header = iheader + index + store;
     return ret;
 }
 
@@ -665,7 +637,10 @@ mfile make_rpm(const rpmprops_t& props, const std::string& payload_file, std::st
 
     std::string index2 = make_index2(props);
     mfile ret = make_index1(index2, payload, payload_file + ".gz", header);
-    std::string lead = make_lead(props.name);
+    std::string lead = make_lead(
+        props.name,
+        htons((uint16_t)(props.arch != "src")) /* 0 for source, 1 for binary */
+    );
 
     header = lead + header + index2;
     return ret;
