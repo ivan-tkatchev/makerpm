@@ -634,7 +634,7 @@ mfile make_rpm(const rpmprops_t& props, const std::string& payload_file, std::st
     mfile ret = make_index1(index2, payload, payload_file + ".gz", header);
     std::string lead = make_lead(
         props.name,
-        htons((uint16_t)(props.arch != "src")) /* 0 for source, 1 for binary */
+        htons((uint16_t)(props.arch == "src")) /* 1 for source, 0 for binary */
     );
 
     header = lead + header + index2;
