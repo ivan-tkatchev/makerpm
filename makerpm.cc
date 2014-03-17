@@ -325,6 +325,7 @@ std::string make_index2(const rpmprops_t& props) {
     store.add(rpm::TAG_URL, props.url, false);
     store.add(rpm::TAG_OS, props.os, false);
     store.add(rpm::TAG_ARCH, props.arch, false);
+    store.add(rpm::TAG_RHNPLATFORM, props.arch, false);
     store.add(rpm::TAG_PAYLOADFORMAT, props.payload_format, false);
     store.add(rpm::TAG_PAYLOADCOMPRESSOR, props.payload_compressor, false);
     store.add(rpm::TAG_PLATFORM, props.platform, false);
