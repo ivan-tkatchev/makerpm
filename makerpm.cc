@@ -1018,7 +1018,7 @@ void create_cpio(const std::string& archive_name, const std::string& prefix,
         throw std::runtime_error("Could not close archive: " + std::string(::archive_error_string(a)));
     }
 
-    if (::archive_read_finish(adisk)) {
+    if (::archive_read_free(adisk)) {
         throw std::runtime_error("Could not close archive: " + std::string(::archive_error_string(a)));
     }
 
