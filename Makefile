@@ -3,7 +3,7 @@ CXXFLAGS ?=
 
 .PHONY: all clean
 
-all: makerpm printrpm
+all: makerpm 
 
 propsparser.h: propsparser.rl
 	-ragel -G2 -o propsparser.h propsparser.rl

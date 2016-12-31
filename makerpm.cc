@@ -20,6 +20,10 @@
 #include <archive_entry.h>
 #include <zlib.h>
 
+#ifndef O_LARGEFILE
+#define O_LARGEFILE 0
+#endif
+
 #include "mfile.h"
 #include "rpmtags.h"
 #include "rpmstruct.h"
@@ -35,6 +39,26 @@ std::string make_lead(const std::string& name, uint16_t type) {
     return std::string((char*)(&lead), rpm::lead_t::SIZE);
 }
 
+#if !(__GLIBC__ >= 2 && __GLIBC_MINOR__ >= 9)
+
+uint64_t be64toh(uint64_t input) {
+
+    uint64_t rval;
+    uint8_t *data = (uint8_t *)&rval;
+
+    data[0] = input >> 56;
+    data[1] = input >> 48;
+    data[2] = input >> 40;
+    data[3] = input >> 32;
+    data[4] = input >> 24;
+    data[5] = input >> 16;
+    data[6] = input >> 8;
+    data[7] = input >> 0;
+
+    return rval;
+}
+
+#endif
 
 /*** ***/
 
@@ -995,10 +1019,6 @@ void create_cpio(const std::string& archive_name, const std::string& prefix,
     ::archive_write_free(a);
 
 }
-
-#ifndef O_LARGEFILE
-#define O_LARGEFILE 0
-#endif
 
 int main(int argc, char** argv) {
 
