@@ -2,7 +2,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include <endian.h>
 #include <string.h>
 #include <stdint.h>
 #include <pwd.h>
