@@ -1076,6 +1076,7 @@ int main(int argc, char** argv) {
         std::string header;
         mfile payload = make_rpm(props, cpiofile, header);
 
+        ::unlink(output.c_str());
         int fd = ::open(output.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0666);
         
         if (fd < 0) {
